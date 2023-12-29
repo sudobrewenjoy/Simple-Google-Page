@@ -1,9 +1,24 @@
+/* eslint-disable no-undef */
 import React from 'react';
+
 import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
 import YourImage from './img1.png';
+import googleLogo from './googlelogo.png';
+import { useNavigate } from 'react-router-dom';
+
 
 const CreateAccount = () => {
+  const navigate = useNavigate();
+  const onSubmit = (data) => {
+    console.log(data);
+  
+    navigate('/'); // Replace '/' with the route of your home page
+  };
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+
+
   const containerStyle = {
     display: 'flex',
     flexDirection: 'row',
@@ -28,18 +43,17 @@ const CreateAccount = () => {
     padding: '20px',
     width: '683px',
     height: '768px',
+    marginLeft: '60px',
+    marginRight: '60px'
   };
   
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  
 
   return (
     <div style={containerStyle}>
       <div style={flex1Style}>
+        <img src={googleLogo} alt="Google Logo" style={{ position: 'absolute', top: '20px', left: '20px' }} />
         <img src={YourImage} alt="pro" style={imageStyle} />
       </div>
       <div style={flex2Style}>
@@ -54,7 +68,7 @@ const CreateAccount = () => {
           Register your account
         </h5>
         <br></br>
-        <br></br>
+        
 
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group className="mb-3">
@@ -122,28 +136,29 @@ const CreateAccount = () => {
             )}
           </Form.Group>
           <Button
-  variant="primary"
-  type="submit"
-  style={{
-    /* Layout Properties */
-    top: '613px',
-    left: '743px',
-    width: '563px',
-    height: '49px',
-    /* UI Properties */
-    background: '#219EBC',
-    boxShadow: '0px 6px 10px #00000014',
-    borderRadius: '4px',
-    opacity: '1',
-    /* Other Button Styles */
-    color: '#FFFFFF', // Text color
-    fontSize: '16px',
-    fontWeight: 'bold',
-    // Add other styles as needed
-  }}
->
-  Create Account
-</Button>
+            variant="primary"
+            type="submit"
+            onClick={handleSubmit(onSubmit)}
+            style={{
+              /* Layout Properties */
+              top: '613px',
+              left: '743px',
+              width: '563px',
+              height: '49px',
+              /* UI Properties */
+              background: '#219EBC',
+              boxShadow: '0px 6px 10px #00000014',
+              borderRadius: '4px',
+              opacity: '1',
+              /* Other Button Styles */
+              color: '#FFFFFF', // Text color
+              fontSize: '16px',
+              fontWeight: 'bold',
+              marginLeft:'5px'
+            }}
+          >
+            Create Account
+          </Button>
 
 
         </Form>
