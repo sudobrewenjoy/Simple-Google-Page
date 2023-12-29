@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from '../../navBar/navbar';
-import Card from './cards';
 
 const Home = () => {
   const containerStyle = {
@@ -27,79 +26,106 @@ const Home = () => {
     marginRight: '8px',
   };
 
-
-  const cardContents = [
-    // Your card data here...
-    {
-      backgroundColor: '#E3F7F4',
-      image: <img src="./images/img1.png" alt="Product 1" />,
-      productName: 'Product 1',
-      price: '$99.99',
-      ratings: '4.5',
-    },
-    {
-      backgroundColor: '#E3F7F3',
-      image: 'path_to_image_1.jpg',
-      productName: 'Product 2',
-      price: '$99.99',
-      ratings: '4.5',
-    },
-    {
-      backgroundColor: '#F7F7ED',
-      image: 'path_to_image_1.jpg',
-      productName: 'Product 2',
-      price: '$99.99',
-      ratings: '4.5',
-    },
-   
-    
-    
-  ];
-
-  const cardStyle = {
-    position: 'relative',
-    width: '299px',
-    height: '239px',
-    backgroundColor: 'lightblue',
-    margin: '8px', // Gap between cards
-    padding: '16px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  };
-
-  const detailsContainerStyle = {
+  const cardContainerStyle = {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    marginLeft: '-8px', // You might not need negative margins here
-    marginRight: '-8px', // You might not need negative margins here
-    width: '100%', // Ensure the container takes the full width
+    justifyContent: 'flex-start',
+    marginTop: '20px',
+    gap: '16px',
   };
-  
 
-  const detailsStyle = {
-    width: '33.33%',
-    padding: '8px',
+  const cardStyle = {
+    width: '299px',
+    height: '239px',
+   
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    borderRadius: '4px',
+    padding: '16px',
+    backgroundColor: '#f9f9f9',
+    marginBottom: '65px',
     boxSizing: 'border-box',
   };
 
-  const productNameStyle = {
-    fontSize: '16px',
-    fontWeight: 'bold',
-    marginBottom: '8px',
+  const renderStars = (rating) => {
+    const starsTotal = 5;
+    const filledStars = Math.floor(rating);
+    const starArray = [];
+
+    for (let i = 0; i < starsTotal; i++) {
+      if (i < filledStars) {
+        starArray.push(<span key={i} style={{ color: '#FFB703', fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600' }}>&#9733;</span>);
+      } else {
+        starArray.push(<span key={i} style={{ color: '##FFB703', fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600' }}>&#9734;</span>);
+      }
+    }
+    return starArray;
   };
 
-  const priceStyle = {
-    fontSize: '16px',
-    marginBottom: '8px',
-  };
-
-  const ratingsStyle = {
-    fontSize: '14px',
-    color: 'gray',
-  };
+  const cards = [
+    {
+      productName: 'Nothing',
+      price: '$999',
+      ratings: '4.5',
+      imageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mi.com%2Fin%2Fphone%2F&psig=AOvVaw1x9b5JUDe_pnpm startKw5LWmP7r0B&ust=1703945690200000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJD3hsDqtIMDFQAAAAAdAAAAABAK', // Replace with actual image URL
+      color:'#E3F7F4'
+    },
+    {
+      productName: 'OPPO',
+      price: '$149',
+      ratings: '4.8',
+      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      color:'#EBF5F3'
+    },
+    {
+      productName: 'Redmi ',
+      price: '$149',
+      ratings: '4.8',
+      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      color: '#F7F7ED'
+    },
+    {
+      productName: 'Vivo X90',
+      price: '$149',
+      ratings: '4.8',
+      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      color: '#F7F7ED'
+    },
+    {
+      productName: 'Realme',
+      price: '$149',
+      ratings: '4.8',
+      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      color: '#F7F7ED'
+    },
+    {
+      productName: 'Oneplus 11R',
+      price: '$149',
+      ratings: '4.8',
+      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      color: '#F7F7ED'
+    },
+    {
+      productName: 'Pixel 8A',
+      price: '$149',
+      ratings: '4.8',
+      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      color: '#F7F7ED'
+    },
+    {
+      productName: 'samsung S23',
+      price: '$149',
+      ratings: '4.8',
+      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      color: '#F7F7ED'
+    },
+    {
+      productName: 'Iphone 15 Pro',
+      price: '$149',
+      ratings: '4.8',
+      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      color: '#F7F7ED'
+    },
+  ];
 
   return (
     <div>
@@ -120,27 +146,31 @@ const Home = () => {
           </div>
         </div>
         <div style={rightColumnStyle}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-            {cardContents.map((content, index) => (
-              <div key={index} style={{ ...cardStyle }}>
-                <Card content={content} />
-              </div>
-            ))}
-          </div>
-          <div style={detailsContainerStyle}>
-            {cardContents.map((content, index) => (
-              <div key={index} style={detailsStyle}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <div style={productNameStyle}>{content.productName}</div>
-                  <div style={{ marginLeft: '10px' }}>
-                    <div style={priceStyle}>{content.price}</div>
-                    <div style={ratingsStyle}>Rating: {content.ratings}</div>
+          <div style={cardContainerStyle}>
+            {cards.map((card, index) => (
+              <div key={index} style={{ ...cardStyle, display: 'flex', flexDirection: 'column', backgroundColor: card.color }}>
+                <img
+                  src={card.imageUrl}
+                  alt={card.productName}
+                  style={{ width: '125px', height: '157px', objectFit: 'cover', marginLeft: '93px', marginRight: '81px' }}
+                />
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '130px' }}>
+                  <div style={{ flex: '1', marginLeft: '5px', top: '366px', left: '377px', width: '60px', height: '22px', textAlign: 'left', font: 'normal normal 600 18px/22px Montserrat', letterSpacing: '0px', color: '#023047', opacity: '1' }}>
+                    <h3>{card.productName}</h3>
+                    <div style={{ top: '396px', left: '377px', width: '147px', height: '15px', textAlign: 'left', font: 'normal normal normal 12px/15px Montserrat', letterSpacing: '0px', color: '#B3C1C8', opacity: '1' }}>
+                      Your text field here
+                    </div>
+                  </div>
+                  <div style={{ top: '366px', left: '626px', width: '50px', height: '22px', textAlign: 'right', font: 'normal normal medium 18px/22px Montserrat', letterSpacing: '0px', color: '#023047', opacity: '1' }}>
+                    <p>{card.price}</p>
+                  </div>
+                  <div style={{ top: '396px', left: '598px', width: '78px', height: '15px', opacity: '1' }}>
+                    {renderStars(parseFloat(card.ratings))}
                   </div>
                 </div>
               </div>
             ))}
           </div>
-
         </div>
       </div>
     </div>
