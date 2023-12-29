@@ -1,0 +1,18 @@
+/* navbar.css */
+.navbar {
+  border: 1px solid #ccc; /* Add border to the navbar */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #000; /* Default link color */
+}
+
+.nav-link.active {
+  color: #219EBC; /* Active link color */
+}
+
+.nav-link.active::before {
+  content: '•'; /* Dot before active link text */
+  margin-right: 5px; /* Space between dot and text */
+}
