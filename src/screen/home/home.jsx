@@ -148,28 +148,28 @@ const Home = () => {
         <div style={rightColumnStyle}>
           <div style={cardContainerStyle}>
             {cards.map((card, index) => (
-              <div key={index} style={{ ...cardStyle, display: 'flex', flexDirection: 'column', backgroundColor: card.color }}>
-                <img
-                  src={card.imageUrl}
-                  alt={card.productName}
-                  style={{ width: '125px', height: '157px', objectFit: 'cover', marginLeft: '93px', marginRight: '81px',marginBottom:'10px' }}
-                />
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '130px' }}>
-                  <div style={{ flex: '1', marginLeft: '5px', top: '366px', left: '377px', width: '60px', height: '22px', textAlign: 'left', font: 'normal normal 600 18px/22px Montserrat', letterSpacing: '0px', color: '#023047', opacity: '1' }}>
-                    <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>{card.productName}</h3>
-
-                    <div style={{ top: '396px', left: '377px', width: '147px', height: '15px', textAlign: 'left', font: 'normal normal normal 12px/15px Montserrat', letterSpacing: '0px', color: '#B3C1C8', opacity: '1' }}>
-                      Your text field here
+              <div key={index} style={{ ...cardStyle, backgroundColor: card.color }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <img
+                    src={card.imageUrl}
+                    alt={card.productName}
+                    style={{ width: '125px', height: '157px', objectFit: 'cover', marginBottom: '10px', marginTop: '41px' }}
+                  />
+                  <br></br>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px', width: '100%' }}>
+                    <div style={{ flex: '1', textAlign: 'left' }}>
+                      <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>{card.productName}</h3>
+                      <div style={{ fontSize: '12px', fontFamily: 'Montserrat', color: '#B3C1C8' }}>
+                        Your text field here
+                      </div>
+                    </div>
+                    <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                      <p style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '500', color: '#023047', marginBottom: '0',marginLeft: '5px'  }}>{card.price}</p>
+                      <div style={{ marginTop: '-10px',marginLeft: '15px'  }}>
+                        {renderStars(parseFloat(card.ratings))}
+                      </div>
                     </div>
                   </div>
-                  <div style={{ top: '366px', left: '598px', width: '50px', height: '22px', textAlign: 'right', font: 'normal normal medium 18px/22px Montserrat', letterSpacing: '0px', color: '#023047', opacity: '1' }}>
-                    <p>{card.price}</p>
-                  </div>
-
-                  <div style={{ top: '426px', left: '598px', width: '78px', height: '2px', opacity: '1', marginTop: '30px' }}>
-                    {renderStars(parseFloat(card.ratings))}
-                  </div>
-
 
                 </div>
               </div>
@@ -179,6 +179,7 @@ const Home = () => {
       </div>
     </div>
   );
+  
 };
 
 export default Home;
