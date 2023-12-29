@@ -66,7 +66,7 @@ const Home = () => {
       productName: 'Nothing',
       price: '$999',
       ratings: '4.5',
-      imageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mi.com%2Fin%2Fphone%2F&psig=AOvVaw1x9b5JUDe_pnpm startKw5LWmP7r0B&ust=1703945690200000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJD3hsDqtIMDFQAAAAAdAAAAABAK', // Replace with actual image URL
+      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
       color:'#E3F7F4'
     },
     {
@@ -98,7 +98,7 @@ const Home = () => {
       color: '#F7F7ED'
     },
     {
-      productName: 'Oneplus 11R',
+      productName: 'Oneplus ',
       price: '$149',
       ratings: '4.8',
       imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
@@ -152,21 +152,25 @@ const Home = () => {
                 <img
                   src={card.imageUrl}
                   alt={card.productName}
-                  style={{ width: '125px', height: '157px', objectFit: 'cover', marginLeft: '93px', marginRight: '81px' }}
+                  style={{ width: '125px', height: '157px', objectFit: 'cover', marginLeft: '93px', marginRight: '81px',marginBottom:'10px' }}
                 />
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '130px' }}>
                   <div style={{ flex: '1', marginLeft: '5px', top: '366px', left: '377px', width: '60px', height: '22px', textAlign: 'left', font: 'normal normal 600 18px/22px Montserrat', letterSpacing: '0px', color: '#023047', opacity: '1' }}>
-                    <h3>{card.productName}</h3>
+                    <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>{card.productName}</h3>
+
                     <div style={{ top: '396px', left: '377px', width: '147px', height: '15px', textAlign: 'left', font: 'normal normal normal 12px/15px Montserrat', letterSpacing: '0px', color: '#B3C1C8', opacity: '1' }}>
                       Your text field here
                     </div>
                   </div>
-                  <div style={{ top: '366px', left: '626px', width: '50px', height: '22px', textAlign: 'right', font: 'normal normal medium 18px/22px Montserrat', letterSpacing: '0px', color: '#023047', opacity: '1' }}>
+                  <div style={{ top: '366px', left: '598px', width: '50px', height: '22px', textAlign: 'right', font: 'normal normal medium 18px/22px Montserrat', letterSpacing: '0px', color: '#023047', opacity: '1' }}>
                     <p>{card.price}</p>
                   </div>
-                  <div style={{ top: '396px', left: '598px', width: '78px', height: '15px', opacity: '1' }}>
+
+                  <div style={{ top: '426px', left: '598px', width: '78px', height: '2px', opacity: '1', marginTop: '30px' }}>
                     {renderStars(parseFloat(card.ratings))}
                   </div>
+
+
                 </div>
               </div>
             ))}
