@@ -1,6 +1,6 @@
 export const AllRoutes = {
   home: '/',
-  createaccount: '?createaccount',
+  createaccount: '/createaccount',
   services:"/services",
   aboutus:"/aboutus"
   
