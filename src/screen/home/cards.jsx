@@ -16,14 +16,19 @@ const Card = ({ content }) => {
   const imageStyle = {
     height: '157px',
     width: '125px',
-    backgroundImage: `url(${content.image})`,
+    backgroundImage: content.image.props ? `url(${content.image.props.src})` : 'none',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };
 
   return (
     <div style={cardStyle}>
-      <div style={imageStyle}></div>
+      {/* Check if content.image is a JSX element, then render it */}
+      {content.image.props ? (
+        content.image
+      ) : (
+        <img src={content.image} alt={content.productName} style={imageStyle} />
+      )}
     </div>
   );
 };

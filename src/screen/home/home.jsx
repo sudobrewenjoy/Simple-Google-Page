@@ -27,16 +27,33 @@ const Home = () => {
     marginRight: '8px',
   };
 
+
   const cardContents = [
     // Your card data here...
     {
       backgroundColor: '#E3F7F4',
-      image: 'path_to_image_1.jpg',
+      image: <img src="./images/img1.png" alt="Product 1" />,
       productName: 'Product 1',
       price: '$99.99',
       ratings: '4.5',
     },
-    // ... other card data
+    {
+      backgroundColor: '#E3F7F3',
+      image: 'path_to_image_1.jpg',
+      productName: 'Product 2',
+      price: '$99.99',
+      ratings: '4.5',
+    },
+    {
+      backgroundColor: '#F7F7ED',
+      image: 'path_to_image_1.jpg',
+      productName: 'Product 2',
+      price: '$99.99',
+      ratings: '4.5',
+    },
+   
+    
+    
   ];
 
   const cardStyle = {
@@ -56,9 +73,11 @@ const Home = () => {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginLeft: '-8px',
-    marginRight: '-8px',
+    marginLeft: '-8px', // You might not need negative margins here
+    marginRight: '-8px', // You might not need negative margins here
+    width: '100%', // Ensure the container takes the full width
   };
+  
 
   const detailsStyle = {
     width: '33.33%',
@@ -88,22 +107,22 @@ const Home = () => {
       <div style={containerStyle}>
         <div style={leftColumnStyle}>
           <div>
-            <input type="checkbox" style={checkboxStyle} />
+            <input type="checkbox" id="phones" style={checkboxStyle} />
             <label htmlFor="phones">Phones</label>
           </div>
           <div>
-            <input type="checkbox" style={checkboxStyle} />
+            <input type="checkbox" id="headphones" style={checkboxStyle} />
             <label htmlFor="headphones">Headphones</label>
           </div>
           <div>
-            <input type="checkbox" style={checkboxStyle} />
+            <input type="checkbox" id="accessories" style={checkboxStyle} />
             <label htmlFor="accessories">Accessories</label>
           </div>
         </div>
         <div style={rightColumnStyle}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', marginLeft: '-16px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
             {cardContents.map((content, index) => (
-              <div key={index} style={{ ...cardStyle, marginLeft: '16px' }}>
+              <div key={index} style={{ ...cardStyle }}>
                 <Card content={content} />
               </div>
             ))}
@@ -111,12 +130,17 @@ const Home = () => {
           <div style={detailsContainerStyle}>
             {cardContents.map((content, index) => (
               <div key={index} style={detailsStyle}>
-                <div style={productNameStyle}>{content.productName}</div>
-                <div style={priceStyle}>{content.price}</div>
-                <div style={ratingsStyle}>Rating: {content.ratings}</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <div style={productNameStyle}>{content.productName}</div>
+                  <div style={{ marginLeft: '10px' }}>
+                    <div style={priceStyle}>{content.price}</div>
+                    <div style={ratingsStyle}>Rating: {content.ratings}</div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </div>
