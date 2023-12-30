@@ -5,6 +5,7 @@ import CreateAccount from './screen/createaccount/createaccount';
 import Services from './screen/services/services';
 import AboutUs from './screen/aboutUs/aboutUs';
 import { AllRoutes } from './router/router';
+import PaymentPage from './screen/payment/payment';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path={AllRoutes.createaccount} element={<CreateAccount />} />
           <Route path={AllRoutes.services} element={<Services />} />
           <Route path={AllRoutes.aboutus} element={<AboutUs />} />
+          <Route path={AllRoutes.payment} element={<PaymentPage />} />
         </Routes>
       </div>
     </BrowserRouter>

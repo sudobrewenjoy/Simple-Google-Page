@@ -126,10 +126,24 @@ const Home = () => {
       color: '#F7F7ED'
     },
   ];
-
   const openPaymentWindow = () => {
-    window.open('/payment', '_blank', 'width=500,height=600');
+    const width = 894;
+    const height = 542;
+    const marginLeft = 50;
+    const marginRight = 50;
+    //const marginTop = 113;
+    //const marginBottom = 113;
+  
+    const leftPosition = window.screen.width / 2 - (width + marginLeft + marginRight) / 2 + 245;
+    const rightPosition = window.screen.width - leftPosition - width;
+  
+    const topPosition = window.screen.height / 2 - height / 2 + 113;
+  
+    window.open('/payment', '_blank', `width=${width + marginLeft + marginRight},height=${height},left=${leftPosition},right=${rightPosition},top=${topPosition}`);
   };
+  
+  
+  
 
   const [showBuyNow, setShowBuyNow] = useState(Array(cards.length).fill(false));
   return (
