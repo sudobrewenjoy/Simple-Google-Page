@@ -24,7 +24,7 @@ const PaymentPage = () => {
 
 
   
-      <div style={{ flex: 2, marginTop: '312px', marginLeft: '32px', marginRight: '317px', width: '545px', height: '311px', background: '#FFFFFF', border: '3px solid #E9ECEF', borderRadius: '4px', opacity: 1, position: 'relative' }}>
+  <div style={{ width: '545px', marginTop: '180px', height: '311px', background: '#FFFFFF', border: '3px solid #E9ECEF', borderRadius: '4px', opacity: 1, position: 'relative', marginRight: '384px' }}>
         {/* Add Address */}
         <div style={{ position: 'absolute', top: '20px', left: '20px' }}>
           <p style={{ color: '#B3C1C8', fontSize: '12px', fontFamily: 'Montserrat', fontWeight: '600' }}>Add Address</p>
