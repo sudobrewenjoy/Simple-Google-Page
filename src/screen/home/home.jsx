@@ -2,7 +2,9 @@ import { useState } from 'react';
 import './home.css';
 import Navbar from '../../navBar/navbar';
 
+
 const Home = () => {
+ 
   const containerStyle = {
     display: 'flex',
     flexDirection: 'row',
@@ -71,21 +73,21 @@ const Home = () => {
     },
     {
       productName: 'OPPO',
-      price: '$149',
+      price: '$179',
       ratings: '4.8',
       imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
       color:'#EBF5F3'
     },
     {
       productName: 'Redmi ',
-      price: '$149',
+      price: '$199',
       ratings: '4.8',
       imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
       color: '#F7F7ED'
     },
     {
       productName: 'Vivo X90',
-      price: '$149',
+      price: '$299',
       ratings: '4.8',
       imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
       color: '#F7F7ED'
@@ -99,48 +101,53 @@ const Home = () => {
     },
     {
       productName: 'Oneplus 11R',
-      price: '$149',
+      price: '$159',
       ratings: '4.8',
       imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
       color: '#F7F7ED'
     },
     {
       productName: 'Pixel 8A',
-      price: '$149',
+      price: '$649',
       ratings: '4.8',
       imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
       color: '#F7F7ED'
     },
     {
       productName: 'samsung S23',
-      price: '$149',
+      price: '$749',
       ratings: '4.8',
       imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
       color: '#F7F7ED'
     },
     {
       productName: 'Iphone 15 Pro',
-      price: '$149',
+      price: '$849',
       ratings: '4.8',
       imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
       color: '#F7F7ED'
     },
   ];
-  const openPaymentWindow = () => {
+  const openPaymentWindow = (productName, price) => {
     const width = 894;
     const height = 542;
     const marginLeft = 50;
     const marginRight = 50;
-    //const marginTop = 113;
-    //const marginBottom = 113;
   
     const leftPosition = window.screen.width / 2 - (width + marginLeft + marginRight) / 2 + 245;
     const rightPosition = window.screen.width - leftPosition - width;
   
     const topPosition = window.screen.height / 2 - height / 2 + 113;
   
-    window.open('/payment', '_blank', `width=${width + marginLeft + marginRight},height=${height},left=${leftPosition},right=${rightPosition},top=${topPosition}`);
+    const paymentUrl = `/payment?productName=${productName}&price=${price}`;
+  
+    window.open(
+      paymentUrl,
+      '_blank',
+      `width=${width + marginLeft + marginRight},height=${height},left=${leftPosition},right=${rightPosition},top=${topPosition}`
+    );
   };
+  
   
   
   
@@ -200,32 +207,32 @@ const Home = () => {
                   <br></br>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px', width: '100%' }}>
                   <div style={{ flex: '1', textAlign: 'left', position: 'relative' }}>
-  <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>
-    {card.productName}
-  </h3>
-  <div style={{ fontSize: '12px', fontFamily: 'Montserrat', color: '#B3C1C8', pointerEvents: 'none' }}>
-    <span>Your text field here</span>
-    <a
-      href="/payment"
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        display: 'none',
-        position: 'absolute',
-        top: '100%',
-        left: '0',
-        zIndex: '1',
-        pointerEvents: 'auto',
-        backgroundColor: '#fff', // Add background to make it visible
-        padding: '4px',
-        borderRadius: '4px',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-      }}
-    >
-      View Product
-    </a>
-  </div>
-</div>
+                  <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>
+                    {card.productName}
+                  </h3>
+                  <div style={{ fontSize: '12px', fontFamily: 'Montserrat', color: '#B3C1C8', pointerEvents: 'none' }}>
+                    <span>Your text field here</span>
+                    <a
+                      href="/payment"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'none',
+                        position: 'absolute',
+                        top: '100%',
+                        left: '0',
+                        zIndex: '1',
+                        pointerEvents: 'auto',
+                        backgroundColor: '#fff', // Add background to make it visible
+                        padding: '4px',
+                        borderRadius: '4px',
+                        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      }}
+                    >
+                      View Product
+                    </a>
+                  </div>
+                </div>
 
                     <div style={{ marginBottom: '5px' }}>
                       <p
@@ -258,7 +265,7 @@ const Home = () => {
                           fontFamily: 'Montserrat',
                           color: '#fff',
                         }}
-                        onClick={openPaymentWindow}
+                        onClick={() => openPaymentWindow(card.productName, card.price)}
                       >
                         Buy Now
                       </div>

@@ -1,21 +1,27 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 const PaymentPage = () => {
+
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const productName = searchParams.get('productName');
+    const price = searchParams.get('price');
   
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <div style={{ position: 'absolute', top: '0', left: '0', width: '115px', height: '24px', fontFamily: 'Montserrat', fontWeight: 'bold', fontSize: '20px', color: '#023047', margin: '20px' }}>Buy Pixel</div>
+        <div style={{ position: 'absolute', top: '0', left: '0', width: '115px', height: '24px', fontFamily: 'Montserrat', fontWeight: 'bold', fontSize: '20px', color: '#023047', margin: '20px' }}>Buy {productName}</div>
       <div style={{ position: 'absolute', top: '96px', left: '32px', width: '545px', height: '88px', background: '#FFFFFF', border: '2px solid #E9ECEF', borderRadius: '4px', opacity: '1', display: 'flex', alignItems: 'center' }}>
         <div style={{ width: '24px', height: '31px', margin: '25px 24px' }}>
           <img src="path_to_your_image.jpg" alt="Your " style={{ width: '100%', height: '100%' }} />
         </div>
         <div style={{ marginLeft: '11px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: '40px' }}>
-          <div style={{ width: '120px', height: '19px', fontFamily: 'Montserrat, sans-serif', fontWeight: 'bold', fontSize: '16px', color: '#023047', marginBottom: '10px' }}>Pixel</div>
+          <div style={{ width: '120px', height: '19px', fontFamily: 'Montserrat, sans-serif', fontWeight: 'bold', fontSize: '16px', color: '#023047', marginBottom: '10px' }}>{productName}</div>
           <div style={{ width: '120px', height: '55px', fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: '#B3C1C8' }}>Text</div>
         </div>
-        <div style={{ marginLeft: '10px', height: '55px', fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: '#B3C1C8', marginTop: '40px' }}>Another Text</div>
-        <div style={{ marginLeft: '50px', height: '55px', fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: '#B3C1C8', marginTop: '40px' }}>Another Text2</div>
-        <div style={{ marginLeft: '90px', height: '55px', fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: '#B3C1C8', marginTop: '40px' }}>Price</div>
+        <div style={{ marginLeft: '10px', height: '55px', fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: '#B3C1C8', marginTop: '40px' }}>Black|128</div>
+        <div style={{ marginLeft: '50px', height: '55px', fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: '#B3C1C8', marginTop: '40px' }}>1Qty</div>
+        <div style={{ marginLeft: '90px', height: '55px', fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: '#B3C1C8', marginTop: '40px' }}>{price}</div>
       </div>
 
 
@@ -85,10 +91,10 @@ const PaymentPage = () => {
     </div>
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', marginLeft: '24px' }}>
         <p style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '12px', color: '#023047', margin: '5px 0' }}>Total Amount</p>
-        <span style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '12px', color: '#023047', margin: '5px 0',marginRight:'10px' }}>$499</span>
+        <span style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '12px', color: '#023047', margin: '5px 0',marginRight:'10px' }}>{price}</span>
     </div>
     <button style={{ width: '222px', height: '42px', backgroundColor: '#219EBC', color: '#FFFFFF', border: 'none', borderRadius: '4px', marginTop: '15px', marginLeft: '24px' }}>
-        <span style={{ width: '92px', height: '18px', display: 'inline-block' }}>Pay $499</span>
+        <span style={{ width: '92px', height: '18px', display: 'inline-block' }}>Pay {price}</span>
     </button>
 </div>
 
