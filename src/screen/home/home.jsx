@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import './home.css';
 import Navbar from '../../navBar/navbar';
 
 const Home = () => {
@@ -137,7 +137,7 @@ const Home = () => {
       <Navbar />
       <div style={containerStyle}>
         <div style={leftColumnStyle}>
-        <div>
+          <div>
             <input type="checkbox" id="phones" style={checkboxStyle} />
             <label htmlFor="phones">Phones</label>
           </div>
@@ -185,18 +185,34 @@ const Home = () => {
                   />
                   <br></br>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px', width: '100%' }}>
-                    <div style={{ flex: '1', textAlign: 'left' }}>
-                      <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>{card.productName}</h3>
-                      {showBuyNow[index] && (
-                        <div style={{ fontSize: '12px', fontFamily: 'Montserrat', color: '#B3C1C8' }}>
-                          {/* 'Your text field here' placeholder */}
-                          Your text field here
-                          {/* Replace '#' with your valid URL or handle the click event */}
-                          <button onClick={() => window.open('/payment', '_blank', 'width=500,height=600')}>View Product</button>
+                  <div style={{ flex: '1', textAlign: 'left', position: 'relative' }}>
+  <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>
+    {card.productName}
+  </h3>
+  <div style={{ fontSize: '12px', fontFamily: 'Montserrat', color: '#B3C1C8', pointerEvents: 'none' }}>
+    <span>Your text field here</span>
+    <a
+      href="/payment"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display: 'none',
+        position: 'absolute',
+        top: '100%',
+        left: '0',
+        zIndex: '1',
+        pointerEvents: 'auto',
+        backgroundColor: '#fff', // Add background to make it visible
+        padding: '4px',
+        borderRadius: '4px',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+      }}
+    >
+      View Product
+    </a>
+  </div>
+</div>
 
-                        </div>
-                      )}
-                    </div>
                     <div style={{ marginBottom: '5px' }}>
                       <p
                         style={{
@@ -213,11 +229,10 @@ const Home = () => {
                       <div style={{ marginTop: '-10px', marginLeft: '15px' }}>
                         {renderStars(parseFloat(card.ratings))}
                       </div>
-                      {/* 'Buy Now' button code remains the same */}
                       <div
                         style={{
                           position: 'absolute',
-                          bottom: '10px',
+                          bottom: '5px', // Adjusted bottom value
                           right: '10px',
                           backgroundColor: '#219EBC',
                           padding: '4px 16px',
@@ -244,6 +259,9 @@ const Home = () => {
     </div>
   );
   
+  
 }  
 
 export default Home;
+
+
