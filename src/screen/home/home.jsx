@@ -66,7 +66,7 @@ const Home = () => {
       productName: 'Nothing',
       price: '$999',
       ratings: '4.5',
-      imageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mi.com%2Fin%2Fphone%2F&psig=AOvVaw1x9b5JUDe_pnpm startKw5LWmP7r0B&ust=1703945690200000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJD3hsDqtIMDFQAAAAAdAAAAABAK', // Replace with actual image URL
+      imageUrl: 'https://via.placeholder.com/300x240.png',
       color:'#E3F7F4'
     },
     {
@@ -77,7 +77,7 @@ const Home = () => {
       color:'#EBF5F3'
     },
     {
-      productName: 'Redmi note 13pro',
+      productName: 'Redmi ',
       price: '$149',
       ratings: '4.8',
       imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
@@ -132,14 +132,12 @@ const Home = () => {
   };
 
   const [showBuyNow, setShowBuyNow] = useState(Array(cards.length).fill(false));
-
   return (
     <div>
       <Navbar />
       <div style={containerStyle}>
         <div style={leftColumnStyle}>
-          {/* ... (checkboxes) ... */}
-          <div>
+        <div>
             <input type="checkbox" id="phones" style={checkboxStyle} />
             <label htmlFor="phones">Phones</label>
           </div>
@@ -189,9 +187,15 @@ const Home = () => {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px', width: '100%' }}>
                     <div style={{ flex: '1', textAlign: 'left' }}>
                       <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>{card.productName}</h3>
-                      <div style={{ fontSize: '12px', fontFamily: 'Montserrat', color: '#B3C1C8' }}>
-                        Your text field here
-                      </div>
+                      {showBuyNow[index] && (
+                        <div style={{ fontSize: '12px', fontFamily: 'Montserrat', color: '#B3C1C8' }}>
+                          {/* 'Your text field here' placeholder */}
+                          Your text field here
+                          {/* Replace '#' with your valid URL or handle the click event */}
+                          <button onClick={() => window.open('/payment', '_blank', 'width=500,height=600')}>View Product</button>
+
+                        </div>
+                      )}
                     </div>
                     <div style={{ marginBottom: '5px' }}>
                       <p
@@ -206,22 +210,29 @@ const Home = () => {
                       >
                         {card.price}
                       </p>
-                      <div style={{ marginTop: '-10px',marginLeft: '15px'  }}>
+                      <div style={{ marginTop: '-10px', marginLeft: '15px' }}>
                         {renderStars(parseFloat(card.ratings))}
                       </div>
-                    </div>
-                    <div
-                      style={{
-                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                        padding: '8px 16px',
-                        borderRadius: '4px',
-                        display: showBuyNow[index] ? 'inline-block' : 'none',
-                        zIndex: '1',
-                        cursor: 'pointer',
-                      }}
-                      onClick={openPaymentWindow}
-                    >
-                      Buy Now
+                      {/* 'Buy Now' button code remains the same */}
+                      <div
+                        style={{
+                          position: 'absolute',
+                          bottom: '10px',
+                          right: '10px',
+                          backgroundColor: '#219EBC',
+                          padding: '4px 16px',
+                          borderRadius: '4px',
+                          display: showBuyNow[index] ? 'block' : 'none',
+                          zIndex: '1',
+                          cursor: 'pointer',
+                          fontSize: '12px',
+                          fontFamily: 'Montserrat',
+                          color: '#fff',
+                        }}
+                        onClick={openPaymentWindow}
+                      >
+                        Buy Now
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -230,9 +241,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-      
     </div>
   );
+  
 }  
 
 export default Home;
