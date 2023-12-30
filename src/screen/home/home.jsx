@@ -1,4 +1,5 @@
-import React from 'react';
+import { useState } from 'react';
+
 import Navbar from '../../navBar/navbar';
 
 const Home = () => {
@@ -37,7 +38,6 @@ const Home = () => {
   const cardStyle = {
     width: '299px',
     height: '239px',
-   
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '4px',
     padding: '16px',
@@ -55,7 +55,7 @@ const Home = () => {
       if (i < filledStars) {
         starArray.push(<span key={i} style={{ color: '#FFB703', fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600' }}>&#9733;</span>);
       } else {
-        starArray.push(<span key={i} style={{ color: '##FFB703', fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600' }}>&#9734;</span>);
+        starArray.push(<span key={i} style={{ color: '#FFB703', fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600' }}>&#9734;</span>);
       }
     }
     return starArray;
@@ -66,7 +66,7 @@ const Home = () => {
       productName: 'Nothing',
       price: '$999',
       ratings: '4.5',
-      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      imageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mi.com%2Fin%2Fphone%2F&psig=AOvVaw1x9b5JUDe_pnpm startKw5LWmP7r0B&ust=1703945690200000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJD3hsDqtIMDFQAAAAAdAAAAABAK', // Replace with actual image URL
       color:'#E3F7F4'
     },
     {
@@ -77,7 +77,7 @@ const Home = () => {
       color:'#EBF5F3'
     },
     {
-      productName: 'Redmi ',
+      productName: 'Redmi note 13pro',
       price: '$149',
       ratings: '4.8',
       imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
@@ -98,7 +98,7 @@ const Home = () => {
       color: '#F7F7ED'
     },
     {
-      productName: 'Oneplus ',
+      productName: 'Oneplus 11R',
       price: '$149',
       ratings: '4.8',
       imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
@@ -127,11 +127,18 @@ const Home = () => {
     },
   ];
 
+  const openPaymentWindow = () => {
+    window.open('/payment', '_blank', 'width=500,height=600');
+  };
+
+  const [showBuyNow, setShowBuyNow] = useState(Array(cards.length).fill(false));
+
   return (
     <div>
       <Navbar />
       <div style={containerStyle}>
         <div style={leftColumnStyle}>
+          {/* ... (checkboxes) ... */}
           <div>
             <input type="checkbox" id="phones" style={checkboxStyle} />
             <label htmlFor="phones">Phones</label>
@@ -148,12 +155,35 @@ const Home = () => {
         <div style={rightColumnStyle}>
           <div style={cardContainerStyle}>
             {cards.map((card, index) => (
-              <div key={index} style={{ ...cardStyle, backgroundColor: card.color }}>
+              <div
+                key={index}
+                style={{
+                  ...cardStyle,
+                  backgroundColor: card.color,
+                  position: 'relative',
+                }}
+                onMouseEnter={() => {
+                  const newShowBuyNow = [...showBuyNow];
+                  newShowBuyNow[index] = true;
+                  setShowBuyNow(newShowBuyNow);
+                }}
+                onMouseLeave={() => {
+                  const newShowBuyNow = [...showBuyNow];
+                  newShowBuyNow[index] = false;
+                  setShowBuyNow(newShowBuyNow);
+                }}
+              >
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <img
                     src={card.imageUrl}
                     alt={card.productName}
-                    style={{ width: '125px', height: '157px', objectFit: 'cover', marginBottom: '10px', marginTop: '41px' }}
+                    style={{
+                      width: '125px',
+                      height: '157px',
+                      objectFit: 'cover',
+                      marginBottom: '10px',
+                      marginTop: '41px',
+                    }}
                   />
                   <br></br>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px', width: '100%' }}>
@@ -163,23 +193,46 @@ const Home = () => {
                         Your text field here
                       </div>
                     </div>
-                    <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                      <p style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '500', color: '#023047', marginBottom: '0',marginLeft: '5px'  }}>{card.price}</p>
+                    <div style={{ marginBottom: '5px' }}>
+                      <p
+                        style={{
+                          fontSize: '18px',
+                          fontFamily: 'Montserrat',
+                          fontWeight: '500',
+                          color: '#023047',
+                          marginBottom: '0',
+                          marginLeft: '5px',
+                        }}
+                      >
+                        {card.price}
+                      </p>
                       <div style={{ marginTop: '-10px',marginLeft: '15px'  }}>
                         {renderStars(parseFloat(card.ratings))}
                       </div>
                     </div>
+                    <div
+                      style={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                        padding: '8px 16px',
+                        borderRadius: '4px',
+                        display: showBuyNow[index] ? 'inline-block' : 'none',
+                        zIndex: '1',
+                        cursor: 'pointer',
+                      }}
+                      onClick={openPaymentWindow}
+                    >
+                      Buy Now
+                    </div>
                   </div>
-
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
+      
     </div>
   );
-  
-};
+}  
 
 export default Home;
