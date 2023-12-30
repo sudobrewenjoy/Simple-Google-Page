@@ -128,7 +128,7 @@ const Home = () => {
       color: '#F7F7ED'
     },
   ];
-  const openPaymentWindow = (productName, price) => {
+  const openPaymentWindow = (productName, price,imageUrl) => {
     const width = 894;
     const height = 542;
     const marginLeft = 50;
@@ -139,7 +139,7 @@ const Home = () => {
   
     const topPosition = window.screen.height / 2 - height / 2 + 113;
   
-    const paymentUrl = `/payment?productName=${productName}&price=${price}`;
+    const paymentUrl = `/payment?productName=${productName}&price=${price}&imageUrl=${imageUrl}`;
   
     window.open(
       paymentUrl,
@@ -147,8 +147,25 @@ const Home = () => {
       `width=${width + marginLeft + marginRight},height=${height},left=${leftPosition},right=${rightPosition},top=${topPosition}`
     );
   };
-  
-  
+
+
+    const openProductWindow = (productName, price, imageUrl) => {
+      
+      const width = 896;
+      const height = 684;
+    
+      const leftPosition = window.screen.width / 2 - width / 2;
+      const topPosition = window.screen.height / 2 - height / 2;
+    
+      const productUrl = `/product?productName=${encodeURIComponent(productName)}&price=${encodeURIComponent(price)}&imageUrl=${encodeURIComponent(imageUrl)}`;
+    
+      window.open(
+        productUrl,
+        '_blank',
+        `width=${width},height=${height},left=${leftPosition},top=${topPosition}`
+      );
+    };
+    
   
   
 
@@ -213,20 +230,23 @@ const Home = () => {
                   <div style={{ fontSize: '12px', fontFamily: 'Montserrat', color: '#B3C1C8', pointerEvents: 'none' }}>
                     <span>Your text field here</span>
                     <a
-                      href="/payment"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openProductWindow(card.productName, card.price, card.imageUrl);
+                      }}
                       style={{
-                        display: 'none',
+                        
                         position: 'absolute',
                         top: '100%',
                         left: '0',
                         zIndex: '1',
                         pointerEvents: 'auto',
-                        backgroundColor: '#fff', // Add background to make it visible
+                        backgroundColor: '#fff',
                         padding: '4px',
                         borderRadius: '4px',
                         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                        display: showBuyNow[index] ? 'block' : 'none',
                       }}
                     >
                       View Product
@@ -284,5 +304,4 @@ const Home = () => {
 }  
 
 export default Home;
-
 
