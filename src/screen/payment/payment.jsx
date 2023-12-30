@@ -1,13 +1,30 @@
 import React from 'react';
 
 const PaymentPage = () => {
-  return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div style={{ position: 'absolute', top: '91px', left: '32px', width: '545px', height: '88px', background: '#FFFFFF', border: '2px solid #E9ECEF', borderRadius: '4px', opacity: 1 }}>
-        {/* Content for flex1 */}
-      </div>
   
-      <div style={{ flex: 2, marginTop: '312px', marginLeft: '32px', marginRight: '317px', width: '300px', height: '311px', background: '#FFFFFF', border: '3px solid #E9ECEF', borderRadius: '4px', opacity: 1, position: 'relative' }}>
+  return (
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+  <div style={{ position: 'absolute', top: '96px', left: '32px', width: '545px', height: '88px', background: '#FFFFFF', border: '2px solid #E9ECEF', borderRadius: '4px', opacity: '1', display: 'flex', alignItems: 'center' }}>
+    <div style={{ width: '24px', height: '31px', margin: '25px 24px' }}>
+      <img src="path_to_your_image.jpg" alt="Your " style={{ width: '100%', height: '100%' }} />
+    </div>
+    <div style={{ marginLeft: '11px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: '40px' }}>
+      <div style={{ width: '120px', height: '19px', fontFamily: 'Montserrat, sans-serif', fontWeight: 'bold', fontSize: '16px', color: '#023047', marginBottom: '10px' }}>Pixel</div>
+      <div style={{ width: '120px', height: '55px', fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: '#B3C1C8' }}>Text</div>
+    </div>
+    <div style={{ marginLeft: '10px', height: '55px', fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: '#B3C1C8', marginTop: '40px' }}>Another Text</div>
+    <div style={{ marginLeft: '50px', height: '55px', fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: '#B3C1C8', marginTop: '40px' }}>Another Text2</div>
+    <div style={{ marginLeft: '90px', height: '55px', fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: '#B3C1C8', marginTop: '40px' }}>Price</div>
+  </div>
+
+
+
+
+
+
+
+  
+      <div style={{ flex: 2, marginTop: '312px', marginLeft: '32px', marginRight: '317px', width: '545px', height: '311px', background: '#FFFFFF', border: '3px solid #E9ECEF', borderRadius: '4px', opacity: 1, position: 'relative' }}>
         {/* Add Address */}
         <div style={{ position: 'absolute', top: '20px', left: '20px' }}>
           <p style={{ color: '#B3C1C8', fontSize: '12px', fontFamily: 'Montserrat', fontWeight: '600' }}>Add Address</p>
