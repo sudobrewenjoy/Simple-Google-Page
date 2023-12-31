@@ -7,6 +7,7 @@ import AboutUs from './screen/aboutUs/aboutUs';
 import { AllRoutes } from './router/router';
 import PaymentPage from './screen/payment/payment';
 import ProductWindow from './screen/productwindow/productWindow';
+import LoginPage from './screen/login/login';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path={AllRoutes.aboutus} element={<AboutUs />} />
           <Route path={AllRoutes.payment} element={<PaymentPage />} />
           <Route path={AllRoutes.productwindow} element={<ProductWindow />} />
+          <Route path={AllRoutes.login} element={<LoginPage />} />
         </Routes>
       </div>
     </BrowserRouter>

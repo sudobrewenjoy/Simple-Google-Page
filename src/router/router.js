@@ -4,7 +4,8 @@ export const AllRoutes = {
   services:"/services",
   aboutus:"/aboutus",
   payment:'/payment',
-  productwindow: '/productwindow'
+  productwindow: '/productwindow',
+  login: '/login'
   
   };
   

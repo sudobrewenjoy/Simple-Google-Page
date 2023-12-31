@@ -1,23 +1,17 @@
 /* eslint-disable no-undef */
 import React from 'react';
-
-import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
 import YourImage from './img1.png';
 import googleLogo from './googlelogo.png';
 import { useNavigate } from 'react-router-dom';
 
-
 const CreateAccount = () => {
   const navigate = useNavigate();
+
   const onSubmit = (data) => {
     console.log(data);
-  
-    navigate('/'); // Replace '/' with the route of your home page
+    navigate('/login'); // Replace '/' with the route of your home page
   };
-  const { register, handleSubmit, formState: { errors } } = useForm();
-
-
 
   const containerStyle = {
     display: 'flex',
@@ -44,11 +38,8 @@ const CreateAccount = () => {
     width: '683px',
     height: '768px',
     marginLeft: '60px',
-    marginRight: '60px'
+    marginRight: '60px',
   };
-  
-
-  
 
   return (
     <div style={containerStyle}>
@@ -57,110 +48,52 @@ const CreateAccount = () => {
         <img src={YourImage} alt="pro" style={imageStyle} />
       </div>
       <div style={flex2Style}>
-        <br></br>
-        <br></br>
-        <br></br>
+        <br />
+        <br />
+        <br />
         <h1 style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '800', fontSize: '24px' }}>
-           Welcome to Google Store!
+          Welcome to Google Store!
         </h1>
 
         <h5 style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '500', fontSize: '18px', color: '#BBBBBB' }}>
           Register your account
         </h5>
-        <br></br>
-        
+        <br />
 
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={onSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '400', fontSize: '12px', color: '#98A0AC' }}>Username</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter username"
-              {...register('username', { required: true })}
-            />
-            {errors.username && <p className="text-danger">Username is required</p>}
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="text" placeholder="Enter username" />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '400', fontSize: '12px', color: '#98A0AC' }}>Email ID</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              {...register('email', {
-                required: true,
-                pattern: /^\S+@\S+$/i,
-              })}
-            />
-            {errors.email && (
-              <p className="text-danger">
-                {errors.email.type === 'required'
-                  ? 'Email is required'
-                  : 'Email is invalid'}
-              </p>
-            )}
+            <Form.Label>Email ID</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '400', fontSize: '12px', color: '#98A0AC' }}>Create Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password"
-              {...register('password', { required: true, minLength: 6 })}
-            />
-            {errors.password && (
-              <p className="text-danger">
-                {errors.password.type === 'required'
-                  ? 'Password is required'
-                  : 'Password must be at least 6 characters'}
-              </p>
-            )}
+            <Form.Label>Create Password</Form.Label>
+            <Form.Control type="password" placeholder="Enter password" />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '400', fontSize: '12px', color: '#98A0AC' }}>Retype Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password again"
-              {...register('retypePassword', {
-                required: true,
-                validate: (value) =>
-                  value === register('password').ref.current.value,
-              })}
-            />
-            {errors.retypePassword && (
-              <p className="text-danger">
-                {errors.retypePassword.type === 'required'
-                  ? 'Retype password is required'
-                  : 'Passwords do not match'}
-              </p>
-            )}
+            <Form.Label>Retype Password</Form.Label>
+            <Form.Control type="password" placeholder="Enter password again" />
           </Form.Group>
+
           <Button
             variant="primary"
             type="submit"
-            onClick={handleSubmit(onSubmit)}
             style={{
-              /* Layout Properties */
-              top: '613px',
-              left: '743px',
+              /* Button styles */
               width: '563px',
               height: '49px',
-              /* UI Properties */
               background: '#219EBC',
-              boxShadow: '0px 6px 10px #00000014',
-              borderRadius: '4px',
-              opacity: '1',
-              /* Other Button Styles */
-              color: '#FFFFFF', // Text color
-              fontSize: '16px',
-              fontWeight: 'bold',
-              marginLeft:'5px'
+              marginLeft:'60px'
             }}
           >
             Create Account
           </Button>
-
-
         </Form>
       </div>
     </div>
