@@ -1,0 +1,112 @@
+/* Table.css */
+
+/* Basic table styles */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-top: 20px;
+}
+
+.custom-table th,
+.custom-table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.custom-table th {
+  background-color: #f2f2f2;
+  color: #333333;
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #e0e0e0;
+}
+
+/* Responsive table styles */
+@media only screen and (max-width: 600px) {
+  .custom-table {
+    border-collapse: collapse;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px; /* Adjust max-width as needed */
+  }
+
+  .custom-table th:nth-child(n+4),
+  .custom-table td:nth-child(n+4) {
+    display: none; /* Hide columns on smaller screens */
+  }
+
+  .custom-table tr {
+    border-bottom: 1px solid #dddddd;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .custom-table td {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 8px;
+    text-align: left;
+  }
+
+  .custom-table td:before {
+    content: attr(data-label);
+    flex: 1;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 30%;
+  }
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust the height as needed */
+  font-size: 1.2em;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-top: 5px solid #219EBC;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.admin-message {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+  text-align: center;
+  margin: 20px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+

@@ -14,7 +14,7 @@ const LoginPage = () => {
       navigate('/producthome');
     } else if (data.username === 'admin' && data.password === '87654321') {
       localStorage.setItem('authToken', 'yourOtherAuthTokenHere');
-      navigate('/database');
+      navigate('/admin');
     }
   };
 

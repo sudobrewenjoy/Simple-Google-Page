@@ -6,7 +6,8 @@ export const AllRoutes = {
   payment:'/payment',
   productwindow: '/productwindow',
   login: '/login',
-  producthome: '/producthome'
+  producthome: '/producthome',
+  admin:'/admin'
   
   };
   

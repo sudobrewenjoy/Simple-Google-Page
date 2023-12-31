@@ -10,6 +10,7 @@ import ProductWindow from './screen/productwindow/productWindow';
 import LoginPage from './screen/login/login';
 import ProductHome from './screen/home/product-home';
 import PrivateRoute from "./router/privateRoute";
+import TableComponent from './screen/login/admin';
 
 function App() {
   return (
@@ -33,7 +34,12 @@ function App() {
               <ProductHome />
             </PrivateRoute>
           } />
-          </Routes>
+            <Route path={AllRoutes.admin} element={
+            <PrivateRoute path={AllRoutes.admin}>
+              <TableComponent />
+            </PrivateRoute>
+          } />
+        </Routes>
           
       </div>
     </BrowserRouter>

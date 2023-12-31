@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const PaymentPage = () => {
@@ -8,7 +8,7 @@ const PaymentPage = () => {
     const productName = searchParams.get('productName');
     const price = searchParams.get('price');
     const imageUrl = searchParams.get('imageUrl');
-
+    const [orderConfirmed, setOrderConfirmed] = useState(false);
 
 
   const handleSubmit = (e) => {
@@ -43,6 +43,13 @@ const PaymentPage = () => {
         console.error('Error:', error);
         // Show an error message
       });
+
+      setOrderConfirmed(true);
+
+      // Reset the confirmation message after 5 seconds
+      setTimeout(() => {
+        setOrderConfirmed(false);
+      }, 5000);
   };
   
   return (
@@ -135,7 +142,26 @@ const PaymentPage = () => {
     <button onClick={handleSubmit} style={{ width: '222px', height: '42px', backgroundColor: '#219EBC', color: '#FFFFFF', border: 'none', borderRadius: '4px', marginTop: '15px', marginLeft: '24px' }}>
         <span style={{ width: '92px', height: '18px', display: 'inline-block' }}>Pay {price}</span>
     </button>
-</div>
+    {orderConfirmed && (
+        <div
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: '#219EBC',
+            color: '#FFFFFF',
+            padding: '20px',
+            borderRadius: '8px',
+            zIndex: 9999, // Ensures it's on top of everything
+          }}
+        >
+          <p style={{ textAlign: 'center', margin: 0 }}>
+            Order Confirmed - Payment Successful
+          </p>
+        </div>
+        )}
+  </div>
 
     </div>
   );
