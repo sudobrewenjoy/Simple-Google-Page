@@ -3,7 +3,8 @@ export const AllRoutes = {
   createaccount: '/createaccount',
   services:"/services",
   aboutus:"/aboutus",
-  payment:'/payment'
+  payment:'/payment',
+  productwindow: '/productwindow'
   
   };
   
