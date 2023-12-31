@@ -1,13 +1,59 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-const ProductWindow = ({ productName, price, imageUrl, rating }) => {
-    const navigate = useNavigate()
+const ProductWindow = ({ initialProductName, initialPrice, initialImageUrl, initialRating }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const productName = searchParams.get('productName') || initialProductName;
+  const price = searchParams.get('price') || initialPrice;
+  const imageUrl = searchParams.get('imageUrl') || initialImageUrl;
+  const rating = searchParams.get('rating') || initialRating;
 
     const openPaymentWindow = () => {
         
         navigate('/payment'); 
       };
+      const renderStars = (rating) => {
+        const starsTotal = 5;
+        const filledStars = Math.floor(rating);
+        const starArray = [];
+      
+        for (let i = 0; i < starsTotal; i++) {
+          if (i < filledStars) {
+            starArray.push(
+              <span
+                key={i}
+                style={{
+                  color: '#FFB703',
+                  fontSize: '18px',
+                  fontFamily: 'Montserrat',
+                  fontWeight: '600'
+                }}
+              >
+                &#9733;
+              </span>
+            );
+          } else {
+            starArray.push(
+              <span
+                key={i}
+                style={{
+                  color: '#FFB703',
+                  fontSize: '18px',
+                  fontFamily: 'Montserrat',
+                  fontWeight: '600'
+                }}
+              >
+                &#9734;
+              </span>
+            );
+          }
+        }
+        return starArray;
+      };
+      
  
   
 
@@ -36,7 +82,8 @@ const ProductWindow = ({ productName, price, imageUrl, rating }) => {
         <div style={{ marginLeft: '118px',marginTop:"96px" }}>
           <h2>{productName}</h2>
           <p>Price: {price}</p>
-          <p>Rating: {rating}</p>
+          <div>{renderStars(parseFloat(rating))}</div>
+
         </div>
 
         <div style={{ position: 'absolute', bottom: '20px', right: '48.5px',top:'126px' }}>

@@ -149,15 +149,16 @@ const Home = () => {
   };
 
 
-    const openProductWindow = (productName, price, imageUrl) => {
+    const openProductWindow = (productName, price, imageUrl,rating) => {
       
       const width = 896;
       const height = 684;
     
       const leftPosition = window.screen.width / 2 - width / 2;
       const topPosition = window.screen.height / 2 - height / 2;
+      const stars = renderStars(rating);
     
-      const productUrl = `/productwindow?productName=${encodeURIComponent(productName)}&price=${encodeURIComponent(price)}&imageUrl=${encodeURIComponent(imageUrl)}`;
+      const productUrl = `/productwindow?productName=${encodeURIComponent(productName)}&price=${encodeURIComponent(price)}&imageUrl=${encodeURIComponent(imageUrl)}&stars=${encodeURIComponent(stars)}`;
     
       window.open(
         productUrl,
@@ -233,7 +234,7 @@ const Home = () => {
                       href="#"
                       onClick={(e) => {
                         e.preventDefault();
-                        openProductWindow(card.productName, card.price, card.imageUrl);
+                        openProductWindow(card.productName, card.price, card.imageUrl,card.ratings);
                       }}
                       style={{
                         
