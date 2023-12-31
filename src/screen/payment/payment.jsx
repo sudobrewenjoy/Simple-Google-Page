@@ -8,6 +8,7 @@ const PaymentPage = () => {
     const productName = searchParams.get('productName');
     const price = searchParams.get('price');
     const imageUrl = searchParams.get('imageUrl');
+
   
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -32,7 +33,7 @@ const PaymentPage = () => {
 
 
   
-  <div style={{ width: '545px', marginTop: '180px', height: '311px', background: '#FFFFFF', border: '3px solid #E9ECEF', borderRadius: '4px', opacity: 1, position: 'relative', marginRight: '384px' }}>
+  <div style={{ width: '545px', marginTop: '180px', height: '311px', background: '#FFFFFF', border: '3px solid #E9ECEF', borderRadius: '4px', opacity: 1, position: 'relative', marginRight: '382px' }}>
         {/* Add Address */}
         <div style={{ position: 'absolute', top: '20px', left: '20px' }}>
           <p style={{ color: '#B3C1C8', fontSize: '12px', fontFamily: 'Montserrat', fontWeight: '600' }}>Add Address</p>
@@ -69,14 +70,16 @@ const PaymentPage = () => {
           {/* Dropdown for Country */}
           <select id="country" style={{ width: '100%', height: '100%', background: '#FFFFFF', border: 'none', outline: 'none', fontFamily: 'Montserrat', fontSize: '12px', color: '#4E6E7E' }}>
             <option value="" disabled selected>Select country</option>
-            {/* Add options for countries */}
-            <option value="country1">Country 1</option>
-            <option value="country2">Country 2</option>
-            {/* Add more countries as needed */}
+            
+            <option value="country1">India</option>
+            <option value="country2">Russia</option>
+            <option value="country1">USA</option>
+            <option value="country2">China</option>
+            
           </select>
         </div>
       </div>
-      <div style={{ position: 'absolute', top: '91px', left: '690px', width: '270px', height: '257px', background: '#FFFFFF', border: '3px solid #E9ECEF', borderRadius: '4px', opacity: 1 }}>
+    <div style={{ position: 'absolute', top: '91px', left: '690px', width: '270px', height: '257px', background: '#FFFFFF', border: '3px solid #E9ECEF', borderRadius: '4px', opacity: 1}}>
     <h2 style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '12px', color: '#B3C1C8', margin: '10px 0', marginLeft: '24px' }}>Invoice summary</h2>
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', marginLeft: '24px' }}>
         <p style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0' }}>Actual Amount</p>
@@ -84,11 +87,11 @@ const PaymentPage = () => {
     </div>
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', marginLeft: '24px' }}>
         <p style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0' }}>Discount</p>
-        <span style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0',marginRight:'10px' }}>$60</span>
+        <span style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0',marginRight:'10px' }}>$10</span>
     </div>
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', marginLeft: '24px' }}>
         <p style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0' }}>Billing Amount</p>
-        <span style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0',marginRight:'10px' }}>$499</span>
+        <span style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0',marginRight:'10px' }}>{price}</span>
     </div>
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', marginLeft: '24px' }}>
         <p style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '12px', color: '#023047', margin: '5px 0' }}>Total Amount</p>
