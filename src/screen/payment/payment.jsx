@@ -9,6 +9,41 @@ const PaymentPage = () => {
     const price = searchParams.get('price');
     const imageUrl = searchParams.get('imageUrl');
 
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    // Collect data from the inputs
+    const formDataToSend = {
+      name: document.getElementById('name').value,
+      contactNumber: document.getElementById('contactNumber').value,
+      address: document.getElementById('address').value,
+      city: document.getElementById('city').value,
+      country: document.getElementById('country').value,
+      productName: productName || '',
+      price: price || '',
+    };
+  
+    fetch('https://658fe2b9cbf74b575eca3731.mockapi.io/project1', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formDataToSend),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle success
+        console.log('Success:', data);
+        // Redirect or show a success message
+      })
+      .catch((error) => {
+        // Handle error
+        console.error('Error:', error);
+        // Show an error message
+      });
+  };
   
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -97,7 +132,7 @@ const PaymentPage = () => {
         <p style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '12px', color: '#023047', margin: '5px 0' }}>Total Amount</p>
         <span style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '12px', color: '#023047', margin: '5px 0',marginRight:'10px' }}>{price}</span>
     </div>
-    <button style={{ width: '222px', height: '42px', backgroundColor: '#219EBC', color: '#FFFFFF', border: 'none', borderRadius: '4px', marginTop: '15px', marginLeft: '24px' }}>
+    <button onClick={handleSubmit} style={{ width: '222px', height: '42px', backgroundColor: '#219EBC', color: '#FFFFFF', border: 'none', borderRadius: '4px', marginTop: '15px', marginLeft: '24px' }}>
         <span style={{ width: '92px', height: '18px', display: 'inline-block' }}>Pay {price}</span>
     </button>
 </div>

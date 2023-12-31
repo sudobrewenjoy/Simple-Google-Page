@@ -8,6 +8,8 @@ import { AllRoutes } from './router/router';
 import PaymentPage from './screen/payment/payment';
 import ProductWindow from './screen/productwindow/productWindow';
 import LoginPage from './screen/login/login';
+import ProductHome from './screen/home/product-home';
+import PrivateRoute from "./router/privateRoute";
 
 function App() {
   return (
@@ -24,7 +26,15 @@ function App() {
           <Route path={AllRoutes.payment} element={<PaymentPage />} />
           <Route path={AllRoutes.productwindow} element={<ProductWindow />} />
           <Route path={AllRoutes.login} element={<LoginPage />} />
-        </Routes>
+  
+           {/* Home Route */}
+          <Route path={AllRoutes.producthome} element={
+            <PrivateRoute path={AllRoutes.producthome}>
+              <ProductHome />
+            </PrivateRoute>
+          } />
+          </Routes>
+          
       </div>
     </BrowserRouter>
   );

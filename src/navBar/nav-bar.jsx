@@ -1,17 +1,14 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from './googlelogo.png';
 import './navbar.css'; 
+import logo from './pf.png'
 
-function Navbar() {
+function NavbarNew() {
   const location = useLocation();
-  const navigate = useNavigate();
+ 
 
-  const handleRegisterClick = () => {
-    // Use Navigate to redirect to the registration page
-    navigate('/createaccount');
-  };
 
   const createAccountStyle = {
     backgroundColor: 'white',
@@ -19,7 +16,7 @@ function Navbar() {
     borderWidth: '1px',
     borderStyle: 'solid',
     borderRadius: '4px',
-    padding: '8px 16px', // Adjust padding as needed
+    padding: '8px 16px',
     color: '#219EBC',
     cursor: 'pointer',
   };
@@ -83,13 +80,13 @@ function Navbar() {
         </div>
 
         <div className="d-flex">
-        <button className="btn" style={createAccountStyle} onClick={handleRegisterClick}>
-            Create Account
-          </button>
+            <img src={logo} alt="Profile Logo" className="profile-logo" style={{ width: '60px', height: 'auto' }} />
         </div>
+
+
       </div>
     </nav>
   );
 }
 
-export default Navbar;
+export default NavbarNew;

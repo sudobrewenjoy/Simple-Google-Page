@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './home.css';
-import Navbar from '../../navBar/navbar';
+import NavbarNew from '../../navBar/nav-bar'
 
 
-const Home = () => {
+const ProductHome = () => {
  
   const containerStyle = {
     display: 'flex',
@@ -129,7 +129,7 @@ const Home = () => {
     },
   ];
   const openPaymentWindow = (productName, price,imageUrl) => {
-    const width = 930;
+    const width = 894;
     const height = 542;
     const marginLeft = 50;
     const marginRight = 50;
@@ -171,7 +171,7 @@ const Home = () => {
   const [showBuyNow, setShowBuyNow] = useState(Array(cards.length).fill(false));
   return (
     <div>
-      <Navbar />
+      <NavbarNew />
       <div style={containerStyle}>
         <div style={leftColumnStyle}>
           <div style={{marginLeft:'62px'}}>
@@ -182,7 +182,7 @@ const Home = () => {
             <input type="checkbox" id="headphones" style={checkboxStyle} />
             <label htmlFor="headphones">Headphones</label>
           </div>
-          <div style={{marginLeft:'62px'}}> 
+          <div style={{marginLeft:'62px'}}>
             <input type="checkbox" id="accessories" style={checkboxStyle} />
             <label htmlFor="accessories">Accessories</label>
           </div>
@@ -218,7 +218,6 @@ const Home = () => {
                       objectFit: 'cover',
                       marginBottom: '10px',
                       marginTop: '41px',
-                      
                     }}
                   />
                   <br></br>
@@ -304,5 +303,5 @@ const Home = () => {
   
 }  
 
-export default Home;
+export default ProductHome;
 

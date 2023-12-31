@@ -9,7 +9,7 @@ const ProductWindow = ({ initialProductName, initialPrice, initialImageUrl, init
   const productName = searchParams.get('productName') || initialProductName;
   const price = searchParams.get('price') || initialPrice;
   const imageUrl = searchParams.get('imageUrl') || initialImageUrl;
-  const rating = parseFloat(searchParams.get('rating') || initialRating); // Ensure rating is a number
+  const rating = parseFloat(searchParams.get('rating') || initialRating); 
 
   const openPaymentWindow = (productName, price, imageUrl, rating) => {
     navigate(`/payment?productName=${productName}&price=${price}&imageUrl=${imageUrl}`);
@@ -74,7 +74,7 @@ const ProductWindow = ({ initialProductName, initialPrice, initialImageUrl, init
         {/* Product Name, Price, and Rating */}
         <div style={{ marginRight: '128px', marginTop: '96px' }}>
           <h2>{productName}</h2>
-          <p>Price: {price}</p>
+          <p> {price}</p>
           <div>{renderStars(rating)}</div>
         </div>
 
