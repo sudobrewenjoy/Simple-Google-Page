@@ -262,15 +262,12 @@ const Home = () => {
                   </h3>
                   <div style={{ fontSize: '12px', fontFamily: 'Montserrat', color: '#B3C1C8', pointerEvents: 'none' }}>
                     <span>Smart,Powerful</span>
-                    <a
-                      href="#"
+                    <button
                       onClick={(e) => {
                         e.preventDefault();
                         openProductWindow(card.productName, card.price, card.imageUrl, card.ratings);
                       }}
-                    
                       style={{
-                        
                         position: 'absolute',
                         top: '100%',
                         left: '0',
@@ -284,7 +281,8 @@ const Home = () => {
                       }}
                     >
                       View Product
-                    </a>
+                    </button>
+
                   </div>
                 </div>
 

@@ -1,0 +1,35 @@
+  <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openProductWindow(card.productName, card.price, card.imageUrl, card.ratings);
+                      }}
+                    
+                      style={{
+                        
+                        position: 'absolute',
+                        top: '100%',
+                        left: '0',
+                        zIndex: '1',
+                        pointerEvents: 'auto',
+                        backgroundColor: '#fff',
+                        padding: '4px',
+                        borderRadius: '4px',
+                        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                        display: showBuyNow[index] ? 'block' : 'none',
+                      }}
+                    >
+                      View Product
+                    </a>
+
+
+
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src\screen\home\product-home.jsx
+  Line 265:21:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
+
+webpack compiled with 1 warning

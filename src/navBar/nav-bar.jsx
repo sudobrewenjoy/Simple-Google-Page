@@ -10,16 +10,7 @@ function NavbarNew() {
  
 
 
-  const createAccountStyle = {
-    backgroundColor: 'white',
-    borderColor: '#219EBC',
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    borderRadius: '4px',
-    padding: '8px 16px',
-    color: '#219EBC',
-    cursor: 'pointer',
-  };
+  
 
 
   return (
