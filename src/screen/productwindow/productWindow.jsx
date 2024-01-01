@@ -65,8 +65,10 @@ const ProductWindow = ({ initialProductName, initialPrice, initialImageUrl, init
         style={{
           width: '210px',
           height: '264px',
-          margin: '95px 0 325px 108px',
+          margin: '95px 0 ',
           objectFit: 'cover',
+          marginRight:'135px'
+          
         }}
       />
 

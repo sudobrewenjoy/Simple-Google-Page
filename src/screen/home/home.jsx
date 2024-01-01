@@ -190,7 +190,7 @@ const Home = () => {
     const leftPosition = window.screen.width / 2 - width / 2;
     const topPosition = window.screen.height / 2 - height / 2;
   
-    const productUrl = `/productwindow?productName=${encodeURIComponent(productName)}&price=${encodeURIComponent(price)}&rating=${encodeURIComponent(rating)}`;
+    const productUrl = `/productwindow?productName=${encodeURIComponent(productName)}&price=${encodeURIComponent(price)}&rating=${encodeURIComponent(rating)}&imageUrl=${encodeURIComponent(imageUrl)}`;
   
     window.open(
       productUrl,
