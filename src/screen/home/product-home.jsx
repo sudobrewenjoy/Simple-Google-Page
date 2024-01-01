@@ -1,9 +1,21 @@
 import { useState } from 'react';
 import './home.css';
-import NavbarNew from '../../navBar/nav-bar'
+import NavbarNew from '../../navBar/nav-bar';
+import nothingPhoneImage from './images/nothing-phone2_.jpg';
+import oppophone from './images/oppo-phone.jpeg';
+import iphone15 from './images/iphone15pro.jpeg';
+import oneplus from './images/oneplus11r.jpeg';
+import redmi from './images/redmi.jpeg';
+import realme from './images/ralme.png';
+import vivo from './images/vivox90.jpeg';
+import samsung from './images/samsungs23.jpeg';
+import pixel from './images/pixel8a.jpg';
+import iphone14 from './images/iphone14.jpeg';
+import moto from './images/moto g22.jpeg';
+import techno from './images/techno camon 20.jpeg'
 
 
-const ProductHome = () => {
+const Home = () => {
  
   const containerStyle = {
     display: 'flex',
@@ -68,68 +80,89 @@ const ProductHome = () => {
       productName: 'Nothing',
       price: '$999',
       ratings: '4.5',
-      imageUrl: 'https://via.placeholder.com/300x240.png',
+      imageUrl: nothingPhoneImage,
       color:'#E3F7F4'
     },
     {
       productName: 'OPPO',
       price: '$179',
-      ratings: '4.8',
-      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      ratings: '4.3',
+      imageUrl: oppophone,
       color:'#EBF5F3'
     },
     {
       productName: 'Redmi ',
       price: '$199',
-      ratings: '4.8',
-      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      ratings: '3.8',
+      imageUrl: redmi,
       color: '#F7F7ED'
     },
     {
       productName: 'Vivo X90',
       price: '$299',
-      ratings: '4.8',
-      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      ratings: '4.4',
+      imageUrl: vivo,
       color: '#F7F7ED'
     },
     {
       productName: 'Realme',
       price: '$149',
-      ratings: '4.8',
-      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      ratings: '3.8',
+      imageUrl: realme,
       color: '#F7F7ED'
     },
     {
       productName: 'Oneplus 11R',
       price: '$159',
-      ratings: '4.8',
-      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      ratings: '4.4',
+      imageUrl: oneplus,
       color: '#F7F7ED'
     },
     {
       productName: 'Pixel 8A',
       price: '$649',
-      ratings: '4.8',
-      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      ratings: '4.6',
+      imageUrl: pixel,
       color: '#F7F7ED'
     },
     {
       productName: 'samsung S23',
       price: '$749',
-      ratings: '4.8',
-      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      ratings: '4.9',
+      imageUrl: samsung,
       color: '#F7F7ED'
     },
     {
       productName: 'Iphone 15 Pro',
       price: '$849',
       ratings: '4.8',
-      imageUrl: 'https://via.placeholder.com/300x240.png', // Replace with actual image URL
+      imageUrl: iphone15,
+      color: '#F7F7ED'
+    },
+    {
+      productName: 'Iphone 14 pro ',
+      price: '$549',
+      ratings: '4.2',
+      imageUrl: iphone14,
+      color: '#F7F7ED'
+    },
+    {
+      productName: 'Moto g22',
+      price: '$249',
+      ratings: '3.8',
+      imageUrl: moto,
+      color: '#F7F7ED'
+    },
+    {
+      productName: 'Techo 20',
+      price: '1249',
+      ratings: '3.4',
+      imageUrl: techno,
       color: '#F7F7ED'
     },
   ];
   const openPaymentWindow = (productName, price,imageUrl) => {
-    const width = 894;
+    const width = 930;
     const height = 542;
     const marginLeft = 50;
     const marginRight = 50;
@@ -182,7 +215,7 @@ const ProductHome = () => {
             <input type="checkbox" id="headphones" style={checkboxStyle} />
             <label htmlFor="headphones">Headphones</label>
           </div>
-          <div style={{marginLeft:'62px'}}>
+          <div style={{marginLeft:'62px'}}> 
             <input type="checkbox" id="accessories" style={checkboxStyle} />
             <label htmlFor="accessories">Accessories</label>
           </div>
@@ -218,6 +251,7 @@ const ProductHome = () => {
                       objectFit: 'cover',
                       marginBottom: '10px',
                       marginTop: '41px',
+                      
                     }}
                   />
                   <br></br>
@@ -303,5 +337,5 @@ const ProductHome = () => {
   
 }  
 
-export default ProductHome;
+export default Home;
 

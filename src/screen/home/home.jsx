@@ -102,14 +102,14 @@ const Home = () => {
       price: '$299',
       ratings: '4.4',
       imageUrl: vivo,
-      color: '#F7F7ED'
+      color: '#EBF5F3'
     },
     {
       productName: 'Realme',
       price: '$149',
       ratings: '3.8',
       imageUrl: realme,
-      color: '#F7F7ED'
+      color: '#E3F7F4'
     },
     {
       productName: 'Oneplus 11R',
@@ -130,7 +130,7 @@ const Home = () => {
       price: '$749',
       ratings: '4.9',
       imageUrl: samsung,
-      color: '#F7F7ED'
+      color: '#E3F7F4'
     },
     {
       productName: 'Iphone 15 Pro',
@@ -144,14 +144,14 @@ const Home = () => {
       price: '$549',
       ratings: '4.2',
       imageUrl: iphone14,
-      color: '#F7F7ED'
+      color: '#E3F7F4'
     },
     {
       productName: 'Moto g22',
       price: '$249',
       ratings: '3.8',
       imageUrl: moto,
-      color: '#F7F7ED'
+      color: '#EBF5F3'
     },
     {
       productName: 'Techo 20',
@@ -162,6 +162,7 @@ const Home = () => {
     },
   ];
   const openPaymentWindow = (productName, price,imageUrl) => {
+    const encodedImageUrl = encodeURIComponent(imageUrl);
     const width = 930;
     const height = 542;
     const marginLeft = 50;
@@ -172,7 +173,7 @@ const Home = () => {
   
     const topPosition = window.screen.height / 2 - height / 2 + 113;
   
-    const paymentUrl = `/payment?productName=${productName}&price=${price}&imageUrl=${imageUrl}`;
+    const paymentUrl = `/payment?productName=${productName}&price=${price}&imageUrl=${encodedImageUrl}`;
   
     window.open(
       paymentUrl,

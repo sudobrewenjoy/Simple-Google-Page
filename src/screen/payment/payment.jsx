@@ -57,7 +57,8 @@ const PaymentPage = () => {
         <div style={{ position: 'absolute', top: '0', left: '0', width: '115px', height: '24px', fontFamily: 'Montserrat', fontWeight: 'bold', fontSize: '20px', color: '#023047', margin: '20px' }}>Buy {productName}</div>
       <div style={{ position: 'absolute', top: '96px', left: '32px', width: '545px', height: '88px', background: '#FFFFFF', border: '2px solid #E9ECEF', borderRadius: '4px', opacity: '1', display: 'flex', alignItems: 'center' }}>
         <div style={{ width: '24px', height: '31px', margin: '25px 24px' }}>
-          <img src={imageUrl} alt="Your " style={{ width: '100%', height: '100%' }} />
+        <img src={encodeURIComponent(imageUrl)} alt="Your Product" style={{ width: '100%', height: '100%' }} />
+
         </div>
         <div style={{ marginLeft: '11px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: '40px' }}>
           <div style={{ width: '120px', height: '19px', fontFamily: 'Montserrat, sans-serif', fontWeight: 'bold', fontSize: '16px', color: '#023047', marginBottom: '10px' }}>{productName}</div>
