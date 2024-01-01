@@ -7,8 +7,9 @@ const PaymentPage = () => {
     const searchParams = new URLSearchParams(location.search);
     const productName = searchParams.get('productName');
     const price = searchParams.get('price');
-    const imageUrl = searchParams.get('imageUrl');
+    //const imageUrl = searchParams.get('imageUrl');
     const [orderConfirmed, setOrderConfirmed] = useState(false);
+    const imageUrl = decodeURIComponent(searchParams.get('imageUrl'));
 
 
   const handleSubmit = (e) => {
@@ -34,19 +35,19 @@ const PaymentPage = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Handle success
+        
         console.log('Success:', data);
-        // Redirect or show a success message
+       
       })
       .catch((error) => {
-        // Handle error
+        
         console.error('Error:', error);
-        // Show an error message
+       
       });
 
       setOrderConfirmed(true);
 
-      // Reset the confirmation message after 5 seconds
+      
       setTimeout(() => {
         setOrderConfirmed(false);
       }, 5000);
@@ -57,7 +58,7 @@ const PaymentPage = () => {
         <div style={{ position: 'absolute', top: '0', left: '0', width: '115px', height: '24px', fontFamily: 'Montserrat', fontWeight: 'bold', fontSize: '20px', color: '#023047', margin: '20px' }}>Buy {productName}</div>
       <div style={{ position: 'absolute', top: '96px', left: '32px', width: '545px', height: '88px', background: '#FFFFFF', border: '2px solid #E9ECEF', borderRadius: '4px', opacity: '1', display: 'flex', alignItems: 'center' }}>
         <div style={{ width: '24px', height: '31px', margin: '25px 24px' }}>
-        <img src={encodeURIComponent(imageUrl)} alt="Your Product" style={{ width: '100%', height: '100%' }} />
+           <img src={imageUrl} alt="Your Product" style={{ width: '100%', height: '100%' }} />
 
         </div>
         <div style={{ marginLeft: '11px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: '40px' }}>
@@ -113,11 +114,25 @@ const PaymentPage = () => {
           {/* Dropdown for Country */}
           <select id="country" style={{ width: '100%', height: '100%', background: '#FFFFFF', border: 'none', outline: 'none', fontFamily: 'Montserrat', fontSize: '12px', color: '#4E6E7E' }}>
             <option value="" disabled selected>Select country</option>
-            
-            <option value="country1">India</option>
-            <option value="country2">Russia</option>
-            <option value="country1">USA</option>
-            <option value="country2">China</option>
+            <option value="India">India</option>
+            <option value="Russia">Russia</option>
+            <option value="USA">USA</option>
+            <option value="China">China</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Japan">Japan</option>
+            <option value="Germany">Germany</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Canada">Canada</option>
+            <option value="Australia">Australia</option>
+            <option value="South Korea">South Korea</option>
+            <option value="France">France</option>
+            <option value="Italy">Italy</option>
+            <option value="Spain">Spain</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
+            <option value="South Africa">South Africa</option>
+            <option value="Nigeria">Nigeria</option>
             
           </select>
         </div>

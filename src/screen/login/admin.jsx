@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Table.css'; // Import your CSS for table styling
+import './Table.css'; 
+
 
 const TableComponent = () => {
   const [data, setData] = useState([]);
@@ -18,6 +19,8 @@ const TableComponent = () => {
         setLoading(false); // Update loading status in case of error
       });
   }, []);
+
+  
 
   return (
     <div>
@@ -62,9 +65,13 @@ const TableComponent = () => {
           ))}
         </tbody>
         </table>
+        
+        
       )}
     </div>
+    
   );
 };
 
+ 
 export default TableComponent;
