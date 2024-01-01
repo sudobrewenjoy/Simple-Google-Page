@@ -7,9 +7,9 @@ const PaymentPage = () => {
     const searchParams = new URLSearchParams(location.search);
     const productName = searchParams.get('productName');
     const price = searchParams.get('price');
-    //const imageUrl = searchParams.get('imageUrl');
+    const imageUrl = searchParams.get('imageUrl');
     const [orderConfirmed, setOrderConfirmed] = useState(false);
-    const imageUrl = decodeURIComponent(searchParams.get('imageUrl'));
+   
 
 
   const handleSubmit = (e) => {
@@ -57,7 +57,7 @@ const PaymentPage = () => {
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <div style={{ position: 'absolute', top: '0', left: '0', width: '115px', height: '24px', fontFamily: 'Montserrat', fontWeight: 'bold', fontSize: '20px', color: '#023047', margin: '20px' }}>Buy {productName}</div>
       <div style={{ position: 'absolute', top: '96px', left: '32px', width: '545px', height: '88px', background: '#FFFFFF', border: '2px solid #E9ECEF', borderRadius: '4px', opacity: '1', display: 'flex', alignItems: 'center' }}>
-        <div style={{ width: '24px', height: '31px', margin: '25px 24px' }}>
+        <div style={{ width: '44px', height: '58px', margin: '25px 24px' }}>
            <img src={imageUrl} alt="Your Product" style={{ width: '100%', height: '100%' }} />
 
         </div>

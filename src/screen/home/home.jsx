@@ -162,7 +162,7 @@ const Home = () => {
     },
   ];
   const openPaymentWindow = (productName, price,imageUrl) => {
-    const encodedImageUrl = encodeURIComponent(imageUrl);
+    
     const width = 930;
     const height = 542;
     const marginLeft = 50;
@@ -173,7 +173,7 @@ const Home = () => {
   
     const topPosition = window.screen.height / 2 - height / 2 + 113;
   
-    const paymentUrl = `/payment?productName=${productName}&price=${price}&imageUrl=${encodedImageUrl}`;
+    const paymentUrl = `/payment?productName=${productName}&price=${price}&imageUrl=${imageUrl}`;
   
     window.open(
       paymentUrl,
@@ -320,7 +320,7 @@ const Home = () => {
                           fontFamily: 'Montserrat',
                           color: '#fff',
                         }}
-                        onClick={() => openPaymentWindow(card.productName, card.price)}
+                        onClick={() => openPaymentWindow(card.productName, card.price,card.imageUrl)}
                       >
                         Buy Now
                       </div>
