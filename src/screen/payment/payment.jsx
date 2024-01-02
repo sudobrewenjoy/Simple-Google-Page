@@ -1,13 +1,13 @@
 import React,{ useState } from 'react';
-import { useLocation } from 'react-router-dom';
+//import { useLocation } from 'react-router-dom';
 
-const PaymentPage = () => {
+const PaymentPage = ({ productName, price, imageUrl }) => {
 
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const productName = searchParams.get('productName');
-    const price = searchParams.get('price');
-    const imageUrl = searchParams.get('imageUrl');
+    //const location = useLocation();
+   // const searchParams = new URLSearchParams(location.search);
+    //const productName = searchParams.get('productName');
+    //const price = searchParams.get('price');
+    //const imageUrl = searchParams.get('imageUrl');
     const [orderConfirmed, setOrderConfirmed] = useState(false);
    
 
@@ -77,7 +77,7 @@ const PaymentPage = () => {
 
 
   
-  <div style={{ width: '545px', marginTop: '180px', height: '311px', background: '#FFFFFF', border: '3px solid #E9ECEF', borderRadius: '4px', opacity: 1, position: 'relative', marginRight: '382px' }}>
+  <div style={{ width: '545px', marginTop: '20px', height: '311px', background: '#FFFFFF', border: '3px solid #E9ECEF', borderRadius: '4px', opacity: 1, position: 'relative', marginRight: '520px' }}>
         {/* Add Address */}
         <div style={{ position: 'absolute', top: '20px', left: '20px' }}>
           <p style={{ color: '#B3C1C8', fontSize: '12px', fontFamily: 'Montserrat', fontWeight: '600' }}>Add Address</p>

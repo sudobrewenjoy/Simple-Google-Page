@@ -1,17 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 
-const ProductWindow = ({ initialProductName, initialPrice, initialImageUrl, initialRating }) => {
+
+
+const ProductWindow = ({ productName, price, imageUrl,rating }) => {
   const navigate = useNavigate();
-  const location = useLocation();
+  /*const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const productName = searchParams.get('productName') || initialProductName;
   const price = searchParams.get('price') || initialPrice;
   const imageUrl = searchParams.get('imageUrl') || initialImageUrl;
-  const rating = parseFloat(searchParams.get('rating') || initialRating); 
+  const rating = parseFloat(searchParams.get('rating') || initialRating); */
 
-  const openPaymentWindow = (productName, price, imageUrl, rating) => {
+  const openPaymentWindow = (productName, price, imageUrl) => {
     navigate(`/payment?productName=${productName}&price=${price}&imageUrl=${imageUrl}`);
   };
 

@@ -180,7 +180,6 @@ const Home = () => {
         onHide={handleCloseModal}  
         aria-labelledby="example-modal-sizes-title-xl"
       >
-
         <Modal.Body style={{  ...modalStyles }}> 
           <PaymentPage
             productName={productName}
@@ -193,6 +192,7 @@ const Home = () => {
     );
     setShowModal(true);
   };
+  
   
 
   const openProductWindow = (productName, price, imageUrl, rating) => {
@@ -207,10 +207,10 @@ const Home = () => {
    
     setModalContent(
       <Modal 
-        size="lg" 
+        size="xl" 
         show={true} 
         onHide={handleCloseModal}  
-        aria-labelledby="example-modal-sizes-title-lg"
+        aria-labelledby="example-modal-sizes-title-xl"
       >
       
     
@@ -353,23 +353,27 @@ const Home = () => {
                           fontFamily: 'Montserrat',
                           color: '#fff',
                         }}
-                        onClick={() => openPaymentWindow(card.productName, card.price,card.imageUrl)}
+                        onClick={() =>
+                          openPaymentWindow(
+                            card.productName,
+                            card.price,
+                            card.imageUrl
+                          )
+                        }
                       >
                         Buy Now
                       </div>
+
                     </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          <Modal show={showModal} onHide={handleCloseModal}>
-            <Modal.Header closeButton>
-              
-            </Modal.Header>
+          <Modal show={showModal} onHide={handleCloseModal} dialogClassName="custom-modal">
+
             <Modal.Body>{modalContent}</Modal.Body>
-            
-        </Modal>
+          </Modal>
         </div>
       </div>
     </div>
