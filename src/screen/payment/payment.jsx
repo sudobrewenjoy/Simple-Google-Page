@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 //import { useLocation } from 'react-router-dom';
 
-const PaymentPage = ({ productName, price, imageUrl }) => {
+const PaymentPage = ({ productName, price, imageUrl,actualamount }) => {
 
     //const location = useLocation();
    // const searchParams = new URLSearchParams(location.search);
@@ -141,7 +141,7 @@ const PaymentPage = ({ productName, price, imageUrl }) => {
     <h2 style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '12px', color: '#B3C1C8', margin: '10px 0', marginLeft: '24px' }}>Invoice summary</h2>
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', marginLeft: '24px' }}>
         <p style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0' }}>Actual Amount</p>
-        <span style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0',marginRight:'10px' }}>$599</span>
+        <span style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0',marginRight:'10px' }}>{actualamount}</span>
     </div>
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', marginLeft: '24px' }}>
         <p style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0' }}>Discount</p>

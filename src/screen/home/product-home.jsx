@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './home.css';
-import NavbarNew from '../../navBar/nav-bar';
+import Navbar from '../../navBar/navbar';
 import nothingPhoneImage from './images/nothing-phone2_.jpg';
 import oppophone from './images/oppo-phone.jpeg';
 import iphone15 from './images/iphone15pro.jpeg';
@@ -13,6 +13,10 @@ import pixel from './images/pixel8a.jpg';
 import iphone14 from './images/iphone14.jpeg';
 import moto from './images/moto g22.jpeg';
 import techno from './images/techno camon 20.jpeg'
+import ProductWindow from '../productwindow/productWindow';
+import PaymentPage from '../payment/payment';
+import { Modal, ModalBody} from 'react-bootstrap';
+
 
 
 const Home = () => {
@@ -81,130 +85,176 @@ const Home = () => {
       price: '$999',
       ratings: '4.5',
       imageUrl: nothingPhoneImage,
-      color:'#E3F7F4'
+      color:'#E3F7F4',
+      actualamount:'$1009'
     },
     {
       productName: 'OPPO',
       price: '$179',
       ratings: '4.3',
       imageUrl: oppophone,
-      color:'#EBF5F3'
+      color:'#EBF5F3',
+      actualamount:'$189'
     },
     {
       productName: 'Redmi ',
       price: '$199',
       ratings: '3.8',
       imageUrl: redmi,
-      color: '#F7F7ED'
+      color: '#F7F7ED',
+      actualamount:'$209'
     },
     {
       productName: 'Vivo X90',
       price: '$299',
       ratings: '4.4',
       imageUrl: vivo,
-      color: '#F7F7ED'
+      color: '#EBF5F3',
+      actualamount:'$309'
     },
     {
       productName: 'Realme',
       price: '$149',
       ratings: '3.8',
       imageUrl: realme,
-      color: '#F7F7ED'
+      color: '#E3F7F4',
+      actualamount:'$159'
     },
     {
       productName: 'Oneplus 11R',
       price: '$159',
       ratings: '4.4',
       imageUrl: oneplus,
-      color: '#F7F7ED'
+      color: '#F7F7ED',
+      actualamount:'$169'
     },
     {
       productName: 'Pixel 8A',
       price: '$649',
       ratings: '4.6',
       imageUrl: pixel,
-      color: '#F7F7ED'
+      color: '#F7F7ED',
+      actualamount:'$659'
     },
     {
       productName: 'samsung S23',
       price: '$749',
       ratings: '4.9',
       imageUrl: samsung,
-      color: '#F7F7ED'
+      color: '#E3F7F4',
+      actualamount:'$759'
     },
     {
       productName: 'Iphone 15 Pro',
       price: '$849',
       ratings: '4.8',
       imageUrl: iphone15,
-      color: '#F7F7ED'
+      color: '#F7F7ED',
+      actualamount:'$859'
     },
     {
       productName: 'Iphone 14 pro ',
       price: '$549',
       ratings: '4.2',
       imageUrl: iphone14,
-      color: '#F7F7ED'
+      color: '#E3F7F4',
+      actualamount:'$559'
     },
     {
       productName: 'Moto g22',
       price: '$249',
       ratings: '3.8',
       imageUrl: moto,
-      color: '#F7F7ED'
+      color: '#EBF5F3',
+      actualamount:'$349'
     },
     {
       productName: 'Techo 20',
-      price: '1249',
+      price: '129',
       ratings: '3.4',
       imageUrl: techno,
-      color: '#F7F7ED'
+      color: '#F7F7ED',
+      actualamount:'$139'
+
     },
   ];
-  const openPaymentWindow = (productName, price,imageUrl) => {
-    const width = 930;
-    const height = 542;
-    const marginLeft = 50;
-    const marginRight = 50;
+ 
+  const openPaymentWindow = (productName, price, imageUrl,actualamount) => {
+    const modalStyles = {
+      top: '113px',
+      bottom: '113px',
+      height: '849px',
+    }; 
   
-    const leftPosition = window.screen.width / 2 - (width + marginLeft + marginRight) / 2 + 245;
-    const rightPosition = window.screen.width - leftPosition - width;
-  
-    const topPosition = window.screen.height / 2 - height / 2 + 113;
-  
-    const paymentUrl = `/payment?productName=${productName}&price=${price}&imageUrl=${imageUrl}`;
-  
-    window.open(
-      paymentUrl,
-      '_blank',
-      `width=${width + marginLeft + marginRight},height=${height},left=${leftPosition},right=${rightPosition},top=${topPosition}`
+    setModalContent(
+      <Modal 
+        size="xl" 
+        show={true} 
+        onHide={handleCloseModal}  
+        aria-labelledby="example-modal-sizes-title-xl"
+      >
+        <Modal.Body style={{  ...modalStyles }}> 
+          <PaymentPage
+            productName={productName}
+            price={price}
+            imageUrl={imageUrl}
+            actualamount={actualamount}
+            onClose={handleCloseModal}
+          />
+        </Modal.Body>
+      </Modal>
     );
+    setShowModal(true);
   };
-
+  
+  
 
   const openProductWindow = (productName, price, imageUrl, rating) => {
-    const width = 896;
-    const height = 684;
+    const modalStyles = {
+      top: '113px',
+      bottom: '113px',
+ 
+      height: '849px',
+     
+    };
   
-    const leftPosition = window.screen.width / 2 - width / 2;
-    const topPosition = window.screen.height / 2 - height / 2;
-  
-    const productUrl = `/productwindow?productName=${encodeURIComponent(productName)}&price=${encodeURIComponent(price)}&rating=${encodeURIComponent(rating)}`;
-  
-    window.open(
-      productUrl,
-      '_blank',
-      `width=${width},height=${height},left=${leftPosition},top=${topPosition}`
-    );
-  };
+   
+    setModalContent(
+      <Modal 
+        size="xl" 
+        show={true} 
+        onHide={handleCloseModal}  
+        aria-labelledby="example-modal-sizes-title-xl"
+      >
+      
     
-  
-  
+    
+      <ModalBody style={modalStyles}>
+      <ProductWindow
+        productName={productName}
+        price={price}
+        imageUrl={imageUrl}
+        rating={rating}
+        onClose={handleCloseModal}
+      />
+      </ModalBody>
+      </Modal>
+    );
+    setShowModal(true);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setModalContent(null);
+  };
 
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
+  
+    
   const [showBuyNow, setShowBuyNow] = useState(Array(cards.length).fill(false));
   return (
     <div>
-      <NavbarNew />
+      <Navbar />
       <div style={containerStyle}>
         <div style={leftColumnStyle}>
           <div style={{marginLeft:'62px'}}>
@@ -305,7 +355,7 @@ const Home = () => {
                       <div
                         style={{
                           position: 'absolute',
-                          bottom: '5px', // Adjusted bottom value
+                          bottom: '5px', 
                           right: '10px',
                           backgroundColor: '#219EBC',
                           padding: '4px 16px',
@@ -317,16 +367,28 @@ const Home = () => {
                           fontFamily: 'Montserrat',
                           color: '#fff',
                         }}
-                        onClick={() => openPaymentWindow(card.productName, card.price)}
+                        onClick={() =>
+                          openPaymentWindow(
+                            card.productName,
+                            card.price,
+                            card.imageUrl,
+                            card.actualamount
+                          )
+                        }
                       >
                         Buy Now
                       </div>
+
                     </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+          <Modal show={showModal} onHide={handleCloseModal} >
+
+            <Modal.Body>{modalContent}</Modal.Body>
+          </Modal>
         </div>
       </div>
     </div>
