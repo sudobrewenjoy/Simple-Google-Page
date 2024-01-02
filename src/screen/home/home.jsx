@@ -16,8 +16,8 @@ import techno from './images/techno camon 20.jpeg'
 import ProductWindow from '../productwindow/productWindow';
 import PaymentPage from '../payment/payment';
 import { Modal, ModalBody} from 'react-bootstrap';
-
-
+import discount from './discount.png';
+import deals from './deals.png'
 
 const Home = () => {
  
@@ -269,6 +269,20 @@ const Home = () => {
             <input type="checkbox" id="accessories" style={checkboxStyle} />
             <label htmlFor="accessories">Accessories</label>
           </div>
+          <div>
+            <img src={discount} alt='discount'style={{marginLeft:'62px',marginTop:'90px'}} />
+            <br />
+            <br />
+            <br />
+            <div className="discount-text" style={{marginLeft:'32px'}}>
+              <span>Get </span>
+              <span className="discount-percentage">10% </span>
+              <span>off on all products!</span>
+            </div>
+            <br />
+            <br />
+            <img src={deals} alt='deals ' style={{marginLeft:'32px'}}></img>
+          </div>
         </div>
         <div style={rightColumnStyle}>
           <div style={cardContainerStyle}>
@@ -386,6 +400,7 @@ const Home = () => {
             ))}
           </div>
           <Modal show={showModal} onHide={handleCloseModal} >
+      
 
             <Modal.Body>{modalContent}</Modal.Body>
           </Modal>

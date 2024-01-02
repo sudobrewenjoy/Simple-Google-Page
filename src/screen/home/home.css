@@ -23,6 +23,34 @@ div[style*='pointerEvents: auto;']:hover a {
     /* Other adjustments as needed */
   }
 }
+.discount-text {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  font-size: 24px;
+  color: #fff;
+  padding: 20px;
+  background-color: #3498db;
+  border-radius: 8px;
+  display: inline-block;
+  animation: pulseAnimation 2s infinite;
+}
+
+.discount-percentage {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+@keyframes pulseAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 
 
