@@ -13,6 +13,10 @@ import pixel from './images/pixel8a.jpg';
 import iphone14 from './images/iphone14.jpeg';
 import moto from './images/moto g22.jpeg';
 import techno from './images/techno camon 20.jpeg'
+import ProductWindow from '../productwindow/productWindow';
+import PaymentPage from '../payment/payment';
+import { Modal, ModalBody} from 'react-bootstrap';
+
 
 
 const Home = () => {
@@ -161,47 +165,78 @@ const Home = () => {
       color: '#F7F7ED'
     },
   ];
-  const openPaymentWindow = (productName, price,imageUrl) => {
-    
-    const width = 930;
-    const height = 542;
-    const marginLeft = 50;
-    const marginRight = 50;
+ 
+  const openPaymentWindow = (productName, price, imageUrl) => {
+    const modalStyles = {
+      top: '113px',
+      bottom: '113px',
+      height: '849px',
+    }; 
   
-    const leftPosition = window.screen.width / 2 - (width + marginLeft + marginRight) / 2 + 245;
-    const rightPosition = window.screen.width - leftPosition - width;
-  
-    const topPosition = window.screen.height / 2 - height / 2 + 113;
-  
-    const paymentUrl = `/payment?productName=${productName}&price=${price}&imageUrl=${imageUrl}`;
-  
-    window.open(
-      paymentUrl,
-      '_blank',
-      `width=${width + marginLeft + marginRight},height=${height},left=${leftPosition},right=${rightPosition},top=${topPosition}`
-    );
-  };
+    setModalContent(
+      <Modal 
+        size="xl" 
+        show={true} 
+        onHide={handleCloseModal}  
+        aria-labelledby="example-modal-sizes-title-xl"
+      >
 
+        <Modal.Body style={{  ...modalStyles }}> 
+          <PaymentPage
+            productName={productName}
+            price={price}
+            imageUrl={imageUrl}
+            onClose={handleCloseModal}
+          />
+        </Modal.Body>
+      </Modal>
+    );
+    setShowModal(true);
+  };
+  
 
   const openProductWindow = (productName, price, imageUrl, rating) => {
-    const width = 896;
-    const height = 684;
+    const modalStyles = {
+      top: '113px',
+      bottom: '113px',
+ 
+      height: '849px',
+     
+    };
   
-    const leftPosition = window.screen.width / 2 - width / 2;
-    const topPosition = window.screen.height / 2 - height / 2;
-  
-    const productUrl = `/productwindow?productName=${encodeURIComponent(productName)}&price=${encodeURIComponent(price)}&rating=${encodeURIComponent(rating)}&imageUrl=${encodeURIComponent(imageUrl)}`;
-  
-    window.open(
-      productUrl,
-      '_blank',
-      `width=${width},height=${height},left=${leftPosition},top=${topPosition}`
-    );
-  };
+   
+    setModalContent(
+      <Modal 
+        size="lg" 
+        show={true} 
+        onHide={handleCloseModal}  
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+      
     
-  
-  
+    
+      <ModalBody style={modalStyles}>
+      <ProductWindow
+        productName={productName}
+        price={price}
+        imageUrl={imageUrl}
+        rating={rating}
+        onClose={handleCloseModal}
+      />
+      </ModalBody>
+      </Modal>
+    );
+    setShowModal(true);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setModalContent(null);
+  };
 
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
+  
+    
   const [showBuyNow, setShowBuyNow] = useState(Array(cards.length).fill(false));
   return (
     <div>
@@ -328,6 +363,13 @@ const Home = () => {
               </div>
             ))}
           </div>
+          <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal.Header closeButton>
+              
+            </Modal.Header>
+            <Modal.Body>{modalContent}</Modal.Body>
+            
+        </Modal>
         </div>
       </div>
     </div>
