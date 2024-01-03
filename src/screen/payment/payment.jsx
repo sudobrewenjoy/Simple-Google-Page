@@ -57,7 +57,7 @@ const PaymentPage = ({ productName, price, imageUrl,actualamount }) => {
     e.stopPropagation();
     handleSubmit(e);
   };
-  const [paymentInProgress] = useState(false);
+  
 
   
   return (
@@ -165,7 +165,7 @@ const PaymentPage = ({ productName, price, imageUrl,actualamount }) => {
     <button onClick={handleSubmit} style={{ width: '222px', height: '42px', backgroundColor: '#219EBC', color: '#FFFFFF', border: 'none', borderRadius: '4px', marginTop: '15px', marginLeft: '24px' }}>
         <span style={{ width: '92px', height: '18px', display: 'inline-block' }} onClick={stopPropagation}>Pay {price}</span>
     </button>
-    {paymentInProgress && <p>Payment in progress...</p>}
+    
     {orderConfirmed && (
         <div
           style={{
