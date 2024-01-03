@@ -1,6 +1,7 @@
 import React,{ useState } from 'react';
 //import { useLocation } from 'react-router-dom';
 
+
 const PaymentPage = ({ productName, price, imageUrl,actualamount }) => {
 
     //const location = useLocation();
@@ -52,9 +53,15 @@ const PaymentPage = ({ productName, price, imageUrl,actualamount }) => {
         setOrderConfirmed(false);
       }, 5000);
   };
+  const stopPropagation = (e) => {
+    e.stopPropagation();
+    handleSubmit(e);
+  };
+  const [paymentInProgress] = useState(false);
+
   
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <div onClick={stopPropagation} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <div style={{ position: 'absolute', top: '0', left: '0', width: '115px', height: '24px', fontFamily: 'Montserrat', fontWeight: 'bold', fontSize: '20px', color: '#023047', margin: '20px' }}>Buy {productName}</div>
       <div style={{ position: 'absolute', top: '96px', left: '32px', width: '545px', height: '88px', background: '#FFFFFF', border: '2px solid #E9ECEF', borderRadius: '4px', opacity: '1', display: 'flex', alignItems: 'center' }}>
         <div style={{ width: '44px', height: '58px', margin: '25px 24px' }}>
@@ -89,30 +96,30 @@ const PaymentPage = ({ productName, price, imageUrl,actualamount }) => {
         {/* Label and input for Name */}
         <div style={{ position: 'absolute', top: '60px', left: '20px', width: '241px', height: '40px', background: '#FFFFFF', border: '2px solid #E9ECEF', borderRadius: '4px', opacity: 1 }}>
           <label htmlFor="name" style={{ color: '#4E6E7E', fontSize: '12px', fontFamily: 'Montserrat', marginBottom: '5px', position: 'absolute', top: '-15px', left: '5px' }}>Name</label>
-          <input type="text" id="name" placeholder="Name" style={{ width: '100%', height: '100%', border: 'none', outline: 'none', padding: '5px' }} />
+          <input type="text" id="name" placeholder="Name" onClick={(e) => e.stopPropagation()} style={{ width: '100%', height: '100%', border: 'none', outline: 'none', padding: '5px' }} />
         </div>
         {/* Label and input for Contact Number */}
         <div style={{ position: 'absolute', top: '60px', left: '285px', width: '241px', height: '40px', background: '#FFFFFF', border: '1px solid #E9ECEF', borderRadius: '4px', opacity: 1 }}>
           <label htmlFor="contactNumber" style={{ color: '#4E6E7E', fontSize: '12px', fontFamily: 'Montserrat', marginBottom: '5px', position: 'absolute', top: '-15px', left: '5px' }}>Contact Number</label>
-          <input type="text" id="contactNumber" placeholder="Contact Number" style={{ width: '100%', height: '100%', border: 'none', outline: 'none', padding: '5px' }} />
+          <input type="text" id="contactNumber" placeholder="Contact Number" onClick={(e) => e.stopPropagation()}  style={{ width: '100%', height: '100%', border: 'none', outline: 'none', padding: '5px' }} />
         </div>
         <br></br>
         {/* Label and input for Address */}
         <div style={{ position: 'absolute', top: '120px', left: '20px', width: '498px', height: '40px', background: '#FFFFFF', border: '1px solid #E9ECEF', borderRadius: '4px', opacity: 1 }}>
           <label htmlFor="address" style={{ color: '#4E6E7E', fontSize: '12px', fontFamily: 'Montserrat', marginBottom: '5px', position: 'absolute', top: '-15px', left: '5px' }}>Address</label>
-          <input type="text" id="address" placeholder="Address" style={{ width: '100%', height: '100%', border: 'none', outline: 'none', padding: '5px' }} />
+          <input type="text" id="address" placeholder="Address" onClick={(e) => e.stopPropagation()} style={{ width: '100%', height: '100%', border: 'none', outline: 'none', padding: '5px' }} />
         </div>
         <br></br>
         {/* Label and input for City */}
         <div style={{ position: 'absolute', top: '200px', left: '20px', width: '241px', height: '40px', background: '#FFFFFF', border: '1px solid #E9ECEF', borderRadius: '4px', opacity: 1 }}>
           <label htmlFor="city" style={{ color: '#4E6E7E', fontSize: '12px', fontFamily: 'Montserrat', marginBottom: '5px', position: 'absolute', top: '-15px', left: '5px' }}>City</label>
-          <input type="text" id="city" placeholder="City" style={{ width: '100%', height: '100%', border: 'none', outline: 'none', padding: '5px' }} />
+          <input type="text" id="city" placeholder="City" onClick={(e) => e.stopPropagation()} style={{ width: '100%', height: '100%', border: 'none', outline: 'none', padding: '5px' }} />
         </div>
         {/* Label and input for Country */}
         <div style={{ position: 'absolute', top: '200px', left: '285px', width: '241px', height: '40px', background: '#FFFFFF', border: '1px solid #E9ECEF', borderRadius: '4px', opacity: 1 }}>
           <label htmlFor="country" style={{ color: '#4E6E7E', fontSize: '12px', fontFamily: 'Montserrat', marginBottom: '5px', position: 'absolute', top: '-15px', left: '5px' }}>Country</label>
           {/* Dropdown for Country */}
-          <select id="country" style={{ width: '100%', height: '100%', background: '#FFFFFF', border: 'none', outline: 'none', fontFamily: 'Montserrat', fontSize: '12px', color: '#4E6E7E' }}>
+          <select id="country" onClick={(e) => e.stopPropagation()} style={{ width: '100%', height: '100%', background: '#FFFFFF', border: 'none', outline: 'none', fontFamily: 'Montserrat', fontSize: '12px', color: '#4E6E7E' }}>
             <option value="" disabled selected>Select country</option>
             <option value="India">India</option>
             <option value="Russia">Russia</option>
@@ -156,8 +163,9 @@ const PaymentPage = ({ productName, price, imageUrl,actualamount }) => {
         <span style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '12px', color: '#023047', margin: '5px 0',marginRight:'10px' }}>{price}</span>
     </div>
     <button onClick={handleSubmit} style={{ width: '222px', height: '42px', backgroundColor: '#219EBC', color: '#FFFFFF', border: 'none', borderRadius: '4px', marginTop: '15px', marginLeft: '24px' }}>
-        <span style={{ width: '92px', height: '18px', display: 'inline-block' }}>Pay {price}</span>
+        <span style={{ width: '92px', height: '18px', display: 'inline-block' }} onClick={stopPropagation}>Pay {price}</span>
     </button>
+    {paymentInProgress && <p>Payment in progress...</p>}
     {orderConfirmed && (
         <div
           style={{

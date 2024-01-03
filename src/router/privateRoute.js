@@ -4,7 +4,7 @@ import { AllRoutes } from "./router";
 
 const PrivateRoute = (props) => {
     const isLoggedIn = () => {
-        return localStorage.getItem("auth_token") ? true : false;
+        return localStorage.getItem("authToken") ? true : false;
     };
 
     return isLoggedIn() ? (

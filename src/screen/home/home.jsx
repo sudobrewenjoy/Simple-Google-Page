@@ -187,22 +187,22 @@ const Home = () => {
     }; 
   
     setModalContent(
-      <Modal 
+      /*<Modal 
         size="xl" 
         show={true} 
         onHide={handleCloseModal}  
         aria-labelledby="example-modal-sizes-title-xl"
-      >
+      >*/
         <Modal.Body style={{  ...modalStyles }}> 
           <PaymentPage
             productName={productName}
             price={price}
             imageUrl={imageUrl}
             actualamount={actualamount}
-            onClose={handleCloseModal}
+           // onClose={handleCloseModal}
           />
         </Modal.Body>
-      </Modal>
+     
     );
     setShowModal(true);
   };
@@ -220,12 +220,12 @@ const Home = () => {
   
    
     setModalContent(
-      <Modal 
+     /* <Modal 
         size="xl" 
         show={true} 
         onHide={handleCloseModal}  
         aria-labelledby="example-modal-sizes-title-xl"
-      >
+      >*/
       
     
     
@@ -238,7 +238,7 @@ const Home = () => {
         onClose={handleCloseModal}
       />
       </ModalBody>
-      </Modal>
+      //</Modal>
     );
     setShowModal(true);
   };
@@ -387,6 +387,7 @@ const Home = () => {
                             card.price,
                             card.imageUrl,
                             card.actualamount
+                            
                           )
                         }
                       >
@@ -399,7 +400,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <Modal show={showModal} onHide={handleCloseModal} >
+          <Modal size="xl" show={showModal} onHide={handleCloseModal} aria-labelledby="example-modal-sizes-title-xl">
       
 
             <Modal.Body>{modalContent}</Modal.Body>
