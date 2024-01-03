@@ -184,6 +184,7 @@ const Home = () => {
       top: '113px',
       bottom: '113px',
       height: '849px',
+      marginTop: '10px'
     }; 
   
     setModalContent(
@@ -213,8 +214,8 @@ const Home = () => {
     const modalStyles = {
       top: '113px',
       bottom: '113px',
- 
-      height: '849px',
+      marginTop: '10px',
+      height: 'auto' ,
      
     };
   
@@ -358,13 +359,16 @@ const Home = () => {
                       position: 'absolute',
                       top: '100%',
                       left: '-20px',
-                      zIndex: '1',
-                      backgroundColor: '#fff',
-                      padding: '4px',
+                      backgroundColor: '#219EBC',
+                      padding: '4px 16px',
                       borderRadius: '4px',
-                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontFamily: 'Montserrat',
+                      color: '#fff',
+                      transition: 'opacity 0.3s', 
                       display: showBuyNow[index] ? 'block' : 'none',
-                      pointerEvents: 'auto',
+                      
                     }}
                     className="productButton"
                   >
@@ -402,8 +406,8 @@ const Home = () => {
                   fontSize: '12px',
                   fontFamily: 'Montserrat',
                   color: '#fff',
-                  transition: 'opacity 0.3s', // Added transition for smooth opacity change
-                  opacity: showBuyNow[index] ? '1' : '0', // Opacity based on state
+                  transition: 'opacity 0.3s', 
+                  opacity: showBuyNow[index] ? '1' : '0',
                 }}
                 className="buyNowButton"
                 onClick={() =>
@@ -422,7 +426,14 @@ const Home = () => {
             ))}
           </div>
           <Modal size="xl" show={showModal} onHide={handleCloseModal} aria-labelledby="example-modal-sizes-title-xl">
-            <Modal.Body>{modalContent}</Modal.Body>
+          <Modal.Header >
+    
+            <button type="button" className="btn-close" aria-label="Close" onClick={handleCloseModal}></button>
+          </Modal.Header>
+            <Modal.Body style={{ paddingTop: '0', paddingBottom: '0' }}>
+              {modalContent}
+
+            </Modal.Body>
           </Modal>
         </div>
       </div>

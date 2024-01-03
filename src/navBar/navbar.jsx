@@ -3,15 +3,18 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from './googlelogo.png';
 import './navbar.css'; 
+import { AllRoutes } from '../router/router';
 
 function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleRegisterClick = () => {
-    // Use Navigate to redirect to the registration page
+    
     navigate('/createaccount');
   };
+ 
+
 
   const createAccountStyle = {
     backgroundColor: 'white',
@@ -19,7 +22,7 @@ function Navbar() {
     borderWidth: '1px',
     borderStyle: 'solid',
     borderRadius: '4px',
-    padding: '8px 16px', // Adjust padding as needed
+    padding: '8px 16px', 
     color: '#219EBC',
     cursor: 'pointer',
   };
@@ -65,16 +68,16 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to="/service"
-                className={`nav-link${location.pathname === '/service' ? ' active' : ''}`}
-              >
+                to={AllRoutes.service} // Ensure the link points to the correct path
+                className={`nav-link${location.pathname === AllRoutes.service ? ' active' : ''}`}
+              > 
                 Service
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                to="/about"
-                className={`nav-link${location.pathname === '/about' ? ' active' : ''}`}
+                to={AllRoutes.contact} // Ensure the link points to the correct path
+                className={`nav-link${location.pathname === AllRoutes.contact ? ' active' : ''}`}
               >
                 About Us
               </Link>

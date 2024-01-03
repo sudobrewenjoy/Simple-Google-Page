@@ -7,7 +7,9 @@ export const AllRoutes = {
   productwindow: '/productwindow',
   login: '/login',
   producthome: '/producthome',
-  admin:'/admin'
+  admin:'/admin',
+  contact:'/contact',
+  service: '/service'
   
   };
   

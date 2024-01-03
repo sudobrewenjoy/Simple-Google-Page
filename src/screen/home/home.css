@@ -1,26 +1,25 @@
 div[style*='pointerEvents: auto;']:hover a {
   display: block;
 }
-/* Example Media Query for Tablet View */
+
 @media screen and (max-width: 768px) {
-  /* Adjust styles here */
-  /* For example, change flex direction to column for smaller screens */
+ 
   .container {
     flex-direction: column;
   }
-  /* You can adjust the sizes of elements or remove side paddings/margins */
+  
   .leftColumnStyle {
     flex: 100%; /* Take full width on smaller screens */
-    /* Other adjustments as needed */
+    
   }
   .rightColumnStyle {
     flex: 100%; /* Take full width on smaller screens */
-    /* Other adjustments as needed */
+    
   }
-  /* Adjust individual card styles for smaller screens */
+ 
   .cardStyle {
     width: 100%; /* Take full width of the container */
-    /* Other adjustments as needed */
+    
   }
 }
 .discount-text {
@@ -51,7 +50,7 @@ div[style*='pointerEvents: auto;']:hover a {
     transform: scale(1);
   }
 }
-/* Add these styles to your existing CSS or home.css file */
+
 .buyNowButton {
   display: none;
   position: absolute;
@@ -80,4 +79,13 @@ div[style*='pointerEvents: auto;']:hover a {
 
 .productButton:hover ~ .disableHover {
   pointer-events: auto;
+}
+.Modal-header {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.Modal-body {
+  margin-top: 0;
+  padding-top: 0;
 }

@@ -11,6 +11,8 @@ import LoginPage from './screen/login/login';
 import ProductHome from './screen/home/product-home';
 import PrivateRoute from "./router/privateRoute";
 import TableComponent from './screen/login/admin';
+import ContactScreen from './screen/contact/contact';
+import ServiceScreen from './screen/services/services';
 
 function App() {
   return (
@@ -27,6 +29,9 @@ function App() {
           <Route path={AllRoutes.payment} element={<PaymentPage />} />
           <Route path={AllRoutes.productwindow} element={<ProductWindow />} />
           <Route path={AllRoutes.login} element={<LoginPage />} />
+          <Route path={AllRoutes.contact} element={<ContactScreen />} />
+          <Route path={AllRoutes.service} element={<ServiceScreen />} />
+  
   
            {/* Home Route */}
           <Route path={AllRoutes.producthome} element={

@@ -1,0 +1,44 @@
+.service-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.service-title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.service-details {
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.service-details p {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.service-details ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.service-details li {
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+/* Colorful emojis for each service */
+.service-details li::before {
+  content: '';
+  display: inline-block;
+  margin-right: 10px;
+}
+
+

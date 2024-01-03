@@ -57,9 +57,9 @@ const ProductWindow = ({ productName, price, imageUrl,rating }) => {
   };
 
   return (
-    <div style={{ flex: '1', position: 'relative', display: 'flex', justifyContent: 'space-between' }}>
+    <div style={{ flex: '1', position: 'relative', display: 'flex', justifyContent: 'space-between', marginTop: '10px'  }}>
       <h2 style={{marginLeft:'28px',marginTop:'32px'}}>{productName}</h2>
-      {/* Image with specified dimensions and position */}
+      
       <img
         src={imageUrl}
         alt={productName}
