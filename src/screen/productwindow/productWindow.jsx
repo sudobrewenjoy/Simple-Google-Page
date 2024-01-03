@@ -1,20 +1,41 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
+import { Modal} from 'react-bootstrap';
+import { useState } from 'react';
+import PaymentPage from '../payment/payment';
 
-
-
-const ProductWindow = ({ productName, price, imageUrl,rating }) => {
-  const navigate = useNavigate();
-  /*const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const productName = searchParams.get('productName') || initialProductName;
-  const price = searchParams.get('price') || initialPrice;
-  const imageUrl = searchParams.get('imageUrl') || initialImageUrl;
-  const rating = parseFloat(searchParams.get('rating') || initialRating); */
-
-  const openPaymentWindow = (productName, price, imageUrl) => {
-    navigate(`/payment?productName=${productName}&price=${price}&imageUrl=${imageUrl}`);
+const ProductWindow = ({ productName, price, imageUrl,rating,actualamount }) => {
+  const openPaymentWindow = (productName, price, imageUrl,actualamount) => {
+    const modalStyles = {
+      top: '113px',
+      bottom: '113px',
+      height: '849px',
+      marginTop: '10px'
+    }; 
+  
+    setModalContent(
+      /*<Modal 
+        size="xl" 
+        show={true} 
+        onHide={handleCloseModal}  
+        aria-labelledby="example-modal-sizes-title-xl"
+      >*/
+        <Modal.Body style={{  ...modalStyles }}> 
+          <PaymentPage
+            productName={productName}
+            price={price}
+            imageUrl={imageUrl}
+            actualamount={actualamount}
+           
+          />
+        </Modal.Body>
+     
+    );
+    setShowModal(true);
   };
+  
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
 
 
   const renderStars = (rating) => {
@@ -94,7 +115,7 @@ const ProductWindow = ({ productName, price, imageUrl,rating }) => {
               border: 'none',
               cursor: 'pointer',
             }}
-            onClick={() => openPaymentWindow(productName, price, imageUrl)}
+            onClick={() => openPaymentWindow(productName, price, imageUrl,actualamount)}
           >
             Buy Now
           </button>
@@ -223,6 +244,9 @@ const ProductWindow = ({ productName, price, imageUrl,rating }) => {
           </tbody>
         </table>
       </div>
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        {modalContent}
+      </Modal>
     </div>
   );
 };

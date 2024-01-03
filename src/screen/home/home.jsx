@@ -17,7 +17,9 @@ import ProductWindow from '../productwindow/productWindow';
 import PaymentPage from '../payment/payment';
 import { Modal, ModalBody} from 'react-bootstrap';
 import discount from './discount.png';
-import deals from './deals.png'
+import deals from './deals.png';
+
+
 
 const Home = () => {
  
@@ -78,6 +80,7 @@ const Home = () => {
     }
     return starArray;
   };
+  
 
   const cards = [
     {
@@ -200,7 +203,7 @@ const Home = () => {
             price={price}
             imageUrl={imageUrl}
             actualamount={actualamount}
-           // onClose={handleCloseModal}
+           
           />
         </Modal.Body>
      
