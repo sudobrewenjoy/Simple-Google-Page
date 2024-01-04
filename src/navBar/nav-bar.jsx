@@ -3,7 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from './googlelogo.png';
 import './navbar.css'; 
-import logo from './pf.png'
+import logo from './pf.png';
+import { AllRoutes } from '../router/router';
 
 function NavbarNew() {
   const location = useLocation();
@@ -53,16 +54,16 @@ function NavbarNew() {
             </li>
             <li className="nav-item">
               <Link
-                to="/service"
-                className={`nav-link${location.pathname === '/service' ? ' active' : ''}`}
-              >
+                to={AllRoutes.service} 
+                className={`nav-link${location.pathname === AllRoutes.service ? ' active' : ''}`}
+              > 
                 Service
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                to="/about"
-                className={`nav-link${location.pathname === '/about' ? ' active' : ''}`}
+                to={AllRoutes.contact} 
+                className={`nav-link${location.pathname === AllRoutes.contact ? ' active' : ''}`}
               >
                 About Us
               </Link>

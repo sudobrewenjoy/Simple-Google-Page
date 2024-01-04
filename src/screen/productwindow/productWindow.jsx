@@ -12,6 +12,8 @@ const ProductWindow = ({ productName, price, imageUrl,rating,actualamount }) => 
       height: '849px',
       marginTop: '10px'
     }; 
+
+    setShowModal(false);
   
     setModalContent(
       /*<Modal 
@@ -32,6 +34,7 @@ const ProductWindow = ({ productName, price, imageUrl,rating,actualamount }) => 
      
     );
     setShowModal(true);
+   
   };
   
   const [showModal, setShowModal] = useState(false);
@@ -101,6 +104,7 @@ const ProductWindow = ({ productName, price, imageUrl,rating,actualamount }) => 
           <p> {price}</p>
           <div>{renderStars(rating)}</div>
         </div>
+        
 
         <div style={{ position: 'absolute', bottom: '20px', right: '48.5px', top: '126px' }}>
           <button
@@ -115,7 +119,8 @@ const ProductWindow = ({ productName, price, imageUrl,rating,actualamount }) => 
               border: 'none',
               cursor: 'pointer',
             }}
-            onClick={() => openPaymentWindow(productName, price, imageUrl,actualamount)}
+            onClick={() =>
+               openPaymentWindow(productName, price, imageUrl,actualamount)}
           >
             Buy Now
           </button>

@@ -60,15 +60,15 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to="/product"
-                className={`nav-link${location.pathname === '/product' ? ' active' : ''}`}
+                to={AllRoutes.products}
+                className={`nav-link${location.pathname === AllRoutes.products ? ' active' : ''}`}
               >
                 Product
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                to={AllRoutes.service} // Ensure the link points to the correct path
+                to={AllRoutes.service} 
                 className={`nav-link${location.pathname === AllRoutes.service ? ' active' : ''}`}
               > 
                 Service
@@ -76,7 +76,7 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to={AllRoutes.contact} // Ensure the link points to the correct path
+                to={AllRoutes.contact} 
                 className={`nav-link${location.pathname === AllRoutes.contact ? ' active' : ''}`}
               >
                 About Us

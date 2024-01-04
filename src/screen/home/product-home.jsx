@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './home.css';
-import Navbar from '../../navBar/navbar';
+import NavbarNew from '../../navBar/nav-bar';
 import nothingPhoneImage from './images/nothing-phone2_.jpg';
 import oppophone from './images/oppo-phone.jpeg';
 import iphone15 from './images/iphone15pro.jpeg';
@@ -16,6 +16,8 @@ import techno from './images/techno camon 20.jpeg'
 import ProductWindow from '../productwindow/productWindow';
 import PaymentPage from '../payment/payment';
 import { Modal, ModalBody} from 'react-bootstrap';
+import discount from './discount.png';
+import deals from './deals.png';
 
 
 
@@ -78,6 +80,7 @@ const Home = () => {
     }
     return starArray;
   };
+  
 
   const cards = [
     {
@@ -178,31 +181,28 @@ const Home = () => {
 
     },
   ];
+  
  
   const openPaymentWindow = (productName, price, imageUrl,actualamount) => {
     const modalStyles = {
       top: '113px',
       bottom: '113px',
       height: '849px',
+      marginTop: '10px'
     }; 
   
     setModalContent(
-      <Modal 
-        size="xl" 
-        show={true} 
-        onHide={handleCloseModal}  
-        aria-labelledby="example-modal-sizes-title-xl"
-      >
+      
         <Modal.Body style={{  ...modalStyles }}> 
           <PaymentPage
             productName={productName}
             price={price}
             imageUrl={imageUrl}
             actualamount={actualamount}
-            onClose={handleCloseModal}
+           
           />
         </Modal.Body>
-      </Modal>
+     
     );
     setShowModal(true);
   };
@@ -213,22 +213,14 @@ const Home = () => {
     const modalStyles = {
       top: '113px',
       bottom: '113px',
- 
-      height: '849px',
+      marginTop: '10px',
+      height: 'auto' ,
      
     };
   
    
     setModalContent(
-      <Modal 
-        size="xl" 
-        show={true} 
-        onHide={handleCloseModal}  
-        aria-labelledby="example-modal-sizes-title-xl"
-      >
-      
-    
-    
+             
       <ModalBody style={modalStyles}>
       <ProductWindow
         productName={productName}
@@ -238,9 +230,13 @@ const Home = () => {
         onClose={handleCloseModal}
       />
       </ModalBody>
-      </Modal>
+      
     );
     setShowModal(true);
+
+    
+
+    
   };
   const handleCloseModal = () => {
     setShowModal(false);
@@ -254,10 +250,10 @@ const Home = () => {
   const [showBuyNow, setShowBuyNow] = useState(Array(cards.length).fill(false));
   return (
     <div>
-      <Navbar />
+      <NavbarNew />
       <div style={containerStyle}>
         <div style={leftColumnStyle}>
-          <div style={{marginLeft:'62px'}}>
+        <div style={{marginLeft:'62px'}}>
             <input type="checkbox" id="phones" style={checkboxStyle} />
             <label htmlFor="phones">Phones</label>
           </div>
@@ -269,6 +265,21 @@ const Home = () => {
             <input type="checkbox" id="accessories" style={checkboxStyle} />
             <label htmlFor="accessories">Accessories</label>
           </div>
+          <div>
+            <img src={discount} alt='discount'style={{marginLeft:'62px',marginTop:'90px'}} />
+            <br />
+            <br />
+            <br />
+            <div className="discount-text" style={{marginLeft:'32px'}}>
+              <span>Get </span>
+              <span className="discount-percentage">10% </span>
+              <span>off on all products!</span>
+            </div>
+            <br />
+            <br />
+            <img src={deals} alt='deals ' style={{marginLeft:'32px'}}></img>
+          </div>
+
         </div>
         <div style={rightColumnStyle}>
           <div style={cardContainerStyle}>
@@ -280,6 +291,7 @@ const Home = () => {
                   backgroundColor: card.color,
                   position: 'relative',
                 }}
+                className="cardStyle"
                 onMouseEnter={() => {
                   const newShowBuyNow = [...showBuyNow];
                   newShowBuyNow[index] = true;
@@ -291,8 +303,12 @@ const Home = () => {
                   setShowBuyNow(newShowBuyNow);
                 }}
               >
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <img
+                <div
+                  style={{
+                    display: 'flex', flexDirection: 'column', alignItems: 'center'
+                  }}
+                >
+                   <img
                     src={card.imageUrl}
                     alt={card.productName}
                     style={{
@@ -304,98 +320,121 @@ const Home = () => {
                       
                     }}
                   />
-                  <br></br>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px', width: '100%' }}>
-                  <div style={{ flex: '1', textAlign: 'left', position: 'relative' }}>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px', width: '100%' }}>
+                <div style={{ flex: '1', textAlign: 'left', position: 'relative', marginLeft: '0px', marginTop: '20px' }}>
                   <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>
                     {card.productName}
                   </h3>
-                  <div style={{ fontSize: '12px', fontFamily: 'Montserrat', color: '#B3C1C8', pointerEvents: 'none' }}>
-                    <span>Smart,Powerful</span>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        openProductWindow(card.productName, card.price, card.imageUrl, card.ratings);
-                      }}
-                      style={{
-                        position: 'absolute',
-                        top: '100%',
-                        left: '0',
-                        zIndex: '1',
-                        pointerEvents: 'auto',
-                        backgroundColor: '#fff',
-                        padding: '4px',
-                        borderRadius: '4px',
-                        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                        display: showBuyNow[index] ? 'block' : 'none',
-                      }}
-                    >
-                      View Product
-                    </button>
-
-                  </div>
+                  <div style={{ fontSize: '12px', fontFamily: 'Montserrat', color: '#B3C1C8' }}>
+                  <span
+                    className="text"
+                    style={{ pointerEvents: showBuyNow[index] ? 'none' : 'auto' }}
+                  >
+                    Smart, Powerful
+                  </span>
+                  <button
+                    onMouseEnter={() => {
+                      const spanToDisable = document.querySelector(`.disableHover${showBuyNow[index] ? '.active' : ''}`);
+                      if (spanToDisable) {
+                        spanToDisable.style.pointerEvents = 'none';
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      const spanToEnable = document.querySelector(`.disableHover${showBuyNow[index] ? '.active' : ''}`);
+                      if (spanToEnable) {
+                        spanToEnable.style.pointerEvents = 'auto';
+                      }
+                    }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      
+                      openProductWindow(card.productName, card.price, card.imageUrl, card.ratings);
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '100%',
+                      left: '-20px',
+                      backgroundColor: '#219EBC',
+                      padding: '4px 16px',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontFamily: 'Montserrat',
+                      color: '#fff',
+                      transition: 'opacity 0.3s', 
+                      display: showBuyNow[index] ? 'block' : 'none',
+                      
+                    }}
+                    className="productButton"
+                  >
+                    View Product
+                  </button>
                 </div>
 
-                    <div style={{ marginBottom: '5px' }}>
-                      <p
-                        style={{
-                          fontSize: '18px',
-                          fontFamily: 'Montserrat',
-                          fontWeight: '500',
-                          color: '#023047',
-                          marginBottom: '0',
-                          marginLeft: '5px',
-                        }}
-                      >
-                        {card.price}
-                      </p>
-                      <div style={{ marginTop: '-10px', marginLeft: '15px' }}>
-                        {renderStars(parseFloat(card.ratings))}
-                      </div>
-                      <div
-                        style={{
-                          position: 'absolute',
-                          bottom: '5px', 
-                          right: '10px',
-                          backgroundColor: '#219EBC',
-                          padding: '4px 16px',
-                          borderRadius: '4px',
-                          display: showBuyNow[index] ? 'block' : 'none',
-                          zIndex: '1',
-                          cursor: 'pointer',
-                          fontSize: '12px',
-                          fontFamily: 'Montserrat',
-                          color: '#fff',
-                        }}
-                        onClick={() =>
-                          openPaymentWindow(
-                            card.productName,
-                            card.price,
-                            card.imageUrl,
-                            card.actualamount
-                          )
-                        }
-                      >
-                        Buy Now
-                      </div>
-
-                    </div>
-                  </div>
                 </div>
+              </div>
+
+                <div
+                style={{
+                  position: 'absolute',
+                  bottom: '-65px', 
+                  width: '100%',
+                  textAlign: 'right',
+                  left: '0px'
+                }}
+                className="priceRating"
+              >
+                <p style={{ /* Price styles */ }}>{card.price}</p>
+                <div style={{ marginTop: '-10px'  }}>{renderStars(parseFloat(card.ratings))}</div>
+    
+                </div>
+  
+                <div
+                style={{
+                  position: 'absolute',
+                  bottom: '-35px',
+                  right: '10px',
+                  backgroundColor: '#219EBC',
+                  padding: '4px 16px',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '12px',
+                  fontFamily: 'Montserrat',
+                  color: '#fff',
+                  transition: 'opacity 0.3s', 
+                  opacity: showBuyNow[index] ? '1' : '0',
+                }}
+                className="buyNowButton"
+                onClick={() =>
+                  openPaymentWindow(
+                    card.productName,
+                    card.price,
+                    card.imageUrl,
+                    card.actualamount
+                  )
+                }
+              >
+                Buy Now
+              </div>
+
               </div>
             ))}
           </div>
-          <Modal show={showModal} onHide={handleCloseModal} >
+          <Modal size="xl" show={showModal} onHide={handleCloseModal} aria-labelledby="example-modal-sizes-title-xl">
+          <Modal.Header >
+    
+            <button type="button" className="btn-close" aria-label="Close" onClick={handleCloseModal}></button>
+          </Modal.Header>
+            <Modal.Body style={{ paddingTop: '0', paddingBottom: '0' }}>
+              {modalContent}
 
-            <Modal.Body>{modalContent}</Modal.Body>
+            </Modal.Body>
           </Modal>
         </div>
       </div>
     </div>
   );
-  
-  
 }  
 
 export default Home;
-

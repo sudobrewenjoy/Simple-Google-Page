@@ -181,6 +181,7 @@ const Home = () => {
 
     },
   ];
+  
  
   const openPaymentWindow = (productName, price, imageUrl,actualamount) => {
     const modalStyles = {
@@ -191,12 +192,7 @@ const Home = () => {
     }; 
   
     setModalContent(
-      /*<Modal 
-        size="xl" 
-        show={true} 
-        onHide={handleCloseModal}  
-        aria-labelledby="example-modal-sizes-title-xl"
-      >*/
+      
         <Modal.Body style={{  ...modalStyles }}> 
           <PaymentPage
             productName={productName}
@@ -224,15 +220,7 @@ const Home = () => {
   
    
     setModalContent(
-     /* <Modal 
-        size="xl" 
-        show={true} 
-        onHide={handleCloseModal}  
-        aria-labelledby="example-modal-sizes-title-xl"
-      >*/
-      
-    
-    
+             
       <ModalBody style={modalStyles}>
       <ProductWindow
         productName={productName}
@@ -242,9 +230,13 @@ const Home = () => {
         onClose={handleCloseModal}
       />
       </ModalBody>
-      //</Modal>
+      
     );
     setShowModal(true);
+
+    
+
+    
   };
   const handleCloseModal = () => {
     setShowModal(false);
@@ -356,6 +348,7 @@ const Home = () => {
                     }}
                     onClick={(e) => {
                       e.preventDefault();
+                      
                       openProductWindow(card.productName, card.price, card.imageUrl, card.ratings);
                     }}
                     style={{
@@ -445,4 +438,3 @@ const Home = () => {
 }  
 
 export default Home;
-

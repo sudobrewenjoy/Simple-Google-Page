@@ -9,7 +9,7 @@ export const AllRoutes = {
   producthome: '/producthome',
   admin:'/admin',
   contact:'/contact',
-  service: '/service'
-  
+  service: '/service',
+  products : '/products'
   };
   

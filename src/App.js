@@ -13,6 +13,7 @@ import PrivateRoute from "./router/privateRoute";
 import TableComponent from './screen/login/admin';
 import ContactScreen from './screen/contact/contact';
 import ServiceScreen from './screen/services/services';
+import ProductScreen from './screen/products/products';
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
           <Route path={AllRoutes.login} element={<LoginPage />} />
           <Route path={AllRoutes.contact} element={<ContactScreen />} />
           <Route path={AllRoutes.service} element={<ServiceScreen />} />
+          <Route path={AllRoutes.products} element={<ProductScreen />} />
+  
   
   
            {/* Home Route */}
