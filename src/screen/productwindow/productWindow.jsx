@@ -4,7 +4,7 @@ import { Modal} from 'react-bootstrap';
 import { useState } from 'react';
 import PaymentPage from '../payment/payment';
 
-const ProductWindow = ({ productName, price, imageUrl,rating,actualamount }) => {
+const ProductWindow = ({ productName, price, imageUrl,rating,actualamount, setShowProductModal }) => {
   const openPaymentWindow = (productName, price, imageUrl,actualamount) => {
     const modalStyles = {
       top: '113px',
@@ -12,16 +12,11 @@ const ProductWindow = ({ productName, price, imageUrl,rating,actualamount }) => 
       height: '849px',
       marginTop: '10px'
     }; 
-
+    setShowProductModal(false);
     setShowModal(false);
   
     setModalContent(
-      /*<Modal 
-        size="xl" 
-        show={true} 
-        onHide={handleCloseModal}  
-        aria-labelledby="example-modal-sizes-title-xl"
-      >*/
+     
         <Modal.Body style={{  ...modalStyles }}> 
           <PaymentPage
             productName={productName}
@@ -34,7 +29,17 @@ const ProductWindow = ({ productName, price, imageUrl,rating,actualamount }) => 
      
     );
     setShowModal(true);
+
+    
    
+  };
+
+
+
+  const handleBuyNow = () => {
+    setShowProductModal(false);
+    setShowModal(false);
+    openPaymentWindow(productName, price, imageUrl, actualamount);
   };
   
   const [showModal, setShowModal] = useState(false);
@@ -119,8 +124,7 @@ const ProductWindow = ({ productName, price, imageUrl,rating,actualamount }) => 
               border: 'none',
               cursor: 'pointer',
             }}
-            onClick={() =>
-               openPaymentWindow(productName, price, imageUrl,actualamount)}
+            onClick={() =>handleBuyNow()}
           >
             Buy Now
           </button>
