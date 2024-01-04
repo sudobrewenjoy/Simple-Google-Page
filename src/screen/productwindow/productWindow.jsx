@@ -37,6 +37,7 @@ const ProductWindow = ({ productName, price, imageUrl,rating,actualamount, setSh
 
 
   const handleBuyNow = () => {
+    console.log("Buy Now button clicked");
     setShowProductModal(false);
     setShowModal(false);
     openPaymentWindow(productName, price, imageUrl, actualamount);
@@ -124,7 +125,10 @@ const ProductWindow = ({ productName, price, imageUrl,rating,actualamount, setSh
               border: 'none',
               cursor: 'pointer',
             }}
-            onClick={() =>handleBuyNow()}
+            onClick={() => {
+              handleBuyNow();
+              openPaymentWindow(productName, price, imageUrl, actualamount);
+            }}
           >
             Buy Now
           </button>

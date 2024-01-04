@@ -186,34 +186,27 @@ const Home = () => {
   const [modalContent, setModalContent] = useState(null);
   const [paymentModalContent, setPaymentModalContent] = useState(null);
  
-  const openPaymentWindow = (productName, price, imageUrl,actualamount, setShowProductModal) => {
+  const openPaymentWindow = (productName, price, imageUrl, actualamount) => {
     const modalStyles = {
       top: '113px',
       bottom: '113px',
       height: '849px',
       marginTop: '10px'
-    }; 
-
-    
+    };
   
-    setModalContent(
-      
-        <Modal.Body style={{  ...modalStyles }}> 
-          <PaymentPage
-            productName={productName}
-            price={price}
-            imageUrl={imageUrl}
-            actualamount={actualamount}
-            
-           
-          />
-        </Modal.Body>
-     
+    setPaymentModalContent(
+      <Modal.Body style={{ ...modalStyles }}>
+        <PaymentPage
+          productName={productName}
+          price={price}
+          imageUrl={imageUrl}
+          actualamount={actualamount}
+        />
+      </Modal.Body>
     );
+  
     setShowProductModal(false);
     setShowPaymentModal(true);
-
-   
   };
   
   
@@ -246,7 +239,7 @@ const Home = () => {
     setShowProductModal(true);
 
     // Clear content for payment modal when product modal is opened
-    setPaymentModalContent(null);
+   // setPaymentModalContent(null);
   };
  
   const handleCloseModal = () => {
@@ -438,7 +431,7 @@ const Home = () => {
           </Modal.Header>
           <Modal.Body style={{ paddingTop: '0', paddingBottom: '0' }}>
             {showProductModal && modalContent /* Render the modal content based on showProductModal */}
-            {showPaymentModal && paymentModalContent /* Render payment modal content based on showPaymentModal */}
+            {showPaymentModal && paymentModalContent /* Render payment modal content */}
           </Modal.Body>
         </Modal>
 
