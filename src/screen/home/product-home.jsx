@@ -181,70 +181,73 @@ const Home = () => {
 
     },
   ];
-  
+  const [showProductModal, setShowProductModal] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
+  const [paymentModalContent, setPaymentModalContent] = useState(null);
  
-  const openPaymentWindow = (productName, price, imageUrl,actualamount) => {
+  const openPaymentWindow = (productName, price, imageUrl, actualamount) => {
     const modalStyles = {
       top: '113px',
       bottom: '113px',
       height: '849px',
       marginTop: '10px'
-    }; 
+    };
   
-    setModalContent(
-      
-        <Modal.Body style={{  ...modalStyles }}> 
-          <PaymentPage
-            productName={productName}
-            price={price}
-            imageUrl={imageUrl}
-            actualamount={actualamount}
-           
-          />
-        </Modal.Body>
-     
+    setPaymentModalContent(
+      <Modal.Body style={{ ...modalStyles }}>
+        <PaymentPage
+          productName={productName}
+          price={price}
+          imageUrl={imageUrl}
+          actualamount={actualamount}
+        />
+      </Modal.Body>
     );
-    setShowModal(true);
+  
+    setShowProductModal(false);
+    setShowPaymentModal(true);
   };
   
   
-
+  
   const openProductWindow = (productName, price, imageUrl, rating) => {
     const modalStyles = {
       top: '113px',
       bottom: '113px',
       marginTop: '10px',
-      height: 'auto' ,
-     
+      height: 'auto',
     };
   
-   
     setModalContent(
-             
       <ModalBody style={modalStyles}>
-      <ProductWindow
-        productName={productName}
-        price={price}
-        imageUrl={imageUrl}
-        rating={rating}
-        onClose={handleCloseModal}
-      />
+        <ProductWindow
+          productName={productName}
+          price={price}
+          imageUrl={imageUrl}
+          rating={rating}
+          onClose={handleCloseModal}
+          setShowProductModal={setShowProductModal}
+          openPaymentWindow={openPaymentWindow} 
+        />
       </ModalBody>
-      
     );
-    setShowModal(true);
+  
+  
+    setShowPaymentModal(false);
+    setShowProductModal(true);
 
-    
-
-    
+    // Clear content for payment modal when product modal is opened
+   // setPaymentModalContent(null);
   };
+ 
   const handleCloseModal = () => {
-    setShowModal(false);
+    setShowPaymentModal(false);
+    setShowProductModal(false);
     setModalContent(null);
+    setPaymentModalContent(null);
   };
 
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState(null);
   
     
   const [showBuyNow, setShowBuyNow] = useState(Array(cards.length).fill(false));
@@ -347,7 +350,7 @@ const Home = () => {
                       }
                     }}
                     onClick={(e) => {
-                      e.preventDefault();
+                      
                       
                       openProductWindow(card.productName, card.price, card.imageUrl, card.ratings);
                     }}
@@ -421,16 +424,16 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <Modal size="xl" show={showModal} onHide={handleCloseModal} aria-labelledby="example-modal-sizes-title-xl">
-          <Modal.Header >
-    
+          <Modal size="xl" show={showProductModal || showPaymentModal} onHide={handleCloseModal} aria-labelledby="example-modal-sizes-title-xl">
+          <Modal.Header>
             <button type="button" className="btn-close" aria-label="Close" onClick={handleCloseModal}></button>
           </Modal.Header>
-            <Modal.Body style={{ paddingTop: '0', paddingBottom: '0' }}>
-              {modalContent}
+          <Modal.Body style={{ paddingTop: '0', paddingBottom: '0' }}>
+            {showProductModal && modalContent /* Render the modal content based on showProductModal */}
+            {showPaymentModal && paymentModalContent /* Render payment modal content */}
+          </Modal.Body>
+        </Modal>
 
-            </Modal.Body>
-          </Modal>
         </div>
       </div>
     </div>
