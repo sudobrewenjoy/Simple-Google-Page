@@ -210,31 +210,30 @@ const Home = () => {
   };
   
   
-
+  
   const openProductWindow = (productName, price, imageUrl, rating) => {
     const modalStyles = {
       top: '113px',
       bottom: '113px',
       marginTop: '10px',
-      height: 'auto' ,
-     
+      height: 'auto',
     };
   
-   
     setModalContent(
-             
       <ModalBody style={modalStyles}>
-      <ProductWindow
-        productName={productName}
-        price={price}
-        imageUrl={imageUrl}
-        rating={rating}
-        onClose={handleCloseModal}
-        setShowProductModal={setShowProductModal}
-      />
+        <ProductWindow
+          productName={productName}
+          price={price}
+          imageUrl={imageUrl}
+          rating={rating}
+          onClose={handleCloseModal}
+          setShowProductModal={setShowProductModal}
+          openPaymentWindow={openPaymentWindow} 
+        />
       </ModalBody>
-      
     );
+  
+  
     setShowPaymentModal(false);
     setShowProductModal(true);
 
@@ -351,7 +350,7 @@ const Home = () => {
                       }
                     }}
                     onClick={(e) => {
-                      e.preventDefault();
+                      
                       
                       openProductWindow(card.productName, card.price, card.imageUrl, card.ratings);
                     }}

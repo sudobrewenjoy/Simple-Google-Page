@@ -4,47 +4,26 @@ import { Modal} from 'react-bootstrap';
 import { useState } from 'react';
 import PaymentPage from '../payment/payment';
 
-const ProductWindow = ({ productName, price, imageUrl,rating,actualamount, setShowProductModal }) => {
-  const openPaymentWindow = (productName, price, imageUrl,actualamount) => {
-    const modalStyles = {
-      top: '113px',
-      bottom: '113px',
-      height: '849px',
-      marginTop: '10px'
-    }; 
-    setShowProductModal(false);
-    setShowModal(false);
-  
-    setModalContent(
-     
-        <Modal.Body style={{  ...modalStyles }}> 
-          <PaymentPage
-            productName={productName}
-            price={price}
-            imageUrl={imageUrl}
-            actualamount={actualamount}
-           
-          />
-        </Modal.Body>
-     
-    );
-    setShowModal(true);
 
+
+const ProductWindow = ({ productName, price, imageUrl, rating, actualamount, openPaymentWindow  }) => {
+
+
+
+  
+  const handlePaymentClick = () => {
+ 
     
-   
+      openPaymentWindow(productName, price, imageUrl, rating, actualamount ); 
+     
+ 
   };
 
 
 
-  const handleBuyNow = () => {
-    console.log("Buy Now button clicked");
-    setShowProductModal(false);
-    setShowModal(false);
-    openPaymentWindow(productName, price, imageUrl, actualamount);
-  };
   
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState(null);
+  //const [showModal, setShowModal] = useState(false);
+  //const [modalContent, setModalContent] = useState(null);
 
 
   const renderStars = (rating) => {
@@ -126,8 +105,8 @@ const ProductWindow = ({ productName, price, imageUrl,rating,actualamount, setSh
               cursor: 'pointer',
             }}
             onClick={() => {
-              handleBuyNow();
-              openPaymentWindow(productName, price, imageUrl, actualamount);
+              handlePaymentClick();
+              
             }}
           >
             Buy Now
@@ -257,9 +236,7 @@ const ProductWindow = ({ productName, price, imageUrl,rating,actualamount, setSh
           </tbody>
         </table>
       </div>
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        {modalContent}
-      </Modal>
+    
     </div>
   );
 };
