@@ -1,8 +1,6 @@
 import React from 'react';
 //import { useNavigate } from 'react-router-dom';
-import { Modal} from 'react-bootstrap';
-import { useState } from 'react';
-import PaymentPage from '../payment/payment';
+
 
 
 
