@@ -98,7 +98,7 @@ const Home = () => {
 
   
 
-  const [showPhones, setShowPhones] = useState(false);
+  const [showPhones, setShowPhones] = useState(true);
   const [showHeadphones, setShowHeadphones] = useState(false);
   const [showaccessories, setShowaccessories] = useState(false);
  
