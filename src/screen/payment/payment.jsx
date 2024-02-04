@@ -1,5 +1,5 @@
 import React,{ useState } from 'react';
-//import { useLocation } from 'react-router-dom';
+
 
 
 const PaymentPage = ({ productName, price, imageUrl,actualamount }) => {
@@ -61,8 +61,8 @@ const PaymentPage = ({ productName, price, imageUrl,actualamount }) => {
 
   
   return (
-    <div onClick={stopPropagation} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <div style={{ position: 'absolute', top: '0', left: '0', width: '115px', height: '24px', fontFamily: 'Montserrat', fontWeight: 'bold', fontSize: '20px', color: '#023047', margin: '20px' }}>Buy {productName}</div>
+    <div onClick={stopPropagation}  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <div  style={{ position: 'absolute', top: '0', left: '0', width: '115px', height: '24px', fontFamily: 'Montserrat', fontWeight: 'bold', fontSize: '20px', color: '#023047', margin: '20px' }}>Buy {productName}</div>
       <div style={{ position: 'absolute', top: '96px', left: '32px', width: '545px', height: '88px', background: '#FFFFFF', border: '2px solid #E9ECEF', borderRadius: '4px', opacity: '1', display: 'flex', alignItems: 'center' }}>
         <div style={{ width: '44px', height: '58px', margin: '25px 24px' }}>
            <img src={imageUrl} alt="Your Product" style={{ width: '100%', height: '100%' }} />
@@ -84,7 +84,7 @@ const PaymentPage = ({ productName, price, imageUrl,actualamount }) => {
 
 
   
-  <div style={{ width: '545px', marginTop: '20px', height: '311px', background: '#FFFFFF', border: '3px solid #E9ECEF', borderRadius: '4px', opacity: 1, position: 'relative', marginRight: '520px' }}>
+  <div  style={{ width: '545px', marginTop: '20px', height: '311px', background: '#FFFFFF', border: '3px solid #E9ECEF', borderRadius: '4px', opacity: 1, position: 'relative', marginRight: '520px' }}>
         {/* Add Address */}
         <div style={{ position: 'absolute', top: '20px', left: '20px' }}>
           <p style={{ color: '#B3C1C8', fontSize: '12px', fontFamily: 'Montserrat', fontWeight: '600' }}>Add Address</p>
@@ -150,7 +150,7 @@ const PaymentPage = ({ productName, price, imageUrl,actualamount }) => {
         <p style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0' }}>Actual Amount</p>
         <span style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0',marginRight:'10px' }}>{actualamount}</span>
     </div>
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', marginLeft: '24px' }}>
+    <div  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', marginLeft: '24px' }}>
         <p style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0' }}>Discount</p>
         <span style={{ fontFamily: 'Montserrat', fontWeight: '500', fontSize: '12px', color: '#B3C1C8', margin: '5px 0',marginRight:'10px' }}>$10</span>
     </div>

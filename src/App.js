@@ -14,13 +14,12 @@ import TableComponent from './screen/login/admin';
 import ContactScreen from './screen/contact/contact';
 import ServiceScreen from './screen/services/services';
 import ProductScreen from './screen/products/products';
+import AddItemForm from './additems/additems';
 
 function App() {
   return (
     <BrowserRouter>
       <div>
-       
-
         {/* Routes */}
         <Routes>
           <Route path={AllRoutes.home} element={<Home />} />
@@ -33,22 +32,28 @@ function App() {
           <Route path={AllRoutes.contact} element={<ContactScreen />} />
           <Route path={AllRoutes.service} element={<ServiceScreen />} />
           <Route path={AllRoutes.products} element={<ProductScreen />} />
-  
-  
-  
-           {/* Home Route */}
+
+          {/* Private Route for Product Home */}
           <Route path={AllRoutes.producthome} element={
             <PrivateRoute path={AllRoutes.producthome}>
               <ProductHome />
             </PrivateRoute>
           } />
-            <Route path={AllRoutes.admin} element={
+
+          {/* Private Route for Admin */}
+          <Route path={AllRoutes.admin} element={
             <PrivateRoute path={AllRoutes.admin}>
               <TableComponent />
             </PrivateRoute>
           } />
+
+          {/* Private Route for Add Items */}
+          <Route path={AllRoutes.additems} element={
+            <PrivateRoute path={AllRoutes.additems}>
+              <AddItemForm />
+            </PrivateRoute>
+          } />
         </Routes>
-          
       </div>
     </BrowserRouter>
   );

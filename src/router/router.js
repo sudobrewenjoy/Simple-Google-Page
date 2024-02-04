@@ -10,6 +10,7 @@ export const AllRoutes = {
   admin:'/admin',
   contact:'/contact',
   service: '/service',
-  products : '/products'
+  products : '/products',
+  additems: '/additems'
   };
   

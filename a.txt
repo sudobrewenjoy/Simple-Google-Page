@@ -33,3 +33,14 @@ src\screen\home\product-home.jsx
   Line 265:21:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
 
 webpack compiled with 1 warning
+
+
+top : 113px
+bottom:113px
+left:245px
+right:245px
+height: 849px
+width: 542 px
+
+
+Application for Fullstack Developer Opportunity: Thirumalaiboobathi

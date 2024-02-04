@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Table.css'; 
+import { useNavigate } from 'react-router-dom';
 
 
 const TableComponent = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
+
+  const handleAddItemButtonClick = () => {
+    navigate('/additems');
+  };
 
   useEffect(() => {
     // Fetch data from the API
@@ -31,8 +38,9 @@ const TableComponent = () => {
             Welcome, Administrator. Accessing exclusive content reserved for admins.
             This section is exclusively accessible to administrators for authorized access.
           </p>
-        
+          
       </div>
+      <button onClick={handleAddItemButtonClick} className="add-item-button">Add Item</button>
       {loading ? (
         <div className="loading">
           <div className="spinner"></div>
