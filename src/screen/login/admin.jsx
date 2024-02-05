@@ -14,6 +14,8 @@ const TableComponent = () => {
     navigate('/additems');
   };
 
+  
+
   useEffect(() => {
     // Fetch data from the API
     axios.get('https://658fe2b9cbf74b575eca3731.mockapi.io/project1')
@@ -40,7 +42,8 @@ const TableComponent = () => {
           </p>
           
       </div>
-      <button onClick={handleAddItemButtonClick} className="add-item-button">Add Item</button>
+      <button onClick={handleAddItemButtonClick} className="btn btn-info" style={{marginLeft:'1380px'}}>Add Item</button>
+     
       {loading ? (
         <div className="loading">
           <div className="spinner"></div>

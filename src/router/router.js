@@ -11,6 +11,7 @@ export const AllRoutes = {
   contact:'/contact',
   service: '/service',
   products : '/products',
-  additems: '/additems'
+  additems: '/additems',
+  deleteitems: '/deleteitems'
   };
   

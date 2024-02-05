@@ -15,6 +15,7 @@ import ContactScreen from './screen/contact/contact';
 import ServiceScreen from './screen/services/services';
 import ProductScreen from './screen/products/products';
 import AddItemForm from './additems/additems';
+import DeleteItemScreen from './additems/deleteitems';
 
 function App() {
   return (
@@ -39,6 +40,14 @@ function App() {
               <ProductHome />
             </PrivateRoute>
           } />
+
+           {/* Private Route for Product Home */}
+           <Route path={AllRoutes.deleteitems} element={
+            <PrivateRoute path={AllRoutes.deleteitems}>
+              <DeleteItemScreen />
+            </PrivateRoute>
+          } />
+
 
           {/* Private Route for Admin */}
           <Route path={AllRoutes.admin} element={
