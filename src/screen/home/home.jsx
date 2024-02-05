@@ -188,7 +188,46 @@ const Home = () => {
     setModalContent(null);
     setPaymentModalContent(null);
   };
+  const [filters, setFilters] = useState({
+    below200: false,
+    below600: false,
+    rating: null, // Added a rating filter
+    above3star: false,
+  });
 
+  // ... (previous code)
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const response = await fetch('https://657fb88b6ae0629a3f538d87.mockapi.io/project');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+
+        // Apply filters
+        const filteredCards = data.filter((card) => {
+        
+          const isRatingMatch = filters.rating === null || (parseFloat(card.ratings) === filters.rating);
+          const isAbove3Star = !filters.above3star || (filters.above3star && parseFloat(card.ratings) > 3);
+          const isSamsung = !filters.samsung || (filters.samsung && card.productName.toLowerCase().includes('samsung'));
+          const isIphone = !filters.iphone || (filters.iphone && card.productName.toLowerCase().includes('iphone'));
+
+
+          return  isRatingMatch && isAbove3Star && isSamsung && isIphone;
+        });
+
+        setCards(filteredCards);
+        setLoading(false); // Set loading to false after fetching and filtering data
+      } catch (error) {
+        console.error('Error fetching cards:', error);
+        setLoading(false); // Ensure loading is set to false on error too
+      }
+    };
+
+    fetchCards();
+  }, [filters]); 
   
     
   const [showBuyNow, setShowBuyNow] = useState(Array(cards.length).fill(false));
@@ -209,6 +248,72 @@ const Home = () => {
           <div style={{marginLeft:'62px'}}> 
             <input type="checkbox" id="accessories" style={checkboxStyle} onChange={ handleToggleaccessories}/>
             <label htmlFor="accessories">Accessories</label>
+          </div>
+
+
+          <div style={{ marginTop: '20px',marginLeft:'62px' }}>
+            <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>Brand</h3>
+            <div style={{ marginLeft: '10px' }}>
+            <input
+            type="checkbox"
+            id="samsung"
+            style={checkboxStyle}
+            onChange={() => setFilters({ ...filters, samsung: !filters.samsung })}
+            checked={filters.samsung}
+          />
+          <label htmlFor="samsung">Samsung</label>
+            </div>
+            <div style={{ marginLeft: '10px' }}>
+            <input
+            type="checkbox"
+            id="Iphone"
+            style={checkboxStyle}
+            onChange={() => setFilters({ ...filters, iphone: !filters.iphone })}
+            checked={filters.iphone}
+          />
+          <label htmlFor="samsung">Iphone</label>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '20px',marginLeft:'62px' }}>
+            <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>Ratings</h3>
+            <div style={{ marginLeft: '10px' }}>
+              <input
+                type="checkbox"
+                id="5star"
+                style={checkboxStyle}
+                // Handle the logic for 5-star rating filter
+                onChange={() => setFilters({ ...filters, rating: filters.rating === 5 ? null : 5 })}
+                checked={filters.rating === 5}
+              />
+              <label htmlFor="5star">5 Star Ratings</label>
+            </div>
+            <div style={{ marginLeft: '10px' }}>
+              <input
+                type="checkbox"
+                id="5star"
+                style={checkboxStyle}
+                // Handle the logic for 5-star rating filter
+                onChange={() => setFilters({ ...filters, rating: filters.rating === 4.5 ? null : 4.5 })}
+                checked={filters.rating === 4.5}
+              />
+              <label htmlFor="5star">4.5 Star Ratings</label>
+            </div>
+            <div style={{ marginLeft: '10px' }}>
+              <input
+                type="checkbox"
+                id="5star"
+                style={checkboxStyle}
+                // Handle the logic for 5-star rating filter
+                onChange={() => setFilters({ ...filters, rating: filters.rating === 4.4 ? null : 4.4 })}
+                checked={filters.rating === 4.4}
+              />
+              <label htmlFor="5star">4.4 Star Ratings</label>
+            </div>
+
+
+
+
           </div>
           <div>
             <img src={discount} alt='discount'style={{marginLeft:'62px',marginTop:'90px'}} />
