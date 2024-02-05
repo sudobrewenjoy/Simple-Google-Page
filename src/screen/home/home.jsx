@@ -213,9 +213,11 @@ const Home = () => {
           const isAbove3Star = !filters.above3star || (filters.above3star && parseFloat(card.ratings) > 3);
           const isSamsung = !filters.samsung || (filters.samsung && card.productName.toLowerCase().includes('samsung'));
           const isIphone = !filters.iphone || (filters.iphone && card.productName.toLowerCase().includes('iphone'));
+          const ispixel = !filters.pixel || (filters.pixel && card.productName.toLowerCase().includes('pixel'));
+          const isvivo = !filters.vivo || (filters.vivo && card.productName.toLowerCase().includes('vivo'));
 
 
-          return  isRatingMatch && isAbove3Star && isSamsung && isIphone;
+          return  isRatingMatch && isAbove3Star && isSamsung && isIphone && ispixel && isvivo;
         });
 
         setCards(filteredCards);
@@ -273,7 +275,28 @@ const Home = () => {
           />
           <label htmlFor="samsung">Iphone</label>
             </div>
+            <div style={{ marginLeft: '10px' }}>
+            <input
+            type="checkbox"
+            id="pixel"
+            style={checkboxStyle}
+            onChange={() => setFilters({ ...filters, pixel: !filters.pixel })}
+            checked={filters.pixel}
+          />
+          <label htmlFor="pixel">Pixel</label>
+            </div>
+            <div style={{ marginLeft: '10px' }}>
+            <input
+            type="checkbox"
+            id="vivo"
+            style={checkboxStyle}
+            onChange={() => setFilters({ ...filters, vivo: !filters.vivo })}
+            checked={filters.vivo}
+          />
+          <label htmlFor="pixel">Vivo</label>
+            </div>
           </div>
+          
 
           <div style={{ marginTop: '20px',marginLeft:'62px' }}>
             <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>Ratings</h3>
