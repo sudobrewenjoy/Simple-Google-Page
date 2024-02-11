@@ -2,6 +2,8 @@ div[style*='pointerEvents: auto;']:hover a {
   display: block;
 }
 
+
+
 @media screen and (max-width: 768px) {
  
   .container {

@@ -206,18 +206,27 @@ const Home = () => {
         }
         const data = await response.json();
 
+        
+
         // Apply filters
         const filteredCards = data.filter((card) => {
-        
-          const isRatingMatch = filters.rating === null || (parseFloat(card.ratings) === filters.rating);
+          const isRatingMatch = filters.rating === null || parseFloat(card.ratings) === filters.rating;
           const isAbove3Star = !filters.above3star || (filters.above3star && parseFloat(card.ratings) > 3);
           const isSamsung = !filters.samsung || (filters.samsung && card.productName.toLowerCase().includes('samsung'));
           const isIphone = !filters.iphone || (filters.iphone && card.productName.toLowerCase().includes('iphone'));
-          const ispixel = !filters.pixel || (filters.pixel && card.productName.toLowerCase().includes('pixel'));
-          const isvivo = !filters.vivo || (filters.vivo && card.productName.toLowerCase().includes('vivo'));
+          const isPixel = !filters.pixel || (filters.pixel && card.productName.toLowerCase().includes('pixel'));
+          const isVivo = !filters.vivo || (filters.vivo && card.productName.toLowerCase().includes('vivo'));
 
+          // Assuming card.price is a string with the format "$500"
+          const cardPrice = parseFloat(card.price.replace('$', ''));
 
-          return  isRatingMatch && isAbove3Star && isSamsung && isIphone && ispixel && isvivo;
+          // Check if the price is between $100 and $500 only if the priceRange checkbox is checked
+          const isPriceInRange = !filters.priceRange || (filters.priceRange && (cardPrice >= 100 && cardPrice <= 500));
+
+          // Check if the price is $500 and above only if the priceRangehigh checkbox is checked
+          const isPriceInRangeHigh = !filters.priceRangehigh || (filters.priceRangehigh && cardPrice >= 500);
+
+          return isRatingMatch && isAbove3Star && isSamsung && isIphone && isPixel && isVivo && isPriceInRange && isPriceInRangeHigh;
         });
 
         setCards(filteredCards);
@@ -295,6 +304,32 @@ const Home = () => {
           />
           <label htmlFor="pixel">Vivo</label>
             </div>
+            </div>
+            <div style={{ marginTop: '20px',marginLeft:'62px' }}>
+            <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>Price Range</h3>
+
+
+              <div style={{ marginLeft: '10px' }}>
+              <input
+                type="checkbox"
+                id="priceRange"
+                style={checkboxStyle}
+                onChange={() => setFilters({ ...filters, priceRange: !filters.priceRange })}
+                checked={filters.priceRange}
+              />
+              <label htmlFor="priceRange"> $100 - $500</label>
+            </div>
+            <div style={{ marginLeft: '10px' }}>
+            <input
+                type="checkbox"
+                id="priceRange"
+                style={checkboxStyle}
+                onChange={() => setFilters({ ...filters, priceRangehigh: !filters.priceRangehigh })}
+                checked={filters.priceRangehigh}
+              />
+              <label htmlFor="priceRange"> Above $500</label>
+            </div>
+
           </div>
           
 
