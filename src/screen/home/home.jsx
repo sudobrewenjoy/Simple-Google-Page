@@ -200,7 +200,7 @@ const Home = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await fetch('https://657fb88b6ae0629a3f538d87.mockapi.io/project');
+        const response = await fetch('http://localhost:8083');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

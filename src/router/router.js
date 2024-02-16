@@ -12,6 +12,6 @@ export const AllRoutes = {
   service: '/service',
   products : '/products',
   additems: '/additems',
-  deleteitems: '/deleteitems'
+  updateitems: '/updateitems'
   };
   
