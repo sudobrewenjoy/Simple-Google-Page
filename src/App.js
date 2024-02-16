@@ -15,7 +15,7 @@ import ContactScreen from './screen/contact/contact';
 import ServiceScreen from './screen/services/services';
 import ProductScreen from './screen/products/products';
 import AddItemForm from './additems/additems';
-import UpdateItemForm from './additems/updateItem';
+
 
 function App() {
   return (
@@ -41,12 +41,7 @@ function App() {
             </PrivateRoute>
           } />
 
-           {/* Private Route for Product Home */}
-           <Route path={AllRoutes.updateitems} element={
-            <PrivateRoute path={AllRoutes.updateitems}>
-              <UpdateItemForm />
-            </PrivateRoute>
-          } />
+         
 
 
           {/* Private Route for Admin */}
