@@ -200,7 +200,7 @@ const Home = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await fetch('http://localhost:8083');
+        const response = await fetch('http://localhost:8083/findproduct');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

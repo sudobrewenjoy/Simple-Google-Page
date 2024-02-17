@@ -14,7 +14,7 @@ const TableComponent = () => {
     navigate('/additems');
   };
   const handleAddItemButtonClick1 = () => {
-    navigate('/updateitems');
+    navigate('/deleteitems');
   };
 
   
@@ -45,8 +45,10 @@ const TableComponent = () => {
           </p>
           
       </div>
-      <button onClick={handleAddItemButtonClick} className="btn btn-info" style={{marginLeft:'1380px'}}>Add Item</button>
-      <button onClick={handleAddItemButtonClick1} className="btn btn-info" style={{marginLeft:'1380px'}}>Add Item</button>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
+        <button onClick={handleAddItemButtonClick} className="btn btn-info">Add Item</button>
+        <button onClick={handleAddItemButtonClick1} className="btn btn-danger" style={{ marginLeft: '10px' }}>Delete Item</button>
+      </div>
      
       {loading ? (
         <div className="loading">

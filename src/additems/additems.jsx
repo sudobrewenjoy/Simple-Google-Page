@@ -31,7 +31,7 @@ const AddItemForm = () => {
 
     if (isAdmin) {
       try {
-        const response = await fetch('https://657fb88b6ae0629a3f538d87.mockapi.io/project', {
+        const response = await fetch('http://localhost:8083/addproduct/{productName}', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
