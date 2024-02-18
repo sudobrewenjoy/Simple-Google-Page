@@ -68,6 +68,9 @@ const CreateAccount = () => {
           <br />
           <h1 style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '800', fontSize: '24px' }}>Welcome to Google Store!</h1>
           <h5 style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '500', fontSize: '18px', color: '#BBBBBB' }}>Create Account</h5>
+          <p style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '400', fontSize: '14px', color: '#BBBBBB' }}>
+            Securely authenticated by Google Firebase
+          </p>
 
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">

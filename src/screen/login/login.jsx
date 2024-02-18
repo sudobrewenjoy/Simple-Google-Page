@@ -74,6 +74,10 @@ function LoginPage() {
         <br />
         <h1 style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '800', fontSize: '24px' }}>Welcome to Google Store!</h1>
         <h5 style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '500', fontSize: '18px', color: '#BBBBBB' }}>Login to your account</h5>
+        <h6 style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '400', fontSize: '14px', color: '#BBBBBB' }}>
+           Securely authenticated by Google Firebase
+        </h6>
+
 
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
