@@ -115,7 +115,17 @@ const CreateAccount = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
+              <Form.Text className="text-muted">
+              Already having an account?{' '}
+              <span
+                style={{ color: '#219EBC', cursor: 'pointer', textDecoration: 'underline' }}
+                onClick={() => navigate('/login')}
+              >
+                Login
+              </span>
+            </Form.Text>
             </Form.Group>
+            
 
             <Button
               variant="primary"

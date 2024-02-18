@@ -13,7 +13,7 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
- 
+  
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -38,7 +38,7 @@ function LoginPage() {
       if (email.toLowerCase() === 'admin@gmail.com') {
         navigate('/admin');
       } else {
-        navigate('/');
+        navigate('/producthome', { state: { loggedInUser: user.email } });
       }
 
     } catch (error) {
@@ -56,6 +56,11 @@ function LoginPage() {
       setError('Error sending password reset email.');
     }
   };
+  const handleNewUserRegister = () => {
+    // Navigate to the registration page
+    navigate('/createaccount');
+  };
+
 
   return (
     <Container fluid>
@@ -109,6 +114,10 @@ function LoginPage() {
           <Button variant="link" onClick={handleForgotPassword} className="forgot-password-link">
             Forgot Password?
           </Button>
+          <Button variant="link" onClick={handleNewUserRegister} className="new-user-register-link">
+            New to our store? Create an account
+          </Button>
+
 
           <Button variant="primary" type="submit" className="w-100" style={{ background: '#219EBC' }}>
             Login

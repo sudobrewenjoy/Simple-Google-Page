@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation,useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from './googlelogo.png';
 import './navbar.css'; 
@@ -8,10 +8,16 @@ import { AllRoutes } from '../router/router';
 
 function NavbarNew() {
   const location = useLocation();
- 
+  const loggedInUser = location?.state?.loggedInUser;
+  const navigate = useNavigate();
 
 
-  
+  const handleLogout = () => {
+    // Perform any necessary logout or state clearing actions here
+
+    // Navigate to the home page
+    navigate('/');
+  };
 
 
   return (
@@ -38,7 +44,7 @@ function NavbarNew() {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link
-                to="/"
+                to="/producthome"
                 className={`nav-link${location.pathname === '/' ? ' active' : ''}`}
               >
                 Home
@@ -72,7 +78,19 @@ function NavbarNew() {
         </div>
 
         <div className="d-flex">
+            {loggedInUser && (
+              <div className="ml-2 text-center" style={{marginTop:'15px'}}>
+                <span>Welcome, {loggedInUser}!</span>
+              </div>
+            )}
             <img src={logo} alt="Profile Logo" className="profile-logo" style={{ width: '60px', height: 'auto' }} />
+            <button
+              className="btn btn-link"
+              onClick={handleLogout}
+              style={{ color: 'blue', textDecoration: 'underline' }}
+            >
+              Logout
+            </button>
         </div>
 
 

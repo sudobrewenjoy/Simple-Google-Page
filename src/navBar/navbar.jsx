@@ -86,6 +86,9 @@ function Navbar() {
         </div>
 
         <div className="d-flex">
+        <div className="ml-2 text-center" style={{marginTop:'15px'}}>
+                <span>Hello, valued visitor!</span>
+              </div>
         <button className="btn" style={createAccountStyle} onClick={handleRegisterClick}>
             Create Account
           </button>

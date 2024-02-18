@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import './home.css';
-
+import NavbarNew from '../../navBar/nav-bar';
 
 import ProductWindow from '../productwindow/productWindow';
 import PaymentPage from '../payment/payment';
 import { Modal, ModalBody} from 'react-bootstrap';
 import discount from './discount.png';
 import deals from './deals.png';
-import NavbarNew from '../../navBar/nav-bar';
 
 
 
@@ -201,24 +200,33 @@ const Home = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await fetch('https://657fb88b6ae0629a3f538d87.mockapi.io/project');
+        const response = await fetch('http://localhost:8083/findproduct');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
 
+        
+
         // Apply filters
         const filteredCards = data.filter((card) => {
-        
-          const isRatingMatch = filters.rating === null || (parseFloat(card.ratings) === filters.rating);
+          const isRatingMatch = filters.rating === null || parseFloat(card.ratings) === filters.rating;
           const isAbove3Star = !filters.above3star || (filters.above3star && parseFloat(card.ratings) > 3);
           const isSamsung = !filters.samsung || (filters.samsung && card.productName.toLowerCase().includes('samsung'));
           const isIphone = !filters.iphone || (filters.iphone && card.productName.toLowerCase().includes('iphone'));
-          const ispixel = !filters.pixel || (filters.pixel && card.productName.toLowerCase().includes('pixel'));
-          const isvivo = !filters.vivo || (filters.vivo && card.productName.toLowerCase().includes('vivo'));
+          const isPixel = !filters.pixel || (filters.pixel && card.productName.toLowerCase().includes('pixel'));
+          const isVivo = !filters.vivo || (filters.vivo && card.productName.toLowerCase().includes('vivo'));
 
+          // Assuming card.price is a string with the format "$500"
+          const cardPrice = parseFloat(card.price.replace('$', ''));
 
-          return  isRatingMatch && isAbove3Star && isSamsung && isIphone && ispixel && isvivo;
+          // Check if the price is between $100 and $500 only if the priceRange checkbox is checked
+          const isPriceInRange = !filters.priceRange || (filters.priceRange && (cardPrice >= 100 && cardPrice <= 500));
+
+          // Check if the price is $500 and above only if the priceRangehigh checkbox is checked
+          const isPriceInRangeHigh = !filters.priceRangehigh || (filters.priceRangehigh && cardPrice >= 500);
+
+          return isRatingMatch && isAbove3Star && isSamsung && isIphone && isPixel && isVivo && isPriceInRange && isPriceInRangeHigh;
         });
 
         setCards(filteredCards);
@@ -236,7 +244,7 @@ const Home = () => {
   const [showBuyNow, setShowBuyNow] = useState(Array(cards.length).fill(false));
   return (
     <div>
-      <NavbarNew/>
+      <NavbarNew />
       <div style={containerStyle}>
         <div style={leftColumnStyle}>
         <div style={{marginLeft:'62px'}}>
@@ -296,6 +304,32 @@ const Home = () => {
           />
           <label htmlFor="pixel">Vivo</label>
             </div>
+            </div>
+            <div style={{ marginTop: '20px',marginLeft:'62px' }}>
+            <h3 style={{ fontSize: '18px', fontFamily: 'Montserrat', fontWeight: '600', color: '#023047' }}>Price Range</h3>
+
+
+              <div style={{ marginLeft: '10px' }}>
+              <input
+                type="checkbox"
+                id="priceRange"
+                style={checkboxStyle}
+                onChange={() => setFilters({ ...filters, priceRange: !filters.priceRange })}
+                checked={filters.priceRange}
+              />
+              <label htmlFor="priceRange"> $100 - $500</label>
+            </div>
+            <div style={{ marginLeft: '10px' }}>
+            <input
+                type="checkbox"
+                id="priceRange"
+                style={checkboxStyle}
+                onChange={() => setFilters({ ...filters, priceRangehigh: !filters.priceRangehigh })}
+                checked={filters.priceRangehigh}
+              />
+              <label htmlFor="priceRange"> Above $500</label>
+            </div>
+
           </div>
           
 
