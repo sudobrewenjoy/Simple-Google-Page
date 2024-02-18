@@ -31,7 +31,7 @@ const AddItemForm = () => {
 
     if (isAdmin) {
       try {
-        const response = await fetch('http://localhost:8083/addproduct/{productName}', {
+        const response = await fetch('http://localhost:8083/addproduct', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

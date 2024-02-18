@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col} from 'react-bootstrap';
 import YourImage from './img1.png';
 import googleLogo from './googlelogo.png';
+import { sendPasswordResetEmail } from 'firebase/auth';
 
 
 function LoginPage() {
@@ -12,7 +13,8 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
+ 
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -43,6 +45,15 @@ function LoginPage() {
       
       console.error('Login error:', error);
       setError('Invalid email or password.');
+    }
+  };
+  const handleForgotPassword = async () => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setError('Password reset email sent. Check your inbox.');
+    } catch (error) {
+      console.error('Forgot password error:', error);
+      setError('Error sending password reset email.');
     }
   };
 
@@ -76,16 +87,24 @@ function LoginPage() {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Password</Form.Label>
+          <Form.Label>Password</Form.Label>
+         
             <Form.Control
-              type="password"
+              type='password'
               placeholder="Enter password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
-          </Form.Group>
+ 
+          
+        </Form.Group>
+         
+
 
           {error && <p className="text-danger">{error}</p>}
+          <Button variant="link" onClick={handleForgotPassword} className="forgot-password-link">
+            Forgot Password?
+          </Button>
 
           <Button variant="primary" type="submit" className="w-100" style={{ background: '#219EBC' }}>
             Login

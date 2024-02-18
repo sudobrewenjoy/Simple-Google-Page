@@ -1,0 +1,16 @@
+/* Add these styles to your CSS or styling file */
+.password-input-group {
+    position: relative;
+  }
+  
+  .password-input {
+    margin-bottom: 0; /* Adjust as needed */
+  }
+  
+  .password-toggle {
+    position: absolute;
+    top: 90%;
+    transform: translateY(-50%);
+    right: 0px; /* Adjust the distance from the right side */
+  }
+  
