@@ -16,6 +16,7 @@ import ServiceScreen from './screen/services/services';
 import ProductScreen from './screen/products/products';
 import AddItemForm from './additems/additems';
 import DeleteItemScreen from './additems/deleteitems';
+import PaymentPagescreen from './screen/paymentpage/paymentscreen';
 
 
 function App() {
@@ -46,6 +47,13 @@ function App() {
            <Route path={AllRoutes.deleteitems} element={
             <PrivateRoute path={AllRoutes.deleteitems}>
               <DeleteItemScreen />
+            </PrivateRoute>
+          } />
+
+          {/* Private Route for Add Items */}
+          <Route path={AllRoutes.paymentpage} element={
+            <PrivateRoute path={AllRoutes.paymentpage}>
+              <PaymentPagescreen />
             </PrivateRoute>
           } />
 

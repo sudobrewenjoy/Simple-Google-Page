@@ -13,5 +13,6 @@ export const AllRoutes = {
   products : '/products',
   additems: '/additems',
   deleteitems: '/deleteitems',
+  paymentpage: '/paymentpage'
   };
   

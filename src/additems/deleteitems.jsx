@@ -41,7 +41,7 @@ const DeleteItemScreen = () => {
 
         // Delete each matching item
         const deletePromises = itemsToDelete.map(async (item) => {
-          const deleteResponse = await fetch(`http://localhost:8083/delete/${item.productName}`, {
+          const deleteResponse = await fetch(`http://localhost:8083/deleteproduct/${item.productName}`, {
             method: 'DELETE',
           });
 
