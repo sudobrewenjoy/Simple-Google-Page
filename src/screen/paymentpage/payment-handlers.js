@@ -61,8 +61,7 @@ export const handleUpiPayment = async (upiId, shippingAddress) => {
 
 export const handleCashOnDelivery = async (shippingAddress) => {
   try {
-    // Implement your cash on delivery logic here
-    // This might involve notifying the order fulfillment system
+  
     console.log('Cash on Delivery order placed. Shipping to:', shippingAddress);
     // Return any relevant information if needed
     return { status: 'success', message: 'Cash on Delivery order placed successfully' };
