@@ -5,11 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 const PaymentPage = ({ productName, price, imageUrl,actualamount }) => {
 
-    //const location = useLocation();
-   // const searchParams = new URLSearchParams(location.search);
-    //const productName = searchParams.get('productName');
-    //const price = searchParams.get('price');
-    //const imageUrl = searchParams.get('imageUrl');
     const [orderConfirmed, setOrderConfirmed] = useState(false);
     const navigate = useNavigate();
 

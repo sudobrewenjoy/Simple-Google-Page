@@ -11,19 +11,14 @@ import {
   MenuItem,
 } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
-// Assume you have appropriate functions for each payment option:
-import {
-  handleCardPayment,
-  handleNetbankingPayment,
-  handleQrCodePayment,
-  handleUpiPayment,
-  handleCashOnDelivery,
-} from './payment-handlers';
+import {app,db} from './firebaseconfig';
+import { addDoc, collection } from 'firebase/firestore';
+
 
 const useStyles = {
   paper: {
     padding: '16px',
-    maxWidth: '600px', // Increased width to accommodate image and details
+    maxWidth: '600px',
     margin: 'auto',
   },
   form: {
@@ -41,166 +36,58 @@ const useStyles = {
 
 const PaymentPageScreen = () => {
   const location = useLocation();
-  const { imageUrl, price, productName, name, contactNumber, address, city,  state } = location.state || {};
+  const { productName, price, name, contactNumber, address, city, state,imageUrl } = location.state || {};
 
-  
   const [paymentOption, setPaymentOption] = useState('card');
-  const [cardNumber, setCardNumber] = useState('');
-  const [cardName, setCardName] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
-  const [cvv, setCvv] = useState('');
-  const [netbankingBank, setNetbankingBank] = useState('');
-  const [qrCodeData, setQrCodeData] = useState('');
-  const [upiId, setUpiId] = useState('');
-  // eslint-disable-next-line
-  const [cashOnDelivery, setCashOnDelivery] = useState(false);
   const [shippingAddress, setShippingAddress] = useState('');
   const [processing, setProcessing] = useState(false);
   const paymentFormRef = useRef(null);
+  const [email, setEmail] = useState('');
 
   const handlePaymentOptionChange = (event) => {
     setPaymentOption(event.target.value);
-    // Clear any previously entered payment details for other options
-    setCardNumber('');
-    setCardName('');
-    setExpiryDate('');
-    setCvv('');
-    setNetbankingBank('');
-    setQrCodeData('');
-    setUpiId('');
-    setCashOnDelivery(false);
+    setShippingAddress('');
   };
+  console.log(db)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
       setProcessing(true);
-
-      switch (paymentOption) {
-        case 'card':
-          await handleCardPayment(
-            {
-              cardNumber,
-              cardName,
-              expiryDate,
-              cvv,
-            },
-            shippingAddress
-          );
-          // Handle successful card payment
-          break;
-        case 'netbanking':
-          await handleNetbankingPayment(netbankingBank, shippingAddress);
-          // Handle successful netbanking payment
-          break;
-        case 'qrcode':
-          await handleQrCodePayment(qrCodeData, shippingAddress);
-          // Handle successful QR code payment
-          break;
-        case 'upi':
-          await handleUpiPayment(upiId, shippingAddress);
-          // Handle successful UPI payment
-          break;
-        case 'cashondelivery':
-          await handleCashOnDelivery(shippingAddress);
-          // Handle successful cash on delivery
-          break;
-        default:
-          console.error('Invalid payment option');
+  
+      // Validation (add your validation logic here)
+      if (!productName || !price || !name || !contactNumber || !address || !city || !state || !email) {
+        throw new Error('Please fill in all required fields.');
       }
+  
+      // Send product and user information to Firebase using addDoc
+      const ordersCollection = collection(db, 'orders');
+      await addDoc(ordersCollection, {
+        productName,
+        price,
+        name,
+        contactNumber,
+        address,
+        city,
+        state,
+        email,
+        // Add other data you want to store in the Firestore document
+      });
+  
+      console.log('Data sent successfully!');
+  
+      // Reset form fields after successful submission
+    
     } catch (error) {
-      // Handle payment error
-      console.error('Payment error:', error);
+      console.error('Error sending data to Firebase:', error.message);
+      // Handle the error or notify the user
     } finally {
       setProcessing(false);
     }
   };
-
-  const renderPaymentFields = () => {
-    switch (paymentOption) {
-      case 'card':
-        return (
-          <>
-            <TextField
-              label="Card Number"
-              value={cardNumber}
-              onChange={(event) => setCardNumber(event.target.value)}
-              required
-            />
-            <TextField
-              label="Cardholder Name"
-              value={cardName}
-              onChange={(event) => setCardName(event.target.value)}
-              required
-            />
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <TextField
-                  label="Expiry Date"
-                  value={expiryDate}
-                  onChange={(event) => setExpiryDate(event.target.value)}
-                  required
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  label="CVV"
-                  value={cvv}
-                  onChange={(event) => setCvv(event.target.value)}
-                  required
-                />
-              </Grid>
-            </Grid>
-          </>
-        );
-      case 'netbanking':
-        return (
-          <FormControl>
-            <InputLabel>Netbanking Bank</InputLabel>
-            <Select
-              value={netbankingBank}
-              onChange={(event) => setNetbankingBank(event.target.value)}
-              required
-            >
-              {/* Add MenuItem options for each bank */}
-              <MenuItem value="bank1">Bank 1</MenuItem>
-              <MenuItem value="bank2">Bank 2</MenuItem>
-              {/* Add more banks as needed */}
-            </Select>
-          </FormControl>
-        );
-      case 'qrcode':
-        return (
-          <TextField
-            label="QR Code Data"
-            value={qrCodeData}
-            onChange={(event) => setQrCodeData(event.target.value)}
-            required
-          />
-        );
-      case 'upi':
-        return (
-          <TextField
-            label="UPI ID"
-            value={upiId}
-            onChange={(event) => setUpiId(event.target.value)}
-            required
-          />
-        );
-      case 'cashondelivery':
-        return (
-          <TextField
-            label="Shipping Address"
-            value={shippingAddress}
-            onChange={(event) => setShippingAddress(event.target.value)}
-            required
-          />
-        );
-      default:
-        return null;
-    }
-  };
+  
+  
 
   return (
     <Paper style={useStyles.paper}>
@@ -224,11 +111,9 @@ const PaymentPageScreen = () => {
             {`Address: ${address}`}
           </Typography>
           <Typography variant="body1">
-            {` City,  state: ${ city}, ${ state}`}
+            {` City,  state: ${city}, ${state}`}
           </Typography>
-
         </Grid>
-
 
         <Grid item xs={6}>
           <Typography variant="h5" gutterBottom>
@@ -248,35 +133,36 @@ const PaymentPageScreen = () => {
                 onChange={handlePaymentOptionChange}
                 required
               >
-                <MenuItem value="card">Credit/Debit Card</MenuItem>
-                <MenuItem value="netbanking">Netbanking</MenuItem>
-                <MenuItem value="qrcode">QR Code</MenuItem>
-                <MenuItem value="upi">UPI</MenuItem>
-                <MenuItem value="cashondelivery">Cash on Delivery</MenuItem>
+                {/* ... existing code for payment options */}
               </Select>
             </FormControl>
-            {renderPaymentFields()}
+            {/* ... existing code for rendering payment fields */}
             <TextField
               label="Shipping Address"
               value={shippingAddress}
               onChange={(event) => setShippingAddress(event.target.value)}
               required
             />
-           <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            style={useStyles.button}
-            disabled={processing}
-          >
-            {processing ? 'Processing...' : `Pay ${price}`}
-          </Button>
-
+            <TextField
+              label="Email"
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={useStyles.button}
+              disabled={processing}
+            >
+              {processing ? 'Processing...' : `Submit Order`}
+            </Button>
           </form>
         </Grid>
       </Grid>
       {/* Display price */}
-     
     </Paper>
   );
 };

@@ -1,0 +1,45 @@
+.delivery-address {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .heading {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .address-details {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .address-detail {
+    margin-bottom: 10px;
+  }
+  
+  .address-detail label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .edit-link-wrapper {
+    text-align: right;
+  }
+  
+  .edit-link {
+    text-decoration: none;
+    font-size: 14px;
+    color: #219EBC;
+    border-bottom: 1px solid #219EBC;
+    padding-bottom: 5px;
+  }
+  
+  .edit-link:hover {
+    text-decoration: underline;
+  }
+  

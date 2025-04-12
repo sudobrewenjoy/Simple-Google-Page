@@ -2,28 +2,26 @@ div[style*='pointerEvents: auto;']:hover a {
   display: block;
 }
 
-
-
 @media screen and (max-width: 768px) {
- 
-  .container {
+  .containerStyle {
     flex-direction: column;
   }
-  
+
   .leftColumnStyle {
     flex: 100%; /* Take full width on smaller screens */
-    
+    margin-left: 0; /* Adjust margin if needed */
   }
+
   .rightColumnStyle {
     flex: 100%; /* Take full width on smaller screens */
-    
   }
- 
+
   .cardStyle {
     width: 100%; /* Take full width of the container */
-    
+    margin-bottom: 16px; /* Adjust margin if needed */
   }
 }
+
 .discount-text {
   font-family: Arial, sans-serif;
   text-align: center;
@@ -74,14 +72,15 @@ div[style*='pointerEvents: auto;']:hover a {
 .cardStyle:hover .priceRating {
   display: none;
 }
+
 .cardStyle:hover .text {
   display: none;
 }
 
-
 .productButton:hover ~ .disableHover {
   pointer-events: auto;
 }
+
 .Modal-header {
   margin-bottom: 0;
   padding-bottom: 0;
