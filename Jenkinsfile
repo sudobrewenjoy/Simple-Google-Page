@@ -20,14 +20,14 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                // Run tests without watch mode and with coverage
+                
                 sh 'npm test -- --watchAll=false --coverage'
             }
         }
 
         stage('Archive Test Results') {
             steps {
-                // If you're using jest-junit, this will archive your test reports
+                
                 junit 'coverage/junit.xml'
             }
         }
