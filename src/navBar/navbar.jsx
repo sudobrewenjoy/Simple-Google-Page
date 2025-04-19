@@ -19,7 +19,7 @@ function Navbar() {
   const createAccountStyle = {
     backgroundColor: 'white',
     borderColor: '#219EBC',
-    borderWidth: '1px',
+    borderWidth: '2px',
     borderStyle: 'solid',
     borderRadius: '4px',
     padding: '8px 16px', 
