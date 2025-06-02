@@ -5,13 +5,11 @@ pipeline {
         nodejs 'nodejs'
     }
     
-        
     parameters {
         string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Deployment environment')
         booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Deploy after build?')
         choice(name: 'VERSION', choices: ['v1.0', 'v2.0', 'v3.0'], description: 'Select version')
     }
-
 
     environment {
         IMAGE_NAME = 'googleprodapp'
@@ -24,41 +22,42 @@ pipeline {
 
     stages {
 
-       stage('Install Dependencies') {
-    agent { label 'node-agent' }
-    steps {
-        sh 'npm install --legacy-peer-deps'
-    }
-}
-
-    stage("Quality Checks") {
-        parallel {
-            stage("Lint Code") {
-                agent { label 'node-agent' }
-                steps {
-                    sh 'npm run lint'
-                }
+        stage('Install Dependencies') {
+            agent { label 'node-agent' }
+            steps {
+                sh 'npm install --legacy-peer-deps'
             }
+        }
 
-            stage("Run Unit Tests") {
-                agent { label 'node-agent' }
-                steps {
-                    echo 'Skipping unit tests for now...'
+        stage("Quality Checks") {
+            parallel {
+                stage("Lint Code") {
+                    agent { label 'node-agent' }
+                    steps {
+                        sh 'npm run lint'
+                    }
+                }
+
+                stage("Run Unit Tests") {
+                    agent { label 'node-agent' }
+                    steps {
+                        echo 'Skipping unit tests for now...'
+                    }
                 }
             }
         }
-    }
-
 
         stage('List Workspace Files') {
+            agent { label 'node-agent' }
             steps {
-                echo "ENVIRONMENT: ${params.ENVIRONMENT}"
-                echo "DEPLOY: ${params.DEPLOY}"
-                echo "VERSION: ${params.VERSION}"
-                sh 'ls -la'
+                script {
+                    def status = sh(script: 'ls -la /some/nonexistent/path', returnStatus: true)
+                    if (status != 0) {
+                        echo "Shell command failed but we continue"
+                    }
+                }
             }
         }
-
 
         stage("Build Docker Image") {
             agent { label 'docker-agent' }
@@ -88,6 +87,7 @@ pipeline {
         }
 
         stage('Generate Timestamp File') {
+            agent { label 'node-agent' }
             steps {
                 script {
                     def timestamp = new Date().format("yyyy-MM-dd_HH-mm-ss")
@@ -95,20 +95,20 @@ pipeline {
                 }
             }
         }
+
         stage('Archive Artifact') {
+            agent { label 'node-agent' }
             steps {
                 archiveArtifacts artifacts: 'timestamp.txt'
             }
         }
     }
 
-    // Configure artifact retention for last 5 builds
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
 
     post {
-        
         success {
             emailext(
                 subject: "✅ Jenkins Job Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
