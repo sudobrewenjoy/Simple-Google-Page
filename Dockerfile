@@ -6,9 +6,9 @@ WORKDIR /app
 
 # Copy package.json and install dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm install --leagcy-peer-deps
 
-# Copy source code and build
+
 COPY . .
 RUN npm run build
 
@@ -27,5 +27,5 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Expose port 80
 EXPOSE 80
 
-# Start Nginx server
+
 CMD ["nginx", "-g", "daemon off;"]
