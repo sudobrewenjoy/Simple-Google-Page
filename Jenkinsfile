@@ -108,22 +108,37 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
 
-    post {
-        success {
-            emailext(
-                subject: "✅ Jenkins Job Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: "Good news!\n\nThe Jenkins job '${env.JOB_NAME}' build #${env.BUILD_NUMBER} was successful.\n\nCheck it here: ${env.BUILD_URL}",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-                to: 'thiru260402@gmail.com'
-            )
-        }
-        failure {
-            emailext(
-                subject: "❌ Jenkins Job Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: "Oops!\n\nThe Jenkins job '${env.JOB_NAME}' build #${env.BUILD_NUMBER} has failed.\n\nCheck the logs here: ${env.BUILD_URL}",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-                to: 'thiru260402@gmail.com'
-            )
-        }
+   post {
+    success {
+        emailext(
+            subject: "✅ Jenkins Job Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: """\
+Good news!
+
+The Jenkins job '${env.JOB_NAME}' build #${env.BUILD_NUMBER} was successful.
+
+Check it here: ${env.BUILD_URL}
+""",
+            to: 'thiru260402@gmail.com',
+            from: 'jenkins@example.com',    // Change this to your sender email if needed
+            mimeType: 'text/plain'
+        )
     }
+    failure {
+        emailext(
+            subject: "❌ Jenkins Job Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: """\
+Oops!
+
+The Jenkins job '${env.JOB_NAME}' build #${env.BUILD_NUMBER} has failed.
+
+Check the logs here: ${env.BUILD_URL}
+""",
+            to: 'thiru260402@gmail.com',
+            from: 'jenkins@example.com',    // Change this to your sender email if needed
+            mimeType: 'text/plain'
+        )
+    }
+}
+
 }
