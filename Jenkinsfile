@@ -108,9 +108,7 @@ pipeline {
     }
 
     post {
-        always {
-            cleanWs()
-        }
+        
         success {
             emailext(
                 subject: "✅ Jenkins Job Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
