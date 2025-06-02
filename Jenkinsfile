@@ -1,47 +1,66 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18-alpine' // Use a lightweight Node.js image
-        }
+    agent any
+
+    tools {
+        nodejs 'nodejs'
+    }
+
+    environment {
+        IMAGE_NAME = 'googleprodapp'
+        DOCKER_TAG = 'latest'
     }
 
     stages {
-        stage('Install Dependencies') {
+        stage("Install Dependencies") {
             steps {
-                sh 'npm ci' // Clean install using package-lock.json
+                sh 'npm install --legacy-peer-deps'
             }
         }
 
-        stage('Build React App') {
+        stage("Build Docker Image") {
             steps {
-                sh 'npm run build'
+                sh "docker build -t ${IMAGE_NAME}:${DOCKER_TAG} ."
             }
         }
 
-        stage('Run Tests') {
+        stage('Push to DockerHub') {
             steps {
-                
-                sh 'npm test -- --watchAll=false --coverage'
+                script {
+                    def localImage = "${IMAGE_NAME}:${DOCKER_TAG}"
+                    def remoteImage = "thirumalaiboobathi/googleprodapp:${DOCKER_TAG}"
+
+                    sh "docker tag ${localImage} ${remoteImage}"
+                    sh "docker push ${remoteImage}"
+                }
             }
         }
 
-        stage('Archive Test Results') {
+        stage('Deploy') {
             steps {
-                
-                junit 'coverage/junit.xml'
+                sh 'kubectl apply -f k8s/deployment.yaml'
             }
         }
     }
 
     post {
         always {
-            echo 'Cleaning up...'
+            cleanWs()
         }
         success {
-            echo 'Build and tests completed successfully!'
+            emailext(
+                subject: "✅ Jenkins Job Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Good news!\n\nThe Jenkins job '${env.JOB_NAME}' build #${env.BUILD_NUMBER} was successful.\n\nCheck it here: ${env.BUILD_URL}",
+                recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+                to: 'thiru260402@gmail.com'
+            )
         }
         failure {
-            echo 'There was a problem building or testing the app.'
+            emailext(
+                subject: "❌ Jenkins Job Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Oops!\n\nThe Jenkins job '${env.JOB_NAME}' build #${env.BUILD_NUMBER} has failed.\n\nCheck the logs here: ${env.BUILD_URL}",
+                recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+                to: 'thiru260402@gmail.com'
+            )
         }
     }
 }
