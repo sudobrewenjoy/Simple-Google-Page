@@ -1,10 +1,10 @@
 pipeline {
-    agent none
+    agent { none }
 
     tools {
         nodejs 'nodejs'
     }
-    
+
     parameters {
         string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Deployment environment')
         booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Deploy after build?')
@@ -13,15 +13,18 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'googleprodapp'
-        DOCKER_TAG = "${params.VERSION ?: 'latest'}" 
+        DOCKER_TAG = "${params.VERSION ?: 'latest'}"
     }
 
     triggers {
-        pollSCM('H/5 * * * *')  // Poll Git every 5 minutes
+        pollSCM('H/5 * * * *') // Poll Git every 5 minutes
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
     }
 
     stages {
-
         stage('Install Dependencies') {
             agent { label 'node-agent' }
             steps {
@@ -29,16 +32,16 @@ pipeline {
             }
         }
 
-        stage("Quality Checks") {
+        stage('Quality Checks') {
             parallel {
-                stage("Lint Code") {
+                stage('Lint Code') {
                     agent { label 'node-agent' }
                     steps {
                         sh 'npm run lint'
                     }
                 }
 
-                stage("Run Unit Tests") {
+                stage('Run Unit Tests') {
                     agent { label 'node-agent' }
                     steps {
                         echo 'Skipping unit tests for now...'
@@ -59,32 +62,32 @@ pipeline {
             }
         }
 
-        stage("Build Docker Image") {
+        stage('Build Docker Image') {
             agent { label 'docker-agent' }
             steps {
                 sh "docker build -t ${IMAGE_NAME}:${DOCKER_TAG} ."
             }
         }
 
-        stage("Push to DockerHub") {
+        stage('Push to DockerHub') {
             agent { label 'docker-agent' }
             steps {
-            withDockerRegistry([credentialsId: 'dockerhub-creds', url: '']) {
-            script {
-                def localImage = "${IMAGE_NAME}:${DOCKER_TAG}"
-                def remoteImage = "thirumalaiboobathi/googleprodpage:${DOCKER_TAG}" 
+                withDockerRegistry([credentialsId: 'dockerhub-creds', url: '']) {
+                    script {
+                        def localImage = "${IMAGE_NAME}:${DOCKER_TAG}"
+                        def remoteImage = "thirumalaiboobathi/googleprodpage:${DOCKER_TAG}"
 
-                
-                sh "docker tag ${localImage} ${remoteImage}"
-
-                
-                sh "docker push ${remoteImage}"
-            }
+                        sh "docker tag ${localImage} ${remoteImage}"
+                        sh "docker push ${remoteImage}"
+                    }
+                }
             }
         }
-        }
 
-        stage("Deploy to Kubernetes") {
+        stage('Deploy to Kubernetes') {
+            when {
+                expression { params.DEPLOY }
+            }
             agent { label 'k8s-agent' }
             steps {
                 sh 'kubectl apply -f k8s/deployment.yaml'
@@ -109,42 +112,37 @@ pipeline {
         }
     }
 
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
-    }
-
-  
-
-}post {
-    success {
-        emailext(
-            subject: "✅ Jenkins Job Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: """\
+    post {
+        success {
+            emailext(
+                subject: "✅ Jenkins Job Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """\
 Good news!
 
 The Jenkins job '${env.JOB_NAME}' build #${env.BUILD_NUMBER} was successful.
 
 Check it here: ${env.BUILD_URL}
 """,
-            to: 'thiru260402@gmail.com',
-            from: 'thiru260402@gmail.com',    
-            mimeType: 'text/plain'
-        )
-    }
-    failure {
-        emailext(
-            subject: "❌ Jenkins Job Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: """\
+                to: 'thiru260402@gmail.com',
+                from: 'thiru260402@gmail.com',
+                mimeType: 'text/plain'
+            )
+        }
+
+        failure {
+            emailext(
+                subject: "❌ Jenkins Job Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """\
 Oops!
 
 The Jenkins job '${env.JOB_NAME}' build #${env.BUILD_NUMBER} has failed.
 
 Check the logs here: ${env.BUILD_URL}
 """,
-            to: 'thiru260402@gmail.com',
-            from: 'thiru260402@gmail.com',    
-            mimeType: 'text/plain'
-        )
+                to: 'thiru260402@gmail.com',
+                from: 'thiru260402@gmail.com',
+                mimeType: 'text/plain'
+            )
+        }
     }
 }
-
