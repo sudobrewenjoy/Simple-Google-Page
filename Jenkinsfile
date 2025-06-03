@@ -69,14 +69,19 @@ pipeline {
         stage("Push to DockerHub") {
             agent { label 'docker-agent' }
             steps {
-                script {
-                    def localImage = "${IMAGE_NAME}:${DOCKER_TAG}"
-                    def remoteImage = "thirumalaiboobathi/googleprodapp:${DOCKER_TAG}"
+            withDockerRegistry([credentialsId: 'dockerhub-creds', url: '']) {
+            script {
+                def localImage = "${IMAGE_NAME}:${DOCKER_TAG}"
+                def remoteImage = "thirumalaiboobathi/googleprodpage:${DOCKER_TAG}" 
 
-                    sh "docker tag ${localImage} ${remoteImage}"
-                    sh "docker push ${remoteImage}"
-                }
+                
+                sh "docker tag ${localImage} ${remoteImage}"
+
+                
+                sh "docker push ${remoteImage}"
             }
+            }
+        }
         }
 
         stage("Deploy to Kubernetes") {
@@ -108,7 +113,9 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
 
-   post {
+  
+
+}post {
     success {
         emailext(
             subject: "✅ Jenkins Job Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
@@ -120,7 +127,7 @@ The Jenkins job '${env.JOB_NAME}' build #${env.BUILD_NUMBER} was successful.
 Check it here: ${env.BUILD_URL}
 """,
             to: 'thiru260402@gmail.com',
-            from: 'jenkins@example.com',    // Change this to your sender email if needed
+            from: 'thiru260402@gmail.com',    
             mimeType: 'text/plain'
         )
     }
@@ -135,10 +142,9 @@ The Jenkins job '${env.JOB_NAME}' build #${env.BUILD_NUMBER} has failed.
 Check the logs here: ${env.BUILD_URL}
 """,
             to: 'thiru260402@gmail.com',
-            from: 'jenkins@example.com',    // Change this to your sender email if needed
+            from: 'thiru260402@gmail.com',    
             mimeType: 'text/plain'
         )
     }
 }
 
-}
