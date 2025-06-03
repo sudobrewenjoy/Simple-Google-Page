@@ -1,5 +1,5 @@
 pipeline {
-    agent { none }
+    agent none 
 
     tools {
         nodejs 'nodejs'
