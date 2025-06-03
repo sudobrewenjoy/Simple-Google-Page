@@ -1,5 +1,5 @@
 pipeline {
-    agent none 
+    agent any
 
     tools {
         nodejs 'nodejs'
@@ -24,7 +24,16 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
 
-
+    stages {
+        stage('Test Build') {
+            steps {
+                echo "Selected Environment: ${params.ENVIRONMENT}"
+                echo "Deploy? ${params.DEPLOY}"
+                echo "Selected Version: ${params.VERSION}"
+                echo "Docker Tag will be: ${DOCKER_TAG}"
+            }
+        }
+    }
 
     post {
         success {
