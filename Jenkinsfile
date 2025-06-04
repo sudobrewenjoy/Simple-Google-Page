@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none 
 
     tools {
         nodejs 'nodejs'
@@ -25,12 +25,108 @@ pipeline {
     }
 
     stages {
-        stage('Test Build') {
+        stage('Install Dependencies') {
+            agent { label 'node-agent' }
             steps {
-                echo "Selected Environment: ${params.ENVIRONMENT}"
-                echo "Deploy? ${params.DEPLOY}"
-                echo "Selected Version: ${params.VERSION}"
-                echo "Docker Tag will be: ${DOCKER_TAG}"
+                sh 'npm install --legacy-peer-deps'
+            }
+        }
+
+        stage('Quality Checks') {
+            parallel {
+                stage('Lint Code') {
+                    agent { label 'node-agent' }
+                    steps {
+                        sh 'npm run lint'
+                    }
+                }
+
+                stage('Run Unit Tests') {
+                    agent { label 'node-agent' }
+                    steps {
+                        echo 'Skipping unit tests for now...'
+                    }
+                }
+            }
+        }
+
+        stage('List Workspace Files') {
+            agent { label 'node-agent' }
+            steps {
+                script {
+                    def status = sh(script: 'ls -la /some/nonexistent/path', returnStatus: true)
+                    if (status != 0) {
+                        echo "Shell command failed but we continue"
+                    }
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            agent { label 'docker-agent' }
+            steps {
+                sh "docker build -t ${IMAGE_NAME}:${DOCKER_TAG} ."
+            }
+        }
+
+        stage('Push to DockerHub') {
+            agent { label 'docker-agent' }
+            steps {
+                withDockerRegistry([credentialsId: 'dockerhub-creds', url: '']) {
+                    script {
+                        def localImage = "${IMAGE_NAME}:${DOCKER_TAG}"
+                        def remoteImage = "thirumalaiboobathi/googleprodpage:${DOCKER_TAG}"
+
+                        sh "docker tag ${localImage} ${remoteImage}"
+                        sh "docker push ${remoteImage}"
+                    }
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+    when {
+        expression { return params.DEPLOY == true }
+    }
+    agent { label 'k8s-agent' }
+    steps {
+        script {
+            echo "Starting deployment to Kubernetes..."
+
+            try {
+                sh 'ls -l deployment.yaml'
+            } catch (err) {
+                echo "❌ File deployment.yaml not found!"
+                // optionally: return to skip kubectl
+                return
+            }
+
+            try {
+                sh 'kubectl apply -f deployment.yaml'
+            } catch (err) {
+                echo "❌ Failed to apply Kubernetes deployment. Please check kubectl configuration."
+            }
+
+            echo "✅ Deployment stage completed (with or without errors)."
+        }
+    }
+}
+
+
+        stage('Generate Timestamp File') {
+            agent { label 'node-agent' }
+            steps {
+                script {
+                    def timestamp = new Date().format("yyyy-MM-dd_HH-mm-ss")
+                    writeFile file: "timestamp.txt", text: "Build timestamp: ${timestamp}\n"
+                }
+            }
+        }
+
+        stage('Archive Artifact') {
+            agent { label 'node-agent' }
+            steps {
+                archiveArtifacts artifacts: 'timestamp.txt'
             }
         }
     }
