@@ -97,7 +97,7 @@ pipeline {
                 sh 'ls -l deployment.yaml'
             } catch (err) {
                 echo "❌ File deployment.yaml not found!"
-                // optionally: return to skip kubectl
+                //  return to skip kubectl
                 return
             }
 
