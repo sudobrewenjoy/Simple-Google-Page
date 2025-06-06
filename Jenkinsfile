@@ -94,7 +94,7 @@ pipeline {
             echo "Starting deployment to Kubernetes..."
 
             try {
-                sh 'ls -l deployment.yaml'
+                sh 'ls -l deployment.yml'
             } catch (err) {
                 echo "❌ File deployment.yaml not found!"
                 //  return to skip kubectl
