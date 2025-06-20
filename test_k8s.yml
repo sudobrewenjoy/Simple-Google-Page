@@ -53,6 +53,9 @@ spec:
         - podSelector:
             matchLabels:
               role: test-client
+      ports:
+        - protocol: TCP
+          port: 80
 
 ---
 
